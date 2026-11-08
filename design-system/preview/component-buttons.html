@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>body{margin:0;padding:24px;background:#fff;font-family:var(--d20-font-display)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:14px;padding:12px 22px;border-radius:14px;transition:opacity .2s,transform .15s}
+.btn:active{transform:scale(.98)}
+.primary{background:var(--d20-teal);color:#fff;box-shadow:var(--d20-shadow-brand)}
+.primary:hover{opacity:.92}
+.coral{background:var(--d20-coral);color:#fff}
+.ghost{background:transparent;color:var(--d20-teal-dark);box-shadow:inset 0 0 0 2px var(--d20-teal)}
+.subtle{background:var(--d20-teal-light);color:var(--d20-teal-dark)}
+.tiny{padding:8px 14px;font-size:12px;border-radius:10px}
+.lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--d20-grey-50);font-weight:700;margin-top:6px}
+.col{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+</style></head><body>
+<div class="row">
+  <div class="col"><button class="btn primary">Start for free <span>→</span></button><div class="lbl">primary</div></div>
+  <div class="col"><button class="btn coral">Get the app</button><div class="lbl">coral</div></div>
+  <div class="col"><button class="btn ghost">Learn more</button><div class="lbl">ghost</div></div>
+  <div class="col"><button class="btn subtle">View activities</button><div class="lbl">subtle</div></div>
+  <div class="col"><button class="btn primary tiny">Save</button><div class="lbl">small</div></div>
+</div>
+</body></html>

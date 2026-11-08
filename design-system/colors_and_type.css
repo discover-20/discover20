@@ -1,0 +1,215 @@
+/* ============================================================
+   DISCOVER20 — Colors & Type
+   ------------------------------------------------------------
+   Brand: Discover20 ("Young Secrets… Great Solutions")
+   Source: Brand Guideline Discover 20.pdf (2025)
+   Brand font: Filson Soft — substituted with Nunito (Google Fonts)
+   Pending: real Filson Soft files from client.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap');
+
+:root {
+  /* ── BRAND COLORS (per Brand Guideline p.15) ─────────────── */
+  --d20-teal:   #1ABBBC;   /* C26 M0 Y31 K0  — primary */
+  --d20-yellow: #FFD545;   /* C1 M15 Y84 K0  — accent */
+  --d20-purple: #5A30CE;   /* C90 M77 Y0 K0 — Stories */
+  --d20-coral:  #F05E5E;   /* C1 M81 Y58 K0 — Activities/Titles */
+  --d20-green:  #86C559;   /* C51 M1 Y86 K0 — Toys */
+
+  /* Light/tinted versions (derived for surfaces) */
+  --d20-teal-light:   #E1F8F8;
+  --d20-yellow-light: #FFFBEB;
+  --d20-purple-light: #F0EBFB;
+  --d20-coral-light:  #FDECEC;
+  --d20-green-light:  #EEF7E5;
+
+  /* Darker variants (derived for hover/text-on-light) */
+  --d20-teal-dark:   #0F8A8B;
+  --d20-purple-dark: #3D1FA3;
+  --d20-coral-dark:  #CE4848;
+  --d20-green-dark:  #5E9B3A;
+  --d20-yellow-dark: #C99800;
+
+  /* ── NEUTRALS ─────────────────────────────────────────── */
+  --d20-black:    #1A1A2E;     /* body data */
+  --d20-grey-90:  #2A2A3A;
+  --d20-grey-70:  #6B7280;     /* body text @ 70% per guideline */
+  --d20-grey-50:  #9CA3AF;
+  --d20-grey-30:  #D1D5DB;
+  --d20-grey-15:  #E5E7EB;     /* borders */
+  --d20-grey-08:  #F3F4F6;
+  --d20-grey-04:  #F9FAFB;     /* canvas */
+  --d20-white:    #FFFFFF;
+
+  /* ── SEMANTIC COLOR ROLES (per Brand Guideline p.18) ─── */
+  /* Titles → Coral. Subtitles → Teal. Body → 70% Grey. Data → Black. */
+  --d20-fg-title:    var(--d20-coral);
+  --d20-fg-subtitle: var(--d20-teal);
+  --d20-fg-body:     var(--d20-grey-70);
+  --d20-fg-data:     var(--d20-black);
+  --d20-fg-link:     var(--d20-teal-dark);
+  --d20-fg-inverse:  var(--d20-white);
+
+  --d20-bg-canvas:  var(--d20-grey-04);
+  --d20-bg-surface: var(--d20-white);
+  --d20-bg-hero:    var(--d20-teal);
+  --d20-border:     var(--d20-grey-15);
+
+  /* Color ratios (Brand Guideline p.16): 40% primary + 15% each other = 100% */
+  --d20-ratio-primary: 40%;
+  --d20-ratio-each:    15%;
+
+  /* ── TYPOGRAPHY ──────────────────────────────────────── */
+  /* Brand: Filson Soft  ·  Substitute: Nunito · Arabic: Tajawal */
+  --d20-font-display: 'Nunito', 'Filson Soft', system-ui, sans-serif;
+  --d20-font-body:    'Nunito', 'Filson Soft', system-ui, sans-serif;
+  --d20-font-arabic:  'Tajawal', 'Filson Soft Arabic', system-ui, sans-serif;
+
+  /* Weights — mapped to Filson Soft scale per guideline p.19
+     Titles → Black (900)
+     Sub-Titles → Medium (600)
+     Body → Book/Regular (400)
+     Data → Light (300) or Bold (700) for emphasis */
+  --d20-w-light:   300;
+  --d20-w-regular: 400;
+  --d20-w-medium:  600;
+  --d20-w-bold:    700;
+  --d20-w-black:   900;
+
+  /* Type scale */
+  --d20-fs-display: 56px;
+  --d20-fs-h1:      40px;
+  --d20-fs-h2:      30px;
+  --d20-fs-h3:      22px;
+  --d20-fs-h4:      18px;
+  --d20-fs-body:    16px;
+  --d20-fs-small:   14px;
+  --d20-fs-micro:   12px;
+
+  --d20-lh-tight: 1.15;
+  --d20-lh-snug:  1.35;
+  --d20-lh-body:  1.65;
+  --d20-lh-relax: 1.8;
+
+  --d20-tracking-eyebrow: 0.12em;
+
+  /* ── SPACING ─────────────────────────────────────────── */
+  --d20-s-1: 4px;
+  --d20-s-2: 8px;
+  --d20-s-3: 12px;
+  --d20-s-4: 16px;
+  --d20-s-5: 24px;
+  --d20-s-6: 32px;
+  --d20-s-7: 48px;
+  --d20-s-8: 64px;
+  --d20-s-9: 96px;
+
+  /* ── RADII ───────────────────────────────────────────── */
+  /* Discover20 leans on generous rounding — echoes the logo's soft-rounded forms. */
+  --d20-r-sm:   8px;
+  --d20-r-md:   14px;   /* buttons */
+  --d20-r-lg:   18px;   /* small cards, pills */
+  --d20-r-xl:   24px;   /* feature cards / hero blocks */
+  --d20-r-2xl:  32px;
+  --d20-r-hero: 48px;   /* hero corner cut */
+  --d20-r-pill: 999px;
+
+  /* ── SHADOWS ─────────────────────────────────────────── */
+  --d20-shadow-sm:  0 1px 2px rgba(26, 26, 46, 0.06);
+  --d20-shadow-md:  0 4px 12px rgba(26, 26, 46, 0.06);
+  --d20-shadow-lg:  0 8px 24px rgba(26, 26, 46, 0.08);
+  --d20-shadow-xl:  0 16px 40px rgba(26, 26, 46, 0.10);
+  --d20-shadow-brand: 0 12px 30px rgba(26, 187, 188, 0.25);
+
+  /* ── MOTION ──────────────────────────────────────────── */
+  --d20-ease:        cubic-bezier(.22,.61,.36,1);
+  --d20-ease-bounce: cubic-bezier(.34,1.56,.64,1);
+  --d20-dur-fast:    150ms;
+  --d20-dur-base:    250ms;
+  --d20-dur-slow:    450ms;
+}
+
+/* ============================================================
+   SEMANTIC RESETS — apply role colors to canonical HTML elements
+   ============================================================ */
+
+body {
+  font-family: var(--d20-font-body);
+  font-weight: var(--d20-w-regular);
+  font-size: var(--d20-fs-body);
+  line-height: var(--d20-lh-body);
+  color: var(--d20-fg-body);
+  background: var(--d20-bg-canvas);
+}
+
+h1, .d20-h1 {
+  font-family: var(--d20-font-display);
+  font-weight: var(--d20-w-black);
+  font-size: var(--d20-fs-h1);
+  line-height: var(--d20-lh-tight);
+  color: var(--d20-fg-data);   /* hero h1 usually white on teal — override per surface */
+}
+
+h2, .d20-h2 {
+  font-family: var(--d20-font-display);
+  font-weight: var(--d20-w-black);
+  font-size: var(--d20-fs-h2);
+  line-height: var(--d20-lh-snug);
+  color: var(--d20-fg-data);
+}
+
+h3, .d20-h3 {
+  font-family: var(--d20-font-display);
+  font-weight: var(--d20-w-bold);
+  font-size: var(--d20-fs-h3);
+  line-height: var(--d20-lh-snug);
+  color: var(--d20-fg-data);
+}
+
+h4, .d20-h4 {
+  font-family: var(--d20-font-display);
+  font-weight: var(--d20-w-bold);
+  font-size: var(--d20-fs-h4);
+  line-height: var(--d20-lh-snug);
+  color: var(--d20-fg-data);
+}
+
+p, .d20-body {
+  font-family: var(--d20-font-body);
+  font-weight: var(--d20-w-regular);
+  font-size: var(--d20-fs-body);
+  line-height: var(--d20-lh-body);
+  color: var(--d20-fg-body);
+}
+
+small, .d20-small {
+  font-size: var(--d20-fs-small);
+  line-height: var(--d20-lh-body);
+  color: var(--d20-fg-body);
+}
+
+.d20-eyebrow {
+  font-size: var(--d20-fs-micro);
+  font-weight: var(--d20-w-bold);
+  letter-spacing: var(--d20-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--d20-grey-70);
+}
+
+.d20-subtitle {
+  color: var(--d20-fg-subtitle);
+  font-weight: var(--d20-w-medium);
+}
+
+a, .d20-link {
+  color: var(--d20-fg-link);
+  text-decoration: none;
+  font-weight: var(--d20-w-bold);
+}
+a:hover, .d20-link:hover { opacity: 0.85; }
+
+/* Arabic helper — flip to Tajawal automatically inside [dir="rtl"] */
+[dir="rtl"], .d20-rtl {
+  font-family: var(--d20-font-arabic);
+}

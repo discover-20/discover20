@@ -1,0 +1,683 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Discover20 Homepage</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+/* Single-look brand mockup: colours are set explicitly so it reads the same on any host theme. */
+:root{
+  color-scheme: light;
+  --teal:#1ABABA; --teal-d:#128F8F; --tint:#E3F7F5; --coral:#EF5E5E; --coral-d:#D94A4A;
+  --purple:#640A94; --green:#7FB950; --yellow:#E9B934;
+  --ink:#17242B; --mut:#5F6D74; --line:#E3EBEC; --bg:#FFFFFF; --soft:#F6FAFA;
+  --f-ar:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;
+  --f-en:"Nunito","Segoe UI",system-ui,Arial,sans-serif;
+  --r:18px; --r-lg:26px;
+  --sh:0 4px 18px rgba(23,36,43,.07);
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ar);font-size:16.5px;line-height:1.75}
+body[dir="ltr"]{font-family:var(--f-en);line-height:1.65}
+h1,h2,h3,p{margin:0}
+h1,h2{text-wrap:balance;font-weight:800;line-height:1.35}
+h2{font-size:clamp(24px,3.2vw,34px)}
+h3{font-size:18.5px;font-weight:800;line-height:1.4}
+a{color:inherit}
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:20px}
+section{padding-block:72px;position:relative}
+.mut{color:var(--mut)}
+.center{text-align:center}
+.kicker{font-weight:800;color:var(--teal-d);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+.intro{display:grid;gap:12px;justify-items:center;text-align:center;max-width:720px;margin-inline:auto}
+
+/* review chips: which sections are done */
+.chip{position:absolute;inset-block-start:14px;inset-inline-start:14px;z-index:5;display:inline-flex;align-items:center;gap:6px;
+  font:700 12px/1 var(--f-en);letter-spacing:.03em;padding:6px 10px;border-radius:999px;background:#fff;color:#8A6D1F;
+  border:1px solid #EAD9A6;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.chip.done{color:#3F7024;border-color:#C7E3B3}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--yellow)}
+.chip.done::before{background:var(--green)}
+.chip.sample{color:#B23A3A;border-color:#F3C1C1}
+.chip.sample::before{background:var(--coral)}
+header .chip{inset-block-start:auto;inset-block-end:-34px}
+body.clean .chip{display:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding-inline:30px;
+  border-radius:999px;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:16.5px;text-decoration:none;
+  background:var(--coral);color:#fff;box-shadow:0 6px 18px rgba(239,94,94,.3);transition:transform .15s,background .15s}
+.btn:hover{background:var(--coral-d);transform:translateY(-2px)}
+.btn:focus-visible,.lang:focus-visible,.tool button:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+.btn-sm{min-height:44px;padding-inline:22px;font-size:15px}
+.btn-line{background:transparent;color:var(--teal-d);border:2px solid var(--teal);box-shadow:none;min-height:44px;font-size:15px;padding-inline:20px}
+.btn-line:hover{background:var(--teal);color:#fff}
+
+/* 1 header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:3px solid var(--teal)}
+.hrow{display:flex;align-items:center;gap:18px;min-height:72px}
+.logo{display:flex;align-items:center;gap:10px;font:900 20px var(--f-en);color:var(--ink);white-space:nowrap}
+.logo i{font-style:normal;background:var(--teal);color:#fff;border-radius:10px;width:38px;height:38px;display:grid;place-items:center;font-size:14px}
+.logo .lt{display:flex;flex-direction:column;gap:3px;line-height:1.05}
+.logo small{font:700 12.5px var(--f-en);color:var(--coral-d);letter-spacing:.03em}
+body[dir="rtl"] .logo small{font-family:var(--f-ar);letter-spacing:0}
+footer .logo small{color:#7FDADA}
+nav{display:flex;gap:24px;margin-inline-start:auto;flex-wrap:wrap}
+nav a{text-decoration:none;color:#4A5961;font-size:15.5px;font-weight:600}
+nav a:hover{color:var(--teal-d)}
+.lang{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 15px;
+  font:700 14px var(--f-ar);color:var(--ink);cursor:pointer}
+.lang svg{width:16px;height:16px;color:var(--teal-d)}
+.hact{display:flex;align-items:center;gap:10px}
+
+/* 2 hero */
+.hero{background:var(--teal);color:#fff;padding-block:64px 76px;overflow:hidden}
+.herogrid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(28px,4vw,44px);line-height:1.4}
+.hero .sub{margin-block-start:20px;font-size:clamp(16.5px,1.7vw,19px);line-height:1.85;opacity:.95;max-width:48ch}
+.hero .btn{margin-block-start:30px}
+.ph{border-radius:var(--r-lg);background:linear-gradient(160deg,#F6F7F9,#E4E7EB);min-height:340px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;color:var(--mut);font-size:14px;text-align:center;padding:24px}
+.ph span{width:52px;height:52px;border-radius:50%;background:#D6DADF;display:grid;place-items:center}
+.ph svg{width:24px;height:24px;color:#8C959C}
+
+/* 3 how it works — 5-step journey */
+.how h2{font-size:clamp(26px,3.6vw,40px)}
+.hsteps{list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative}
+.hsteps::before{content:"";position:absolute;inset-inline:10%;inset-block-start:52px;border-top:2px dashed #BFE9E4;z-index:0}
+.hstep{position:relative;z-index:1;background:#fff;border-radius:22px;padding:22px 20px 26px;box-shadow:0 6px 26px rgba(23,36,43,.08);display:flex;flex-direction:column;gap:10px}
+.hstep .top{display:flex;justify-content:space-between;align-items:center;margin-block-end:6px}
+.hstep .n{font:900 48px/1 var(--f-en);color:#C9F0EC}
+.hstep svg{width:30px;height:30px;color:var(--teal)}
+.hstep h3{font-size:17.5px}
+.hstep p{font-size:15px;line-height:1.75;color:var(--mut)}
+
+/* 20 minutes / young secrets */
+.young{background:var(--soft)}
+.young h2{font-size:clamp(26px,3.6vw,40px)}
+.points{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.points li{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:700;font-size:15px}
+.points svg{width:18px;height:18px;color:var(--teal-d)}
+
+/* journal categories */
+.cats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-block-start:8px}
+.cats a{text-decoration:none;border:1.5px solid #CFE6E4;border-radius:999px;padding:7px 15px;font-weight:700;font-size:14.5px;color:var(--ink)}
+.cats a:hover{border-color:var(--teal);color:var(--teal-d)}
+
+/* 4 assessment library */
+.lib{background:#F1FBFA}
+.lib h2{font-size:clamp(26px,3.6vw,40px)}
+.agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-block-start:38px}
+.acard{background:#fff;border-radius:22px;padding:26px;box-shadow:0 6px 26px rgba(23,36,43,.07);display:flex;flex-direction:column;gap:8px}
+.acard svg{width:34px;height:34px;color:var(--teal);margin-block-end:14px}
+.acard p{color:var(--mut);font-size:15.5px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-block-start:auto;padding-block-start:18px}
+.badge{font:700 13px/1 var(--f-en);padding:8px 13px;border-radius:999px;background:#EEF2F3;color:#3D4B52}
+body[dir="rtl"] .badge{font-family:var(--f-ar)}
+.badge.free{background:#A6D883;color:#23410F}
+.dash{display:flex;gap:14px;align-items:center;max-width:760px;margin:34px auto 0;background:#fff;border:1.5px solid #BFE9E4;
+  border-radius:18px;padding:16px 20px;font-weight:700;font-size:16px}
+.dash svg{flex:0 0 30px;height:30px;color:var(--teal-d)}
+.lib .more{display:flex;justify-content:center;margin-block-start:26px}
+.lnote{margin:26px auto 0;max-width:72ch;text-align:center;font-size:13.5px;color:var(--mut);line-height:1.8}
+
+/* 9 cards */
+.cardsec h2{font-size:clamp(26px,3.6vw,40px)}
+.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-block-start:38px}
+.kcard{background:#fff;border-radius:22px;padding:18px 18px 22px;box-shadow:0 6px 26px rgba(23,36,43,.08);display:flex;flex-direction:column;gap:8px}
+.kart{border-radius:18px;height:110px;display:grid;place-items:center;margin-block-end:12px}
+.kart span{width:62px;height:62px;border-radius:16px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.kart svg{width:28px;height:28px;color:var(--teal)}
+.kcard h3,.kcard p{padding-inline:4px}
+.kcard p{color:var(--mut);font-size:15.5px}
+.kcard .badge{align-self:flex-start;margin-block-start:auto;margin-inline-start:4px}
+
+/* 10 experts */
+.experts h2{font-size:clamp(26px,3.6vw,40px)}
+.experts .card .btn{margin-block-start:auto}
+
+/* 11 testimonials */
+.voices h2{font-size:clamp(26px,3.6vw,40px)}
+.qgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-block-start:38px}
+.q{background:#fff;border-radius:22px;padding:28px;box-shadow:0 6px 26px rgba(23,36,43,.08);display:flex;flex-direction:column;gap:18px}
+.q.sample{outline:2px dashed #F3C1C1;outline-offset:-8px}
+.qav{width:64px;height:64px;border-radius:50%;background:var(--tint);color:var(--teal-d);display:grid;place-items:center;font:800 22px var(--f-ar);border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.qt{font-size:18px;font-weight:700;line-height:1.85}
+.qwho{margin-block-start:auto;color:var(--mut);font-size:14.5px}
+.qwho b{color:var(--ink)}
+.science{margin:34px auto 0;max-width:74ch;text-align:center;color:var(--mut);font-size:15px}
+
+/* 12 pricing */
+.pricing h2{font-size:clamp(28px,4vw,44px)}
+.prtext{font-size:clamp(17px,1.9vw,20px);font-weight:700;line-height:1.9;max-width:58ch}
+.pricing .btn{margin-block-start:14px}
+
+/* 14 faq */
+.faqsec{background:#F1FBFA}
+.faqsec h2{font-size:clamp(28px,4vw,44px)}
+.faq{max-width:920px;margin:36px auto 0;background:#fff;border-radius:26px;padding:6px 34px;box-shadow:0 8px 30px rgba(23,36,43,.07)}
+.fi+.fi{border-top:1px solid var(--line)}
+.fq{width:100%;background:none;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:17px;color:var(--ink);text-align:start;
+  padding:24px 0;display:flex;align-items:center;gap:16px}
+.fq:hover,.fq[aria-expanded="true"]{color:var(--teal-d)}
+.fq svg{width:20px;height:20px;margin-inline-start:auto;flex:0 0 auto;color:var(--mut);transition:transform .2s}
+.fq[aria-expanded="true"] svg{transform:rotate(180deg)}
+.fq:focus-visible{outline:3px solid var(--purple);outline-offset:2px;border-radius:6px}
+.fa p{padding-block-end:22px;color:var(--mut);max-width:70ch}
+
+/* 15 final cta */
+.final{background:var(--coral);color:#fff;padding-block:84px}
+.final h2{font-size:clamp(26px,3.8vw,40px);max-width:24ch}
+.final .btn{background:#fff;color:var(--coral-d);margin-block-start:18px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.final .btn:hover{background:#FFF1F1}
+
+/* about */
+.about{background:var(--soft)}
+.about .wrap{display:grid;gap:18px;max-width:780px;text-align:center;justify-items:center}
+.about .big{font-size:clamp(20px,2.4vw,26px);font-weight:800;line-height:1.6}
+
+/* 4 tracker banner */
+.tracker{background:linear-gradient(160deg,var(--purple),#4A0870);color:#fff}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.tracker .kicker{color:#E7C8FF}
+.tracker h2{margin-block:10px 22px}
+.tracker p{opacity:.92;font-size:17px}
+
+/* 5 domains */
+.dom{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.domc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:10px}
+.domc .bar{height:8px;border-radius:99px;background:#EEF2F3;overflow:hidden;margin-block-start:auto}
+.domc .bar b{display:block;height:100%;border-radius:99px}
+.prog{display:flex;justify-content:space-between;font-size:13.5px;font-weight:700;color:var(--mut);padding-block-start:8px}
+
+/* 6 young secrets */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-block-start:40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:10px;text-align:start}
+.card .lbl{font-size:13.5px;font-weight:800;padding:5px 12px;border-radius:999px;align-self:flex-start}
+.card .btn{align-self:flex-start;margin-block-start:auto}
+.card p{flex:0}
+
+/* 7 experts */
+.experts{background:var(--tint)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-block-start:40px}
+
+/* 8 journal */
+.jgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-block-start:40px}
+.jcard{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;box-shadow:var(--sh)}
+.jimg{aspect-ratio:16/10;background:linear-gradient(150deg,var(--tint),#CFEDEA);max-width:100%}
+.jbody{padding:14px 16px 18px;display:grid;gap:4px}
+.jcat{font-size:12.5px;font-weight:800;color:var(--teal-d)}
+
+/* 9 footer */
+footer{background:#10343A;color:#C3D8DB;padding-block:56px 30px;font-size:15px;position:relative}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:36px}
+footer h4{color:#fff;margin:0 0 12px;font-size:16px}
+footer .links{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+footer a{text-decoration:none;color:#C3D8DB}
+footer a:hover{color:#fff}
+.disc{margin-block-start:30px;padding-block-start:20px;border-top:1px solid rgba(255,255,255,.14);font-size:13.5px;color:#90AFB3}
+
+/* review toolbar */
+.tool{position:fixed;inset-block-end:calc(16px + env(safe-area-inset-bottom,0px));inset-inline-end:16px;z-index:60;display:flex;gap:6px;
+  background:#17242B;padding:6px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-family:var(--f-en)}
+.tool button{background:transparent;color:#fff;border:0;border-radius:999px;padding:8px 14px;font:700 13px var(--f-en);cursor:pointer}
+.tool button[aria-pressed="true"]{background:var(--teal)}
+
+@media(max-width:980px){.dom,.g4,.jgrid{grid-template-columns:repeat(2,1fr)}
+  .hsteps{grid-template-columns:repeat(2,1fr)} .hsteps::before{display:none}}
+@media(max-width:860px){
+  .herogrid,.tgrid,.g3,.fgrid,.hsteps,.agrid,.kgrid,.qgrid{grid-template-columns:1fr}
+  .ph{min-height:220px;order:-1}
+  nav{display:none}
+  section{padding-block:56px}
+}
+@media(max-width:520px){
+  .dom,.g4,.jgrid{grid-template-columns:1fr}
+  .btn{width:100%}
+  .hact .btn-sm{width:auto}
+  .faq{padding-inline:18px}
+  .logo .lt{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header>
+  <div class="wrap hrow">
+    <div class="logo"><i>D20</i><span class="lt"><span>Discover20</span><small id="slogan"></small></span></div>
+    <nav id="nav"></nav>
+    <div class="hact">
+      <button class="lang" id="lang" type="button"></button>
+      <a class="btn btn-sm" href="#" id="join"></a>
+    </div>
+  </div>
+</header>
+<main id="app"></main>
+<div class="tool" role="group" aria-label="Review tools">
+  <button type="button" id="tAr" aria-pressed="true">عربي</button>
+  <button type="button" id="tEn" aria-pressed="false">EN</button>
+  <button type="button" id="tChips" aria-pressed="true">Labels</button>
+</div>
+
+<script>
+/* STATUS: "done" = new approved text, "live" = still the current discover20.com text */
+const STATUS = {1:"done",2:"done",3:"done",4:"live",5:"live",6:"done",7:"done",8:"done",9:"done",10:"sample",11:"done",12:"done",13:"done",14:"done",15:"live"};
+
+const C = {
+ar:{
+  dir:"rtl", lang:"ar", langBtn:"English", slogan:"أسرار الصغار",
+  chipDone:"Updated", chipLive:"Current live text",
+  nav:["الأنشطة","الحكايات","الألعاب","التقييمات","اسألي الخبراء","الكروت"],
+  join:"اشترك الآن",
+
+  h1:"هل مهارات طفلك مثل أصحابه؟<br>اعرفي نقاط القوة والضعف في ٤ دقائق",
+  sub:"قيّمي تطور طفلك مجاناً — وبعدها كل يوم نبعتلك نشاط واحد وحكاية واحدة، ٢٠ دقيقة بس، مختارين لسن طفلك ونتيجة التقييم.",
+  cta:"ابدئي التقييم المجاني",
+  photo:"أم مصرية تحتضن طفلها ويضحكان معاً",
+
+  howH:"كيف يساعدكِ Discover20؟",
+  howS:"نفس السن لا يعني نفس الاحتياج. لذلك نبدأ بفهم طفلك، ثم نختار معكِ ما يناسبه.",
+  how:[["اعرفي طفلك","أجيبي عن أسئلة بسيطة عنه في ٤ دقائق فقط."],
+       ["افهمي احتياجه","تقرير واضح يبيّن نقاط قوته والمجالات التي تحتاج إلى دعم."],
+       ["العبي معه","أنشطة وحكايات وألعاب مختارة لعمره ونتيجة تقييمه، في ٢٠ دقيقة يومياً."],
+       ["تابعي تطوره","راقبي تقدّمه، وأعيدي التقييم مع الوقت لتتغيّر الخطوات معه."],
+       ["اسألي عند الحاجة","خبراء متخصصون يساعدونكِ متى احتجتِ إليهم."]],
+
+  libH:"مش تقييم واحد — مكتبة تقييمات لكل سن من ٠ لـ ١٠ سنين",
+  libS:"كل تقييم بيجاوب على سؤال مختلف عن طفلك.",
+  mins:"دقايق", free:"مجاني",
+  tests:[
+    ["تقييم التطور","هل طفلي ماشي كويس في المجالات الأربعة؟","٠–١٠","٤",true],
+    ["شخصية الطفل في اللعب","إزاي طفلي بيتعلم ويلعب بأفضل طريقة؟","١–١٠","٤",false],
+    ["جاهزية المدرسة","هل طفلي جاهز يبدأ المدرسة؟","٣–٧","٤",false]
+  ],
+  libDash:"بعد التسجيل، هتلاقي كل التقييمات المناسبة لسن طفلك جاهزة في لوحة المتابعة الخاصة بيه.",
+  libMore:"شوفي كل التقييمات",
+
+  kH:"كروت Discover20: العب واتعلم في أي وقت",
+  kS:"كروت مطبوعة بنصممها لكل سن، تكمّل الأنشطة اليومية بعيد عن الشاشة.",
+  age:"السن",
+  kits:[
+    ["كروت الأنشطة","٥٢ نشاط سريع، كارت لكل أسبوع.","٠–١٠"],
+    ["كروت المشاعر","تساعد طفلك يسمّي اللي حاسس بيه ويعبّر عنه.","٣–١٠"],
+    ["كروت الكلام واللغة","صور وكلمات تبني حصيلة طفلك اللغوية.","١–٦"]
+  ],
+  kBtn:"اكتشفي الكروت",
+  libNote:"تضم مكتبة Discover20 مقاييس تقييم معتمدة نستخدمها بترخيص من الجهات المالكة لها، إلى جانب تقييمات صمّمها فريق Discover20 تحت إشراف طبي متخصص. جميعها أدوات لفهم تطور طفلك ومتابعته، ولا تُعدّ تشخيصاً طبياً.",
+
+
+  tK:"مؤشر نمو وتطور الطفل", tH:"توقفي عن القلق، وابدأي في المعرفة.",
+  tP:"اكتشفي هذه المجالات الأربعة الرئيسية للتأكد ان كان طفلك ينمو مثل أقرانه أم لا. يحدد من خلالها نقاط قوته الفريدة ويكشف عن أي علامات تحذيرية مبكراً، مع تقرير شخصي كامل لطفلك.",
+  tBtn:"ابدءي رحلتك الان",
+
+  progress:"التطور",
+  doms:[
+    ["التطور الجسدي والحركي","المهارات الحركية الكبيرة مثل الجري والقفز، والحركية الدقيقة مثل الإمساك بالأشياء والرسم","#1ABABA"],
+    ["التطور العقلي","حل المشكلات، الذاكرة، التفكير، والفضول.","#640A94"],
+    ["التطور اللغوى والتواصل","اكتساب اللغة (فهم الأوامر البسيطة/استخدام الكلمات والجمل)","#E9B934"],
+    ["التطور الاجتماعي والعاطفي","التعاطف، التنظيم الذاتي، فهم العواطف، وبناء العلاقات","#7FB950"]
+  ],
+
+  yK:"٢٠ دقيقة · أسرار الصغار", yH:"٢٠ دقيقة من وقتكِ… تصنع فرقاً في يومه",
+  yP:"لا تحتاجين إلى وقت طويل أو أدوات كثيرة. خصّصي كل يوم ٢٠ دقيقة من التركيز الحقيقي مع طفلكِ، عبر نشاط أو حكاية أو لعبة تناسبه، لتساعديه على أن يتعلّم ويتفاعل ويعبّر عن نفسه بطريقته.",
+  yPts:["وقت نوعي بلا ضغط","أنشطة تناسب احتياجه","خطوة صغيرة كل يوم"],
+  secrets:[
+    ["الأنشطة","نلعب معه… ونعرف ما الذي ننمّيه","أنشطة بسيطة وموجّهة، مصمّمة حسب عمر طفلكِ واحتياجاته، ويمكنكِ تنفيذها في البيت.","#1ABABA","اكتشفي الأنشطة"],
+    ["الحكايات","كل حكاية فرصة جديدة للفهم","حكايات تناسب عمر طفلكِ، تساعده على تطوير لغته وخياله وفهم مشاعره بطريقة ممتعة.","#640A94","اكتشفي الحكايات"],
+    ["الألعاب","اللعبة المناسبة ليست بالضرورة الأغلى","اعرفي أي مهارة تنمّيها كل لعبة، وكيف تلعبين بها مع طفلكِ بطريقة مفيدة.","#C9971A","اختاري اللعبة المناسبة"]
+  ],
+
+  eK:"اسألي الخبراء",
+  eH:"ولو التقييم نبّه على حاجة؟ مش هنسيبك لوحدك.",
+  eP:"لستِ مضطرة لمعرفة كل الإجابات وحدكِ. خبراء معتمدون يساعدونكِ على فهم الصورة ومعرفة الخطوة المناسبة — من دون أحكام أو تخويف، والحجز من المكان نفسه.",
+  eBtn:"احجزي استشارة",
+  experts:[
+    ["استشاري أطفال تنموي","لو التقييم أظهر علامة محتاجة متابعة، أو عندك قلق من تأخر في تطور طفلك."],
+    ["استشاري نفسي للأطفال","للتحديات العاطفية والمشاكل السلوكية، أو لما تحتاجي رأي متخصص."],
+    ["كوتش تربية معتمد","لطرق عملية لتعديل السلوك، وتواصل أهدى وأنجح مع طفلك."],
+    ["استشاري تغذية أطفال","لمشاكل النمو والأكل الانتقائي وحساسية الطعام، وأنظمة غذائية للأمراض المزمنة زي السكر."]
+  ],
+
+  vK:"آراء الأمهات",
+  vH:"من أمهات جرّبوا Discover20",
+  voices:[
+    ["«[اقتباس تجريبي: التقرير خلاني أفهم ابني بدل ما أقارنه.]»","مريم","القاهرة · أم لطفل ٤ سنين"],
+    ["«[اقتباس تجريبي: النشاط بسيط وقدرت أعمله حتى بعد يوم طويل.]»","سارة","الجيزة · أم لطفلة سنتين"],
+    ["«[اقتباس تجريبي: عرفت إمتى أطمن وإمتى أسأل متخصص.]»","نهى","الإسكندرية · أم لطفل ٧ سنين"]
+  ],
+  science:"دراسة في جامايكا تابعت أطفالاً لمدة عشرين سنة: اللي أمهاتهم لعبوا معاهم لعب موجّه بانتظام، دخلهم وهم كبار كان أعلى بـ ٢٥٪. منشورة في مجلة Science.",
+
+  prH:"ببساطة، ومن دون مفاجآت",
+  prP:"التقييم مجاني دائماً. يبدأ الاشتراك من ١٩٩ جنيهاً شهرياً — أقل من تكلفة كشف واحد عند الطبيب. ويمكنكِ إلغاء الاشتراك في أي وقت.",
+
+  qH:"أسئلة تدور في ذهنكِ",
+  faq:[
+    ["هل التقييم مجاني فعلاً؟","نعم. التقييم التطوّري مجاني لكل أم، دون اشتراك ودون بطاقة دفع. ويبدأ الاشتراك فقط إذا رغبتِ في الأنشطة والحكايات اليومية."],
+    ["طفلي عمره ٨ سنوات، هل الموقع مناسب له؟","نعم. يغطّي Discover20 الأعمار من الولادة حتى ١٠ سنوات، ولدينا تقييمات وأنشطة وحكايات مخصّصة لهذه المرحلة، مثل الانتباه والتركيز، والاستعداد للمدرسة، والصداقة والتنمّر، والتعامل مع المصروف."],
+    ["عشرون دقيقة كل يوم؟ ليس لديّ وقت.","عشرون دقيقة أربع مرات في الأسبوع أنفع لطفلكِ من ساعة واحدة في نهاية الأسبوع. وإن لم يتوفّر لديكِ سوى خمس دقائق، فلدينا أنشطة قصيرة تناسب ذلك. ولن نُشعركِ أبداً بالتقصير."],
+    ["هل هذا تشخيص طبي؟","لا. هو فحص مبدئي للتوعية والمتابعة، والقرار الطبي يعود دائماً إلى طبيب مرخّص. وإذا نبّه التقييم إلى أمر يستدعي الانتباه، نوصلكِ بأخصائي من داخل المنصّة."],
+    ["كيف تحافظون على بيانات طفلي؟","بيانات طفلكِ مشفّرة وهي مِلك لكِ. لا نبيعها ولا نشاركها مع أي جهة، ويمكنكِ طلب حذفها في أي وقت."]
+  ],
+
+  finH:"اعرفي أين يقف طفلكِ الآن. أربع دقائق، ومجاناً.",
+
+  jK:"جورنال أسرار الصغار",
+  jH:"إجابات بسيطة لأسئلة تشغلكِ كل يوم",
+  jP:"مقالات ونصائح بلغة سهلة يراجعها خبراء، تساعدكِ على فهم سلوك طفلكِ ونموّه، والتعامل مع المواقف اليومية بثقة أكبر.",
+  jCats:["النمو والتطور","السلوك","المشاعر","التربية","التغذية","وقت نوعي"],
+  jBtn:"اقرئي كل المقالات",
+  posts:[["وقت نوعي","لماذا ٢٠ دقيقة؟"],["عن Discover20","أهلاً بكِ في Discover20"],["المشاعر","علم نفس الأطفال"],["التربية","التربية الإيجابية"],
+         ["النمو والتطور","تطور الطفل"],["التغذية","تغذية الطفل"],["النمو والتطور","تنمية ذكاء الطفل"],["وقت نوعي","الوقت النوعي وألعاب الأطفال"]],
+
+  fTag:"نشارك كل سر من أسرار الصغار التي يتم اكتشافها",
+  fQuick:"روابط سريعة", fContact:"تواصل معنا",
+  fLinks:["عنا","أسرار الألعاب","اسأل الخبراء","أسرار الأنشطة","جورنال اسرار الصغار","أسرار الحكايات"],
+  disc:"هذا الموقع للمعلومات فقط: فهو ليس بديلاً عن النصيحة الطبية المهنية ولا يشكل علاجاً أو تشخيصاً"
+},
+en:{
+  dir:"ltr", lang:"en", langBtn:"العربية", slogan:"Young Secrets",
+  chipDone:"Updated", chipLive:"Current live text",
+  nav:["Activities","Stories","Toys","Assessments","Ask an Expert","Cards"],
+  join:"Join now",
+
+  h1:"Is your child keeping up with their friends?<br>Discover their strengths and weak spots in 4 minutes.",
+  sub:"Assess your child's development for free. Then every day we send you one activity and one story — just 20 minutes — picked for your child's age and assessment results.",
+  cta:"Start the free assessment",
+  photo:"An Egyptian mother hugging her child, both laughing",
+
+  howH:"How does Discover20 help you?",
+  howS:"The same age doesn't mean the same needs. So we start by understanding your child, then help you choose what suits them.",
+  how:[["Get to know your child","Answer a few simple questions about them in just 4 minutes."],
+       ["Understand their needs","A clear report showing their strengths and the areas that need support."],
+       ["Play together","Activities, stories and toys picked for their age and results, in 20 minutes a day."],
+       ["Follow their progress","Track how they're doing, and retake assessments over time so the steps grow with them."],
+       ["Ask when you need to","Specialists ready to help whenever you need them."]],
+
+  libH:"Not just one assessment — a whole library, for every age from 0 to 10",
+  libS:"Each assessment answers a different question about your child.",
+  mins:"min", free:"Free",
+  tests:[
+    ["Developmental assessment","Is my child on track across the four key areas?","0–10","4",true],
+    ["Play personality","How does my child learn and play best?","1–10","4",false],
+    ["School readiness","Is my child ready to start school?","3–7","4",false]
+  ],
+  libDash:"Once you sign up, every assessment suited to your child's age is ready and waiting in their personal dashboard.",
+  libMore:"See all assessments",
+
+  kH:"Discover20 Cards: play and learn anytime",
+  kS:"Printed cards designed for every age, to complement the daily activities away from screens.",
+  age:"Age",
+  kits:[
+    ["Activity Cards","52 quick activities, one card for every week.","0–10"],
+    ["Feelings Cards","Help your child name what they feel and express it.","3–10"],
+    ["Speech & Language Cards","Pictures and words that build your child's vocabulary.","1–6"]
+  ],
+  kBtn:"Explore the cards",
+  libNote:"The Discover20 library includes validated assessment tools used under licence from their publishers, alongside assessments developed by the Discover20 team under specialist medical supervision. All are tools for understanding and monitoring your child's development, not a medical diagnosis.",
+
+
+  tK:"Growth Progress Tracker", tH:"Stop Worrying, Start Knowing.",
+  tP:"Discover these 4 key domains to check if child grows as his peers or not. This also identifies unique strengths and spot red flags early, with full personal report.",
+  tBtn:"Start Tracking Now",
+
+  progress:"Progress",
+  doms:[
+    ["Physical Development","Gross Motor like running & jumping. Fine Motor like grasping and drawing.","#1ABABA"],
+    ["Cognitive Development","Problem-solving, memory, reasoning, and curiosity","#640A94"],
+    ["Communication/Language Development","Language acquisition (understanding simple commands/using words and sentences)","#E9B934"],
+    ["Social/Emotional Development","Empathy, self-regulation, understanding emotions, & building relationships.","#7FB950"]
+  ],
+
+  yK:"20 minutes · Young Secrets", yH:"20 minutes of your time… makes a difference to their day",
+  yP:"You don't need hours or lots of supplies. Give your child 20 minutes of real, focused attention each day through an activity, a story or a toy that suits them, and help them learn, connect and express themselves in their own way.",
+  yPts:["Quality time, no pressure","Activities that fit their needs","One small step every day"],
+  secrets:[
+    ["Activities","We play… and we know what it builds","Simple, guided activities designed around your child's age and needs, easy to do at home.","#1ABABA","Explore activities"],
+    ["Stories","Every story is a new chance to understand","Stories suited to your child's age that help them grow their language and imagination and understand their feelings, in a fun way.","#640A94","Explore stories"],
+    ["Toys","The right toy isn't always the most expensive","See which skill each toy builds, and how to play with it together in a way that helps.","#C9971A","Choose the right toy"]
+  ],
+
+  eK:"Ask an Expert",
+  eH:"And if the assessment flags something? You won't face it alone.",
+  eP:"You don't have to have every answer on your own. Certified specialists help you see the full picture and the right next step, without judgement or scare tactics, and you can book them right here.",
+  eBtn:"Book a consultation",
+  experts:[
+    ["Developmental Paediatrician","If the assessment raises a flag, or you're worried about a delay in your child's development."],
+    ["Child Psychologist","For emotional challenges and behaviour issues, or when you need a specialist's view."],
+    ["Certified Parenting Coach","For practical ways to shape behaviour, and calmer, more effective communication with your child."],
+    ["Paediatric Nutritionist","For growth concerns, picky eating and food allergies, and diet plans for chronic conditions like diabetes."]
+  ],
+
+  vK:"What mothers say",
+  vH:"From mothers who've tried Discover20",
+  voices:[
+    ["\"[Sample quote: The report helped me understand my son instead of comparing him.]\"","Mariam","Cairo · mother of a 4-year-old"],
+    ["\"[Sample quote: The activity was simple, and I could do it even after a long day.]\"","Sara","Giza · mother of a 2-year-old"],
+    ["\"[Sample quote: I learned when to relax and when to ask a specialist.]\"","Noha","Alexandria · mother of a 7-year-old"]
+  ],
+  science:"A study in Jamaica followed children for twenty years: those whose mothers did guided play with them regularly earned 25% more as adults. Published in Science.",
+
+  prH:"Simple, with no surprises",
+  prP:"The assessment is always free. Subscriptions start at EGP 199 a month — less than a single doctor's visit. You can cancel anytime.",
+
+  qH:"Questions on your mind",
+  faq:[
+    ["Is the assessment really free?","Yes. The developmental assessment is free for every mother, with no subscription and no payment card. A subscription only starts if you want the daily activities and stories."],
+    ["My child is 8. Is this site right for them?","Yes. Discover20 covers ages 0 to 10, with assessments, activities and stories built for this stage, such as attention and focus, school readiness, friendship and bullying, and handling pocket money."],
+    ["Twenty minutes every day? I don't have time.","Twenty minutes, four times a week, does more for your child than one hour at the weekend. If you only have five minutes, we have short activities for that too. We will never make you feel you've fallen short."],
+    ["Is this a medical diagnosis?","No. It's an initial screening for awareness and follow-up, and every medical decision belongs to a licensed doctor. If the assessment flags something that needs attention, we connect you with a specialist inside the platform."],
+    ["How do you protect my child's data?","Your child's data is encrypted and belongs to you. We never sell it or share it with anyone, and you can ask us to delete it at any time."]
+  ],
+
+  finH:"Find out where your child stands right now. Four minutes, and free.",
+
+  jK:"Young Secrets Journal",
+  jH:"Simple answers to the questions on your mind every day",
+  jP:"Articles and tips in plain language, reviewed by experts, to help you understand your child's behaviour and development and handle everyday moments with more confidence.",
+  jCats:["Growth & development","Behaviour","Feelings","Parenting","Nutrition","Quality time"],
+  jBtn:"Read all articles",
+  posts:[["Quality time","Why 20 Minutes?"],["About Discover20","Welcome to Discover20"],["Feelings","Child Psychology"],["Parenting","Positive Parenting"],
+         ["Growth & development","Child Development"],["Nutrition","Child Nutrition"],["Growth & development","Child Intelligence"],["Quality time","Quality Time & Play"]],
+
+  fTag:"Helping parents support every stage of childhood with fun, learning, and creativity.",
+  fQuick:"Quick links", fContact:"Contact Us",
+  fLinks:["About","Toys Secrets","Ask Expert","Activities Secrets","Journal","Stories Secrets"],
+  disc:"This website is for informational purposes only: it is NOT a substitute for professional medical advice and does not constitute therapy, or diagnosis."
+}};
+
+const GLOBE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>';
+const IMG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 17l5-5 4 4 3-3 6 6"/><circle cx="16" cy="8" r="2"/></svg>';
+
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+const HOWICONS=[
+ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>',
+ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 15.5A2 2 0 0 0 8.5 14.1l-6.1-1.6a.5.5 0 0 1 0-1l6.1-1.6A2 2 0 0 0 9.9 8.5l1.6-6.1a.5.5 0 0 1 1 0l1.6 6.1a2 2 0 0 0 1.4 1.4l6.1 1.6a.5.5 0 0 1 0 1l-6.1 1.6a2 2 0 0 0-1.4 1.4l-1.6 6.1a.5.5 0 0 1-1 0z"/><path d="M20 3v4M22 5h-4"/></svg>',
+ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>',
+ '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>'
+];
+
+const S='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+const LIBICONS=[
+ S+'<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>',
+ S+'<path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/></svg>',
+ S+'<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg>'
+];
+const DASHICON=S+'<rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>';
+
+const KITBG=["#FDE3DE","#FCEFC2","#C4F1EC"];
+const KITICONS=[
+ S+'<rect x="14" y="3" width="7" height="7" rx="1"/><path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3"/></svg>',
+ S+'<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>',
+ S+'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 8h8M8 12h5"/></svg>'
+];
+
+const CHEV=S+'<path d="m6 9 6 6 6-6"/></svg>';
+
+let L="ar";
+try{ const s=localStorage.getItem("d20-lang"); if(s==="en"||s==="ar") L=s; }catch(e){}
+const $=s=>document.querySelector(s);
+const chip=n=>{const s=STATUS[n]; const lbl={done:"Updated",live:"Current live text",sample:"Sample quotes — replace with real ones"}[s];
+  return `<span class="chip ${s}">§${n} · ${lbl}</span>`;};
+const arrow=()=>L==="ar"?"←":"→";
+
+function render(){
+  const t=C[L];
+  document.documentElement.lang=t.lang; document.documentElement.dir=t.dir; document.body.dir=t.dir;
+  $("#lang").innerHTML=GLOBE+t.langBtn;
+  $("#join").textContent=t.join;
+  $("#slogan").textContent=t.slogan;
+  $("#nav").innerHTML=t.nav.map(n=>`<a href="#">${n}</a>`).join("");
+  $("#tAr").setAttribute("aria-pressed",L==="ar"); $("#tEn").setAttribute("aria-pressed",L==="en");
+
+  $("#app").innerHTML=`
+  <section class="hero" id="s2">${chip(2)}
+    <div class="wrap herogrid">
+      <div>
+        <h1>${t.h1}</h1>
+        <p class="sub">${t.sub}</p>
+        <a class="btn" href="#">${t.cta} <span aria-hidden="true">${arrow()}</span></a>
+      </div>
+      <div class="ph"><span>${IMG}</span>${t.photo}</div>
+    </div>
+  </section>
+
+  <section class="how" id="s3">${chip(3)}
+    <div class="wrap">
+      <div class="intro"><h2>${t.howH}</h2><p class="mut">${t.howS}</p></div>
+      <ol class="hsteps">${t.how.map((s,i)=>`<li class="hstep">
+        <div class="top"><span class="n">${i+1}</span>${HOWICONS[i]}</div>
+        <h3>${s[0]}</h3><p>${s[1]}</p></li>`).join("")}</ol>
+    </div>
+  </section>
+
+  <section class="tracker" id="s4">${chip(4)}
+    <div class="wrap tgrid">
+      <div><div class="kicker">${t.tK}</div><h2>${t.tH}</h2><a class="btn" href="#">${t.tBtn}</a></div>
+      <p>${t.tP}</p>
+    </div>
+  </section>
+
+  <section id="s5">${chip(5)}
+    <div class="wrap dom">${t.doms.map(d=>`<div class="domc">
+      <h3>${d[0]}</h3><p class="mut" style="font-size:15px">${d[1]}</p>
+      <div class="prog"><span>${t.progress}</span><span>85%</span></div>
+      <div class="bar"><b style="width:85%;background:${d[2]}"></b></div></div>`).join("")}
+    </div>
+  </section>
+
+  <section class="lib" id="s6">${chip(6)}
+    <div class="wrap">
+      <div class="intro"><h2>${t.libH}</h2><p class="mut">${t.libS}</p></div>
+      <div class="agrid">${t.tests.map((a,i)=>`<div class="acard">
+        ${LIBICONS[i]}<h3>${a[0]}</h3><p>${a[1]}</p>
+        <div class="badges"><span class="badge">${a[2]}</span><span class="badge">${a[3]} ${t.mins}</span>${a[4]?`<span class="badge free">${t.free}</span>`:""}</div>
+      </div>`).join("")}</div>
+      <div class="dash">${DASHICON}<span>${t.libDash}</span></div>
+      <div class="more"><a class="btn" href="/assessments">${t.libMore} <span aria-hidden="true">${arrow()}</span></a></div>
+      <p class="lnote">${t.libNote}</p>
+    </div>
+  </section>
+
+  <section class="young" id="s7">${chip(7)}
+    <div class="wrap">
+      <div class="intro"><div class="kicker">${t.yK}</div><h2>${t.yH}</h2><p class="mut">${t.yP}</p>
+        <ul class="points">${t.yPts.map(p=>`<li>${CHECK}${p}</li>`).join("")}</ul></div>
+      <div class="g3">${t.secrets.map(s=>`<div class="card">
+        <span class="lbl" style="background:${s[3]}1f;color:${s[3]}">${s[0]}</span>
+        <h3>${s[1]}</h3><p class="mut">${s[2]}</p>
+        <a class="btn btn-line" href="#">${s[4]}</a></div>`).join("")}</div>
+    </div>
+  </section>
+
+  <section class="cardsec" id="s8">${chip(8)}
+    <div class="wrap">
+      <div class="intro"><h2>${t.kH}</h2><p class="mut">${t.kS}</p></div>
+      <div class="kgrid">${t.kits.map((k,i)=>`<div class="kcard">
+        <div class="kart" style="background:${KITBG[i]}"><span>${KITICONS[i]}</span></div>
+        <h3>${k[0]}</h3><p>${k[1]}</p>
+        <span class="badge">${t.age} ${k[2]}</span></div>`).join("")}</div>
+      <div class="center" style="margin-block-start:34px"><a class="btn btn-line" href="/cards">${t.kBtn} <span aria-hidden="true">${arrow()}</span></a></div>
+    </div>
+  </section>
+
+  <section class="experts" id="s9">${chip(9)}
+    <div class="wrap">
+      <div class="intro"><div class="kicker">${t.eK}</div><h2>${t.eH}</h2><p class="mut">${t.eP}</p></div>
+      <div class="g4">${t.experts.map(e=>`<div class="card">
+        <h3>${e[0]}</h3><p class="mut" style="font-size:15px">${e[1]}</p>
+        <a class="btn btn-sm" href="#">${t.eBtn}</a></div>`).join("")}</div>
+    </div>
+  </section>
+
+  <section class="voices" id="s10">${chip(10)}
+    <div class="wrap">
+      <div class="intro"><div class="kicker">${t.vK}</div><h2>${t.vH}</h2></div>
+      <div class="qgrid">${t.voices.map(v=>`<figure class="q sample" style="margin:0">
+        <div class="qav" aria-hidden="true">${v[1].charAt(0)}</div>
+        <blockquote class="qt" style="margin:0">${v[0]}</blockquote>
+        <figcaption class="qwho"><b>${v[1]}</b>${L==="ar"?"، ":", "}${v[2]}</figcaption></figure>`).join("")}</div>
+      <p class="science">${t.science}</p>
+    </div>
+  </section>
+
+  <section class="pricing" id="s11">${chip(11)}
+    <div class="wrap intro">
+      <h2>${t.prH}</h2>
+      <p class="prtext">${t.prP}</p>
+      <a class="btn" href="#">${t.cta} <span aria-hidden="true">${arrow()}</span></a>
+    </div>
+  </section>
+
+  <section id="s12">${chip(12)}
+    <div class="wrap">
+      <div class="intro"><div class="kicker">${t.jK}</div><h2>${t.jH}</h2><p class="mut">${t.jP}</p>
+        <div class="cats">${t.jCats.map(c=>`<a href="#">${c}</a>`).join("")}</div></div>
+      <div class="jgrid">${t.posts.map(p=>`<a class="jcard" href="#" style="text-decoration:none">
+        <div class="jimg"></div><div class="jbody"><span class="jcat">${p[0]}</span><h3 style="font-size:16.5px">${p[1]}</h3></div></a>`).join("")}</div>
+      <div class="center" style="margin-block-start:34px"><a class="btn btn-line" href="#">${t.jBtn}</a></div>
+    </div>
+  </section>
+
+  <section class="faqsec" id="s13">${chip(13)}
+    <div class="wrap">
+      <h2 class="center">${t.qH}</h2>
+      <div class="faq">${t.faq.map((f,i)=>`<div class="fi">
+        <button class="fq" type="button" id="fq${i}" aria-expanded="false" aria-controls="fa${i}">${f[0]}${CHEV}</button>
+        <div class="fa" id="fa${i}" role="region" aria-labelledby="fq${i}" hidden><p>${f[1]}</p></div></div>`).join("")}</div>
+    </div>
+  </section>
+
+  <section class="final" id="s14">${chip(14)}
+    <div class="wrap intro">
+      <h2>${t.finH}</h2>
+      <a class="btn" href="#">${t.cta} <span aria-hidden="true">${arrow()}</span></a>
+    </div>
+  </section>
+
+  <footer id="s15">${chip(15)}
+    <div class="wrap">
+      <div class="fgrid">
+        <div><div class="logo" style="color:#fff;margin-block-end:12px"><i>D20</i><span class="lt"><span>Discover20</span><small>${t.slogan}</small></span></div><p style="max-width:40ch">${t.fTag}</p></div>
+        <div><h4>${t.fQuick}</h4><div class="links">${t.fLinks.map(l=>`<a href="#">${l}</a>`).join("")}</div></div>
+        <div><h4>${t.fContact}</h4><p>info@discover20.com</p></div>
+      </div>
+      <p class="disc">${t.disc} · © 2026 Discover20</p>
+    </div>
+  </footer>`;
+  document.querySelector("header").insertAdjacentHTML("afterbegin","");
+  const old=document.querySelector("header .chip"); if(old) old.remove();
+  document.querySelector("header").insertAdjacentHTML("afterbegin",chip(1));
+}
+
+function setLang(l){ L=l; try{localStorage.setItem("d20-lang",l);}catch(e){} render(); }
+$("#app").addEventListener("click",e=>{
+  const b=e.target.closest(".fq"); if(!b) return;
+  const open=b.getAttribute("aria-expanded")==="true";
+  document.querySelectorAll(".fq").forEach(x=>{x.setAttribute("aria-expanded","false"); $("#"+x.getAttribute("aria-controls")).hidden=true;});
+  if(!open){ b.setAttribute("aria-expanded","true"); $("#"+b.getAttribute("aria-controls")).hidden=false; }
+});
+$("#lang").onclick=()=>setLang(L==="ar"?"en":"ar");
+$("#tAr").onclick=()=>setLang("ar");
+$("#tEn").onclick=()=>setLang("en");
+$("#tChips").onclick=e=>{ const on=document.body.classList.toggle("clean"); e.currentTarget.setAttribute("aria-pressed",!on); };
+render();
+</script>
+
+</body></html>

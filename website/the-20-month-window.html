@@ -1,0 +1,1057 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>The 20-Month Window</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#F5F7F6;
+  --surface:#FFFFFF;
+  --sunk:#EAF1F0;
+  --ink:#16302E;
+  --ink-soft:#4A6462;
+  --ink-faint:#7D9391;
+  --rule:#D3E0DE;
+  --rule-soft:#E4EDEC;
+  --accent:#0E7A7C;
+  --bright:#1AB9BA;
+  --accent-wash:#E1F3F3;
+  --flag:#B94A24;
+  --flag-wash:#FAEAE2;
+  --gap:#9C6A10;
+  --gap-wash:#F8F0DA;
+  --shadow:0 1px 2px rgba(22,48,46,.05), 0 8px 24px -16px rgba(22,48,46,.30);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#111F1E;
+    --surface:#182C2A;
+    --sunk:#0D1918;
+    --ink:#E4EFED;
+    --ink-soft:#A2B9B6;
+    --ink-faint:#6F8D8A;
+    --rule:#26403D;
+    --rule-soft:#1E3432;
+    --accent:#57D6D6;
+    --bright:#1AB9BA;
+    --accent-wash:#123534;
+    --flag:#EF8F63;
+    --flag-wash:#38221A;
+    --gap:#E2B65F;
+    --gap-wash:#302713;
+    --shadow:0 1px 2px rgba(0,0,0,.20), 0 8px 24px -16px rgba(0,0,0,.60);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#111F1E;
+  --surface:#182C2A;
+  --sunk:#0D1918;
+  --ink:#E4EFED;
+  --ink-soft:#A2B9B6;
+  --ink-faint:#6F8D8A;
+  --rule:#26403D;
+  --rule-soft:#1E3432;
+  --accent:#57D6D6;
+  --bright:#1AB9BA;
+  --accent-wash:#123534;
+  --flag:#EF8F63;
+  --flag-wash:#38221A;
+  --gap:#E2B65F;
+  --gap-wash:#302713;
+  --shadow:0 1px 2px rgba(0,0,0,.20), 0 8px 24px -16px rgba(0,0,0,.60);
+}
+
+*{box-sizing:border-box;}
+
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Public Sans","Segoe UI",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{
+  max-width:900px;
+  margin:0 auto;
+  padding:0 28px 96px;
+}
+
+/* ---------- masthead ---------- */
+
+.masthead{
+  padding:72px 0 40px;
+  border-bottom:1px solid var(--rule);
+}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 20px;
+}
+h1{
+  font-family:"Fraunces",Georgia,serif;
+  font-optical-sizing:auto;
+  font-weight:600;
+  font-size:clamp(2.5rem,7vw,4.1rem);
+  line-height:1.02;
+  letter-spacing:-.022em;
+  text-wrap:balance;
+  margin:0 0 10px;
+}
+.subtitle{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:400;
+  font-style:italic;
+  font-size:clamp(1.15rem,2.6vw,1.5rem);
+  line-height:1.3;
+  color:var(--ink-soft);
+  margin:0 0 32px;
+  text-wrap:balance;
+}
+.thesis{
+  font-size:1.08rem;
+  line-height:1.62;
+  max-width:62ch;
+  margin:0 0 34px;
+  color:var(--ink);
+}
+.thesis strong{font-weight:600;color:var(--accent);}
+
+.facts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0;
+  border-top:1px solid var(--rule-soft);
+}
+.fact{
+  flex:1 1 150px;
+  padding:16px 20px 16px 0;
+  border-right:1px solid var(--rule-soft);
+}
+.fact:last-child{border-right:none;}
+.fact dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin:0 0 5px;
+}
+.fact dd{margin:0;font-size:.94rem;font-weight:500;line-height:1.35;}
+
+/* ---------- run of show bar ---------- */
+
+.ros{margin:52px 0 8px;}
+.ros-label{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin:0 0 12px;
+  display:flex;
+  justify-content:space-between;
+}
+.ros-bar{
+  display:flex;
+  height:46px;
+  border-radius:3px;
+  overflow:hidden;
+  border:1px solid var(--rule);
+}
+.ros-seg{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 9px;
+  border-right:1px solid var(--ground);
+  background:var(--accent-wash);
+  min-width:0;
+}
+.ros-seg:last-child{border-right:none;}
+.ros-seg span{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10px;
+  line-height:1.35;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  color:var(--accent);
+  font-weight:500;
+}
+.ros-seg span.min{color:var(--ink-faint);font-weight:400;}
+.ros-seg.qa{background:var(--sunk);}
+.ros-seg.qa span{color:var(--ink-faint);}
+
+/* ---------- acts ---------- */
+
+.act{margin-top:64px;}
+.act-head{
+  display:flex;
+  align-items:baseline;
+  gap:16px;
+  padding-bottom:12px;
+  border-bottom:2px solid var(--bright);
+  margin-bottom:4px;
+}
+.act-num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.1em;
+  color:var(--bright);
+  flex:none;
+  padding-top:6px;
+}
+.act-title{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:600;
+  font-size:1.62rem;
+  line-height:1.15;
+  letter-spacing:-.015em;
+  margin:0;
+  flex:1;
+  text-wrap:balance;
+}
+.act-time{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;
+  color:var(--ink-faint);
+  flex:none;
+  white-space:nowrap;
+}
+.act-purpose{
+  font-size:.94rem;
+  color:var(--ink-soft);
+  margin:14px 0 26px;
+  max-width:64ch;
+  font-style:italic;
+}
+
+/* ---------- slides ---------- */
+
+.slide{
+  display:grid;
+  grid-template-columns:52px 1fr;
+  gap:0 20px;
+  padding:20px 0;
+  border-bottom:1px solid var(--rule-soft);
+}
+.slide:last-child{border-bottom:none;}
+.sn{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:13px;
+  font-weight:600;
+  color:var(--ink-faint);
+  padding-top:2px;
+  font-variant-numeric:tabular-nums;
+}
+.sbody{min-width:0;}
+.st{
+  font-weight:600;
+  font-size:1.04rem;
+  line-height:1.35;
+  margin:0 0 8px;
+  color:var(--ink);
+}
+.sbody p{margin:0 0 10px;font-size:.94rem;line-height:1.58;color:var(--ink-soft);max-width:64ch;}
+.sbody p:last-child{margin-bottom:0;}
+.sbody strong{color:var(--ink);font-weight:600;}
+.sbody ul{margin:0 0 10px;padding-left:18px;font-size:.94rem;color:var(--ink-soft);line-height:1.55;max-width:64ch;}
+.sbody li{margin-bottom:4px;}
+.sbody li::marker{color:var(--bright);}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 9px;}
+.tag{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:9.5px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:2.5px 7px;
+  border-radius:2px;
+  font-weight:500;
+  background:var(--sunk);
+  color:var(--ink-faint);
+}
+.tag.vote{background:var(--accent-wash);color:var(--accent);}
+.tag.case{background:var(--accent-wash);color:var(--accent);}
+.tag.data{background:var(--sunk);color:var(--ink-soft);}
+.tag.need{background:var(--gap-wash);color:var(--gap);}
+.tag.flag{background:var(--flag-wash);color:var(--flag);}
+
+.quote{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:400;
+  font-size:1.06rem;
+  line-height:1.45;
+  color:var(--ink);
+  border-left:2px solid var(--bright);
+  padding:2px 0 2px 16px;
+  margin:0 0 10px;
+  max-width:58ch;
+}
+
+.note{
+  border-left:2px solid var(--gap);
+  background:var(--gap-wash);
+  padding:11px 14px;
+  border-radius:0 3px 3px 0;
+  margin:10px 0 0;
+  font-size:.88rem;
+  line-height:1.5;
+  color:var(--ink);
+  max-width:64ch;
+}
+.note b{color:var(--gap);font-weight:600;}
+
+.warn{
+  border-left:2px solid var(--flag);
+  background:var(--flag-wash);
+  padding:11px 14px;
+  border-radius:0 3px 3px 0;
+  margin:10px 0 0;
+  font-size:.88rem;
+  line-height:1.5;
+  color:var(--ink);
+  max-width:64ch;
+}
+.warn b{color:var(--flag);font-weight:600;}
+
+/* ---------- panels ---------- */
+
+.panel{
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:5px;
+  padding:30px 32px;
+  margin-top:64px;
+  box-shadow:var(--shadow);
+}
+.panel h2{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:600;
+  font-size:1.42rem;
+  letter-spacing:-.014em;
+  margin:0 0 6px;
+}
+.panel > p.lead{
+  font-size:.94rem;
+  color:var(--ink-soft);
+  margin:0 0 22px;
+  max-width:64ch;
+}
+.panel h3{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin:26px 0 12px;
+  font-weight:500;
+}
+.panel h3:first-of-type{margin-top:0;}
+
+/* palette */
+.swatches{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 6px;}
+.sw{flex:1 1 100px;min-width:96px;}
+.sw-chip{height:44px;border-radius:3px;border:1px solid var(--rule);}
+.sw-name{font-size:.8rem;font-weight:600;margin-top:6px;line-height:1.25;}
+.sw-hex{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;
+  color:var(--ink-faint);
+}
+.sw-use{font-size:.78rem;color:var(--ink-soft);line-height:1.35;margin-top:2px;}
+
+.typerow{
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:6px 18px;
+  padding:11px 0;
+  border-bottom:1px solid var(--rule-soft);
+  align-items:baseline;
+}
+.typerow:last-child{border-bottom:none;}
+.typerole{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.typespec strong{font-weight:600;}
+.typespec{font-size:.92rem;color:var(--ink-soft);line-height:1.45;}
+
+/* evidence table */
+.tablewrap{overflow-x:auto;margin:0 -4px;}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.88rem;}
+th{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  font-weight:500;
+  text-align:left;
+  padding:0 14px 9px 0;
+  border-bottom:1px solid var(--rule);
+  vertical-align:bottom;
+}
+td{
+  padding:11px 14px 11px 0;
+  border-bottom:1px solid var(--rule-soft);
+  vertical-align:top;
+  color:var(--ink-soft);
+  line-height:1.45;
+}
+td.num{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink);
+  font-weight:500;
+  white-space:nowrap;
+}
+td.what{color:var(--ink);font-weight:500;}
+tr:last-child td{border-bottom:none;}
+
+.checklist{margin:0;padding:0;list-style:none;}
+.checklist li{
+  padding:11px 0 11px 26px;
+  border-bottom:1px solid var(--rule-soft);
+  position:relative;
+  font-size:.93rem;
+  line-height:1.5;
+  color:var(--ink-soft);
+  max-width:66ch;
+}
+.checklist li:last-child{border-bottom:none;}
+.checklist li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:17px;
+  width:11px;
+  height:11px;
+  border:1.5px solid var(--gap);
+  border-radius:2px;
+}
+.checklist li b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px;}
+
+.srclist{margin:0;padding:0;list-style:none;font-size:.86rem;}
+.srclist li{
+  padding:8px 0;
+  border-bottom:1px solid var(--rule-soft);
+  line-height:1.5;
+  color:var(--ink-soft);
+}
+.srclist li:last-child{border-bottom:none;}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--rule);}
+a:hover{border-bottom-color:var(--bright);}
+a:focus-visible{outline:2px solid var(--bright);outline-offset:2px;border-radius:2px;}
+
+.foot{
+  margin-top:56px;
+  padding-top:20px;
+  border-top:1px solid var(--rule);
+  font-size:.84rem;
+  color:var(--ink-faint);
+  line-height:1.55;
+}
+
+@media (max-width:620px){
+  .wrap{padding:0 18px 72px;}
+  .masthead{padding-top:48px;}
+  .slide{grid-template-columns:38px 1fr;gap:0 12px;}
+  .act-head{flex-wrap:wrap;gap:8px 12px;}
+  .act-time{width:100%;}
+  .panel{padding:24px 20px;}
+  .typerow{grid-template-columns:1fr;}
+  .ros-seg{padding:0 5px;}
+}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Deck blueprint · 45-minute plenary</p>
+  <h1>The 20-Month Window</h1>
+  <p class="subtitle">Catching developmental delay in the clinic — before the door closes</p>
+
+  <p class="thesis">The talk has one argument, and every slide serves it: <strong>growth monitoring without development monitoring is half a check-up.</strong> This room already measures the body with discipline — centiles, curves, cut-offs, action thresholds. It does not measure the brain the same way. The cost is a national picture where 84% of Egyptian children with autism are already moderate-to-severe by the time anyone names it.</p>
+
+  <dl class="facts">
+    <div class="fact"><dt>Audience</dt><dd>Pediatricians &amp; nutrition clinicians</dd></div>
+    <div class="fact"><dt>Slot</dt><dd>45 min — 40 talk + 5 Q&amp;A</dd></div>
+    <div class="fact"><dt>Slides</dt><dd>35, incl. 3 live votes</dd></div>
+    <div class="fact"><dt>Format</dt><dd>Cases &amp; votes, not lecture</dd></div>
+  </dl>
+
+  <div class="ros">
+    <div class="ros-label"><span>Run of show</span><span>45 minutes</span></div>
+    <div class="ros-bar">
+      <div class="ros-seg" style="flex:4"><span>1 · Hook</span><span class="min">4′</span></div>
+      <div class="ros-seg" style="flex:5"><span>2 · The Brain</span><span class="min">5′</span></div>
+      <div class="ros-seg" style="flex:8"><span>3 · The Clinic</span><span class="min">8′</span></div>
+      <div class="ros-seg" style="flex:8"><span>4 · The Window</span><span class="min">8′</span></div>
+      <div class="ros-seg" style="flex:7"><span>5 · Discover20</span><span class="min">7′</span></div>
+      <div class="ros-seg" style="flex:6"><span>6 · Screens</span><span class="min">6′</span></div>
+      <div class="ros-seg" style="flex:2"><span>7 · Ask</span><span class="min">2′</span></div>
+      <div class="ros-seg qa" style="flex:5"><span>Q&amp;A</span><span class="min">5′</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ACT 1 ============ -->
+<section class="act">
+  <div class="act-head">
+    <span class="act-num">ACT 1</span>
+    <h2 class="act-title">The child you saw last Tuesday</h2>
+    <span class="act-time">4 min · slides 1–4</span>
+  </div>
+  <p class="act-purpose">Open on a patient, not on a definition. The room should feel implicated within 90 seconds — this is a child they have already seen and already discharged.</p>
+
+  <div class="slide">
+    <div class="sn">01</div>
+    <div class="sbody">
+      <p class="st">Title</p>
+      <p>“The 20-Month Window — catching developmental delay before the door closes.” Your name, credentials, clinic affiliations. Teal mark only; no stock photo of a smiling baby.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">02</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag vote">Live vote</span></div>
+      <p class="st">Twenty months old. What do you do today?</p>
+      <p>One slide, one child, four options. Read it aloud slowly:</p>
+      <p class="quote">Boy, 20 months. Weight and length on the 50th centile. Eats four foods and gags on new textures. No words. Doesn’t point. Mother says: “His uncle spoke late too.”</p>
+      <ul>
+        <li><strong>A.</strong> Reassure — reassess at 24 months</li>
+        <li><strong>B.</strong> Advise on feeding, review in 3 months</li>
+        <li><strong>C.</strong> Formal developmental screen today</li>
+        <li><strong>D.</strong> Direct referral to developmental pediatrics</li>
+      </ul>
+      <p>Collect by show of hands or a QR poll. Don’t answer it — say “hold that,” and return to it on slide 34.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">03</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag data">Egypt data</span></div>
+      <p class="st">We are not missing autism. We are finding it late.</p>
+      <p>The national picture, from 41,640 Egyptian children in 22,026 households: prevalence 1.1%, boys 1.7% vs girls 0.4%. Then the number that should land hardest —</p>
+      <p><strong>At identification: 39% severe, 45% moderate, 16% mild.</strong> Eighty-four percent were already moderate-to-severe when someone finally wrote it down.</p>
+      <p>Say the line plainly: <em>a screening system that mostly finds severe cases is not a screening system. It’s a waiting room.</em></p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">04</div>
+    <div class="sbody">
+      <p class="st">What you’ll leave with</p>
+      <p>Three promises, and keep all three:</p>
+      <ul>
+        <li>The developmental equivalent of a growth chart — what to check, at what visit</li>
+        <li>Four red flags that mean referral today, not review in three months</li>
+        <li>A screening flow that fits a real Egyptian clinic visit, not a research protocol</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 2 ============ -->
+<section class="act">
+  <div class="act-head">
+    <span class="act-num">ACT 2</span>
+    <h2 class="act-title">The brain you are already feeding</h2>
+    <span class="act-time">5 min · slides 5–9</span>
+  </div>
+  <p class="act-purpose">This is what earns a developmental talk its place at a nutrition conference. Enter through the audience’s own expertise — don’t apologise for the topic, claim it.</p>
+
+  <div class="slide">
+    <div class="sn">05</div>
+    <div class="sbody">
+      <p class="st">Why this talk is on a nutrition programme</p>
+      <p class="quote">You have spent your careers building this organ. Nobody in this building is better placed to notice when it isn’t working.</p>
+      <p>The nutrition clinic sees these children <em>earlier and more often</em> than the developmental clinic ever will — because feeding is what brings the mother in first.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">06</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag">Visual anchor</span></div>
+      <p class="st">The first 1000 days: the build curve</p>
+      <p>One curve, drawn like a growth chart because that is exactly the point. Synaptogenesis peaking in the first two years, myelination, pruning. Roughly 80% of adult brain volume laid down by age 3.</p>
+      <p>Overlay the well-child visit schedule on the same axis. The visual argument: <strong>your appointments sit directly on top of the steepest part of the curve.</strong></p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">07</div>
+    <div class="sbody">
+      <p class="st">The substrate — and what its absence looks like from across the room</p>
+      <p>Two columns. Left: iron, DHA, iodine, zinc, choline, B12, vitamin D. Right: not lab values — <em>behaviours</em>. Reduced alertness, blunted social reciprocity, poor attention, slowed language.</p>
+      <p>The bridge line: <strong>the same child who is nutritionally depleted will look developmentally delayed — and the same child who is developmentally delayed will become nutritionally depleted.</strong> You cannot tell which direction you are looking at without measuring both.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">08</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag data">Evidence</span></div>
+      <p class="st">Iron: the window that closes</p>
+      <p>Iron deficiency in the first 1000 days as the worked example the room already believes — deficits in the developing brain that correction after the window does not fully reverse. Cite the Proceedings of the Nutrition Society review.</p>
+      <p>Then generalise the shape of the argument: <em>this is the structure of every point in this talk. Timing is the active ingredient.</em></p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">09</div>
+    <div class="sbody">
+      <p class="st">The pivot</p>
+      <p class="quote">You measure the body with a chart, a centile, a cut-off and an action. You measure the brain by asking the mother if she’s worried. Let’s fix the second half.</p>
+      <p>Nothing else on this slide. Let it sit for two beats.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 3 ============ -->
+<section class="act">
+  <div class="act-head">
+    <span class="act-num">ACT 3</span>
+    <h2 class="act-title">Surveillance is not screening</h2>
+    <span class="act-time">8 min · slides 10–16</span>
+  </div>
+  <p class="act-purpose">The clinical core. This is the section people photograph — build it so it survives being screenshotted out of context.</p>
+
+  <div class="slide">
+    <div class="sn">10</div>
+    <div class="sbody">
+      <p class="st">Two different jobs, done at different times</p>
+      <p><strong>Surveillance</strong> — every visit, every child, longitudinal, informal. <strong>Screening</strong> — scheduled visits, every child, a validated instrument, a score, a threshold.</p>
+      <p>Most clinicians believe they are screening. They are doing neither well. Say it without accusation — it’s a systems failure, not a competence failure.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">11</div>
+    <div class="sbody">
+      <p class="st">The five components of real surveillance</p>
+      <p>From the AAP 2020 policy statement — elicit and attend to parental concerns; maintain a developmental history; make accurate observations; identify risk and protective factors; document the process and findings.</p>
+      <p>Emphasis on the first: <strong>parental concern is a screening instrument with published sensitivity.</strong> “I’m worried about his speech” is a positive result, not small talk.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">12</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag">Take-home slide</span></div>
+      <p class="st">The schedule — the developmental equivalent of a vaccine card</p>
+      <p>Design this as a single clean timeline; it’s the most-photographed slide in the deck.</p>
+      <ul>
+        <li><strong>9, 18, 30 months</strong> — general developmental screening, validated tool</li>
+        <li><strong>18 and 24 months</strong> — autism-specific screening, both visits</li>
+        <li><strong>Every visit in between</strong> — surveillance</li>
+        <li><strong>Any visit, any age</strong> — screen whenever a concern surfaces, from anyone</li>
+      </ul>
+      <p>Note the 24-month screen catches children who regress after a normal 18-month result. That is why it is two screens and not one.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">13</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag flag">Verify before use</span></div>
+      <p class="st">Why clinical judgment alone is not enough</p>
+      <p>The argument that unaided clinical impression detects a minority of developmental problems, while a validated instrument detects most of them.</p>
+      <div class="warn"><b>Check this one.</b> The commonly quoted “~30% without a tool vs ~70–80% with” figures come from older primary-care literature. Pull the current source and cite it exactly, or drop the percentages and make the point qualitatively. A nutrition-conference audience will not challenge it — but if one person does, you want the citation on the slide.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">14</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag flag">Red flags</span><span class="tag">Take-home slide</span></div>
+      <p class="st">Four absolute indications — refer today</p>
+      <ul>
+        <li>No babbling, pointing or other gesture by <strong>12 months</strong></li>
+        <li>No single words by <strong>16 months</strong></li>
+        <li>No two-word spontaneous phrases by <strong>24 months</strong></li>
+        <li><strong>Any</strong> loss of language or social skill, at any age</li>
+      </ul>
+      <p>The fourth is the one to dwell on. Regression is never a variant of normal and never warrants watchful waiting.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">15</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag case">Case + vote</span></div>
+      <p class="st">Case 2 — the “boys talk late” trap</p>
+      <p>Same 20-month-old from slide 2, plus the family history. Ask the room what the uncle’s late speech actually changes about management.</p>
+      <p>The answer: it raises the prior probability of a genuine problem — familial clustering of language and neurodevelopmental disorders is real. Family history is a <em>risk factor</em>. It has been repurposed in clinic as a <em>reassurance</em>. That inversion is where the years go.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">16</div>
+    <div class="sbody">
+      <p class="st">“Wait and see” is a prescription — and it has a dose</p>
+      <p>Three months of watchful waiting at 20 months is not neutral observation. It is three months withheld from the steepest part of the curve on slide 6.</p>
+      <p>Write the dose on the slide: <strong>a 3-month review at this age costs roughly 12 weeks of peak-plasticity intervention time.</strong> Frame it the way you would frame delaying iron for a child with a haemoglobin of 8.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 4 ============ -->
+<section class="act">
+  <div class="act-head">
+    <span class="act-num">ACT 4</span>
+    <h2 class="act-title">Autism and ADHD: what the window is worth</h2>
+    <span class="act-time">8 min · slides 17–23</span>
+  </div>
+  <p class="act-purpose">The emotional and evidential peak. Prevalence establishes stakes, the ESDM trial proves the window is real, and the ADHD slide stops the talk from being an autism talk.</p>
+
+  <div class="slide">
+    <div class="sn">17</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag data">Prevalence</span></div>
+      <p class="st">How common is this in your waiting room?</p>
+      <ul>
+        <li><strong>1 in 31</strong> US 8-year-olds (CDC ADDM, 2022 surveillance year) — 3.2%, up steeply across successive cohorts</li>
+        <li><strong>1.1%</strong> in Egypt, ages 1–12, national household survey</li>
+        <li><strong>Boys ~4×</strong> girls in the Egyptian data (1.7% vs 0.4%)</li>
+      </ul>
+      <p>Handle the gap honestly: the Egyptian figure is lower partly because it is a different method and a different age band — and partly because <strong>ascertainment is a mirror. A country finds the children it screens for.</strong></p>
+      <div class="warn"><b>Anticipate the question.</b> Someone will ask whether autism is “really increasing.” Have one prepared sentence: broadened criteria, better ascertainment and true increase are all in the mix, and disentangling them doesn’t change your clinical obligation to the child in front of you. Don’t litigate it from the podium.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">18</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag">Visual anchor</span></div>
+      <p class="st">The gap</p>
+      <p>The single most powerful graphic in the deck: one horizontal timeline, two markers.</p>
+      <ul>
+        <li>Mother’s first concern — typically before 24 months</li>
+        <li>Diagnosis — commonly around age 4, later in much of the region</li>
+      </ul>
+      <p>Shade the space between them and label it plainly: <strong>the lost years.</strong> Then: “That gap is not a queue problem. Most of it happens inside our clinics, in three-month increments.”</p>
+      <div class="note"><b>Source the local number.</b> Use an Egyptian or MENA age-at-diagnosis figure here rather than a US one — the room will feel it far more. If you can’t source one cleanly, say “commonly reported around age 4 internationally; there is no good Egyptian figure, which is itself the finding.”</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">19</div>
+    <div class="sbody">
+      <p class="st">Why the window is real</p>
+      <p>Short and mechanistic. Experience-dependent plasticity is highest when the social circuits are still being wired. Intervention during that period changes trajectory; the same intervention later changes function. Both are worth doing — they are not worth the same.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">20</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag data">Headline evidence</span></div>
+      <p class="st">What two years bought — the ESDM trial</p>
+      <p>Dawson et al., <em>Pediatrics</em> 2010. 48 toddlers, randomised, entered at <strong>18–30 months</strong>, two years of intervention.</p>
+      <ul>
+        <li>ESDM group gained <strong>17.6 standard score points</strong>; community-treatment group gained <strong>7.0</strong></li>
+        <li>Adaptive behaviour maintained pace with typically developing peers; the comparison group fell further behind</li>
+        <li>Children in the ESDM arm were more likely to shift diagnostic classification from autism to PDD-NOS</li>
+      </ul>
+      <p>Land it: <strong>a ten-point difference, purchased with two years that began at eighteen months.</strong> Not with a drug. With time you can only spend once.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">21</div>
+    <div class="sbody">
+      <p class="st">And it was visible in the brain</p>
+      <p>The follow-up EEG work — early behavioural intervention associated with normalised patterns of brain activity to social stimuli. One line, one image. This is the slide that converts the sceptics in the room.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">22</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag flag">Don’t skip</span></div>
+      <p class="st">ADHD: caught at seven, visible at three</p>
+      <p>Deliberately different in tone — this is where the room’s own children live too.</p>
+      <p>Why it presents late: symptoms are read as temperament until school imposes a structure the child fails against. Preschool signals worth logging — extreme and persistent activity beyond the age norm, minimal sustained engagement in any activity, aggression and expulsion from nursery, sleep and feeding dysregulation.</p>
+      <p>The honest caveat, stated from the podium: <strong>you are not diagnosing ADHD at three.</strong> You are documenting a trajectory so that whoever assesses at six has four years of data instead of a parent’s memory.</p>
+      <div class="note"><b>Nutrition tie-in worth one line.</b> Stimulant-related appetite suppression and growth trajectory — the reason this room ends up co-managing these children anyway.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">23</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag need">Needs your input</span></div>
+      <p class="st">Where do you actually send them? — the Egypt pathway</p>
+      <p>This slide is the difference between a talk people enjoyed and a talk that changes practice. A screen with nowhere to refer is a screen nobody repeats.</p>
+      <div class="note"><b>Give me the local map</b> and I’ll build it: developmental pediatrics referral routes in Cairo/Giza, public vs private, realistic waiting times, early-intervention providers you would personally send a patient to, and what a family can start at home in the meantime while they wait.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 5 ============ -->
+<section class="act">
+  <div class="act-head">
+    <span class="act-num">ACT 5</span>
+    <h2 class="act-title">Discover20 — making the screen fit the visit</h2>
+    <span class="act-time">7 min · slides 24–28</span>
+  </div>
+  <p class="act-purpose">Built as a solution to the friction problem you set up in Act 3, not as a product pitch — consistent with how you’ve run these sessions before. Earn it: the tool answers a question the audience has already felt.</p>
+
+  <div class="slide">
+    <div class="sn">24</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag vote">Live vote</span></div>
+      <p class="st">Why the right thing doesn’t happen</p>
+      <p>Ask the room directly: <em>“Who here used a validated developmental screening tool this week?”</em> Let the small forest of hands speak.</p>
+      <p>Then name the four honest reasons — visit length, no tool at hand in Arabic, uncertainty about what to do with a positive result, and no referral destination. Every one is a friction problem, not a knowledge problem. <strong>This is the setup that makes the next slide land.</strong></p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">25</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag need">Needs your input</span></div>
+      <p class="st">What Discover20 is</p>
+      <div class="note"><b>I couldn’t reach your site to pull this.</b> Send me these eight and I’ll write slides 25–28 properly: what it screens for · age range · number of items · completion time · who completes it (parent or clinician) · what the output looks like · Arabic/English · any validation or pilot data.</div>
+      <p>Structurally this slide should answer exactly one question — <em>what problem from slide 24 does this remove?</em> — and nothing else.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">26</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag need">Needs your input</span></div>
+      <p class="st">Three steps inside a real visit</p>
+      <p>Show it on the clinic clock: what happens in the waiting room, what happens during the consultation, what happens after. If the parent completes it while waiting, say so loudly — that is the whole argument, and it’s the sentence people will repeat to colleagues.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">27</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag need">Needs your input</span></div>
+      <p class="st">One real output, on screen</p>
+      <p>A single anonymised result — ideally the child from slide 2. Not a feature list; the actual thing a doctor holds. If you can demo it live in 60 seconds, do that instead, with a screenshot fallback slide behind it in case the conference wifi fails.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">28</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag flag">Credibility slide</span></div>
+      <p class="st">Where it sits next to M-CHAT-R/F and ASQ-3</p>
+      <p>Do not skip this and do not oversell. State plainly what Discover20 is <em>not</em>: not a diagnosis, and — unless you have the data — not a replacement for the validated instruments.</p>
+      <p>Position it as the layer that gets a screen to happen at all, with M-CHAT-R/F and ASQ-3 named as the next step for a positive result. <strong>Voluntarily naming your tool’s limits is what buys you the room’s trust for everything else in the talk.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 6 ============ -->
+<section class="act">
+  <div class="act-head">
+    <span class="act-num">ACT 6</span>
+    <h2 class="act-title">Screens, language and the feeding table</h2>
+    <span class="act-time">6 min · slides 29–33</span>
+  </div>
+  <p class="act-purpose">Evidence-tight framing, as you chose. The claim is displacement of early interaction — dose-response and defensible — not population IQ decline, which is contested and would hand a sceptic an easy win.</p>
+
+  <div class="slide">
+    <div class="sn">29</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag vote">Live vote</span></div>
+      <p class="st">How many hours?</p>
+      <p>“Your average one-year-old patient: how many hours a day is a screen on in front of them?” Options: &lt;1 · 1–2 · 2–4 · 4+ · I have never asked.</p>
+      <p>The last option is usually the honest majority — and it sets up the closing ask.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">30</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag data">Headline evidence</span></div>
+      <p class="st">There is a dose-response curve</p>
+      <p>Tohoku Medical Megabank birth cohort, <strong>7,097 mother–child pairs</strong> (<em>JAMA Pediatrics</em>, 2023). Screen hours at age 1, developmental delay measured at 2 and 4.</p>
+      <p>Plot it as a rising curve, not a table — <strong>communication delay at age 2</strong>:</p>
+      <ul>
+        <li>1–&lt;2 h/day — OR 1.61 (1.23–2.10)</li>
+        <li>2–&lt;4 h/day — OR 2.04 (1.52–2.74)</li>
+        <li>≥4 h/day — <strong>OR 4.78 (3.24–7.06)</strong></li>
+      </ul>
+      <p>Still present at age 4 (≥4 h/day: OR 2.68), and the same shape for problem-solving. Say the word <em>association</em> out loud once — then point out that a monotonic dose-response relationship persisting to age 4 is exactly the pattern this audience already accepts as meaningful in nutritional epidemiology.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">31</div>
+    <div class="sbody">
+      <p class="st">The mechanism is subtraction, not toxicity</p>
+      <p>The screen is not poisoning the brain. It is occupying the hours in which serve-and-return conversation would have happened — and language is built almost entirely out of contingent, responsive turns with a human being.</p>
+      <p class="quote">A screen never waits for your child to answer. That pause is the entire curriculum.</p>
+      <p>This framing is also what makes the advice actionable: you are not asking families to fear a device, you are asking them to protect an interaction.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">32</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag data">Nutrition crossover</span></div>
+      <p class="st">The screen at the feeding table</p>
+      <p>Your second bridge, and the one this room will act on fastest. Screen-fed toddlers eat while distracted — interoceptive hunger and satiety cues are overridden, mealtime is decoupled from appetite, and food refusal gets solved with a tablet instead of with exposure.</p>
+      <p>The clinical ask is one question added to every feeding history: <strong>“Is anything playing while he eats?”</strong></p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">33</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag flag">Advanced point</span></div>
+      <p class="st">Feeding difficulty as a developmental sign — and screens as a confounder</p>
+      <p>Two things at once, and this is the intellectual peak of the talk for this audience.</p>
+      <p><strong>First:</strong> children with ASD are around <strong>5× more likely</strong> to have feeding problems (meta-analytic OR 5.11, 95% CI 3.74–6.97; 17 controlled studies), with measurably lower calcium and protein intake. Extreme food selectivity is frequently the family’s <em>first</em> complaint — and it arrives in a nutrition clinic, not a developmental one. <em>You see these children before anyone else does.</em></p>
+      <p><strong>Second:</strong> heavy screen exposure can produce a picture that resembles delay, and can equally mask a genuine one. The practical move is a bounded clinical trial — a structured “screen holiday” with adult interaction substituted in, and a re-screen at a defined interval. A child who catches up was displaced. <strong>A child who doesn’t was never the screen — and you have just lost no time finding out.</strong></p>
+      <div class="warn"><b>Say this explicitly.</b> A screen holiday is a clarifying test, never a reason to defer referral in a child with any Act 3 red flag. Put that sentence on the slide so it cannot be misquoted.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 7 ============ -->
+<section class="act">
+  <div class="act-head">
+    <span class="act-num">ACT 7</span>
+    <h2 class="act-title">The ask</h2>
+    <span class="act-time">2 min · slides 34–35</span>
+  </div>
+  <p class="act-purpose">Close the loop you opened on slide 2. Three changes, all small enough that a tired clinician believes they will actually do them.</p>
+
+  <div class="slide">
+    <div class="sn">34</div>
+    <div class="sbody">
+      <div class="tags"><span class="tag">Callback to slide 2</span></div>
+      <p class="st">Three things, starting Sunday</p>
+      <p>Bring the 20-month-old back on screen. Show the room’s original vote. Then:</p>
+      <ul>
+        <li><strong>Ask the screen question</strong> in every feeding history</li>
+        <li><strong>Screen, don’t sense</strong> — a validated tool at 9, 18 and 30 months, and autism-specific at 18 and 24</li>
+        <li><strong>Refer on regression, always</strong> — loss of any acquired skill is never watchful waiting</li>
+      </ul>
+      <p>Final line, and then stop talking: <em>“The answer was C. It was always C. And it costs you ninety seconds.”</em></p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sn">35</div>
+    <div class="sbody">
+      <p class="st">Contact</p>
+      <p>QR to Discover20, your practice details, and — worth doing — a QR to a one-page PDF of slides 12 and 14. People will photograph those two anyway; give them a better version and your name travels with it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESIGN ============ -->
+<section class="panel">
+  <h2>Visual direction for the deck</h2>
+  <p class="lead">Built on the Discover20 teal, with no black anywhere — deep teal-charcoal carries the text weight instead. Clinical, warm, and legible from row 30 of a conference hall.</p>
+
+  <h3>Palette</h3>
+  <div class="swatches">
+    <div class="sw"><div class="sw-chip" style="background:#1AB9BA"></div><div class="sw-name">Discover Teal</div><div class="sw-hex">#1AB9BA</div><div class="sw-use">Brand mark, rules, key figures</div></div>
+    <div class="sw"><div class="sw-chip" style="background:#0E5F60"></div><div class="sw-name">Deep Teal</div><div class="sw-hex">#0E5F60</div><div class="sw-use">Section covers, headlines on light</div></div>
+    <div class="sw"><div class="sw-chip" style="background:#16302E"></div><div class="sw-name">Teal Charcoal</div><div class="sw-hex">#16302E</div><div class="sw-use">Body text — instead of black</div></div>
+    <div class="sw"><div class="sw-chip" style="background:#F5F7F6"></div><div class="sw-name">Clinic Paper</div><div class="sw-hex">#F5F7F6</div><div class="sw-use">Slide ground</div></div>
+    <div class="sw"><div class="sw-chip" style="background:#C4512A"></div><div class="sw-name">Flag Coral</div><div class="sw-hex">#C4512A</div><div class="sw-use">Red flags only — never decorative</div></div>
+    <div class="sw"><div class="sw-chip" style="background:#D8A33C"></div><div class="sw-name">Signal Amber</div><div class="sw-hex">#D8A33C</div><div class="sw-use">Second data series, caution notes</div></div>
+  </div>
+  <p class="lead" style="margin-top:16px;margin-bottom:0;">Discipline: coral appears on exactly four slides (14, 17, 28, 33). If it shows up anywhere else it stops meaning “urgent.”</p>
+
+  <h3>Type</h3>
+  <div class="typerow"><div class="typerole">Display</div><div class="typespec"><strong>Fraunces</strong> or <strong>Source Serif 4</strong> — slide titles and the pull-quotes on 5, 9 and 31. A serif reads as clinical authority rather than corporate deck.</div></div>
+  <div class="typerow"><div class="typerole">Body</div><div class="typespec"><strong>Public Sans</strong> or <strong>Source Sans 3</strong> — 24pt floor, no exceptions. If a slide needs 20pt it needs to be two slides.</div></div>
+  <div class="typerow"><div class="typerole">Data</div><div class="typespec"><strong>IBM Plex Mono</strong> — odds ratios, prevalence figures, ages. Tabular figures so numbers align down a column.</div></div>
+  <div class="typerow"><div class="typerole">Arabic</div><div class="typespec">If any slide runs bilingual, pair with <strong>IBM Plex Sans Arabic</strong> — it shares the Latin skeleton and won't fight the deck.</div></div>
+
+  <h3>Rules of thumb</h3>
+  <ul class="sbody" style="padding-left:18px;">
+    <li>One idea per slide. 35 slides in 40 minutes means roughly 70 seconds each — the deck must carry no reading load.</li>
+    <li>Numbers get their own slide, set large. An odds ratio buried in a bullet is a wasted odds ratio.</li>
+    <li>Every evidence slide carries its citation at 12pt in the bottom corner. Non-negotiable at a scientific conference.</li>
+    <li>No stock photography of children. Use your own clinical schematics, or nothing.</li>
+  </ul>
+</section>
+
+<!-- ============ EVIDENCE ============ -->
+<section class="panel">
+  <h2>Evidence vault</h2>
+  <p class="lead">Every number in the deck, with its source, ready to drop into slide footers. Two rows are flagged for you to verify before they go on screen.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th style="width:34%">Claim</th><th style="width:26%">Figure</th><th style="width:14%">Slide</th><th>Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="what">US autism prevalence</td><td class="num">1 in 31 (3.2%)</td><td class="num">17</td><td>CDC ADDM Network, 2022 surveillance year; 32.2 per 1,000; site range 9.7–53.1</td></tr>
+        <tr><td class="what">Egypt autism prevalence</td><td class="num">1.1%</td><td class="num">03, 17</td><td>Molecular Autism 2025 — 41,640 children, 22,026 households, ages 1–12</td></tr>
+        <tr><td class="what">Egypt sex ratio</td><td class="num">1.7% vs 0.4%</td><td class="num">17</td><td>Same — boys ~4× girls</td></tr>
+        <tr><td class="what">Severity at identification</td><td class="num">39% severe · 45% moderate</td><td class="num">03</td><td>Same — DSM-5 / CARS classification</td></tr>
+        <tr><td class="what">Egypt risk factors</td><td class="num">AOR 4.7 / 2.08 / 1.91</td><td class="num">optional</td><td>Same — post-natal convulsions, low birth weight, NICU stay &gt;2 days</td></tr>
+        <tr><td class="what">Screening schedule</td><td class="num">9 · 18 · 30 mo</td><td class="num">12</td><td>AAP policy statement, <em>Pediatrics</em> 2020 — plus ASD-specific at 18 and 24 months</td></tr>
+        <tr><td class="what">ESDM IQ gain</td><td class="num">+17.6 vs +7.0</td><td class="num">20</td><td>Dawson et al., <em>Pediatrics</em> 2010 — n=48, entry 18–30 mo, 2 years</td></tr>
+        <tr><td class="what">Screen time → communication delay at 2</td><td class="num">OR 4.78 (3.24–7.06)</td><td class="num">30</td><td><em>JAMA Pediatrics</em> 2023, TMM BirThree cohort, n=7,097 — ≥4 h/day at age 1</td></tr>
+        <tr><td class="what">…persisting at age 4</td><td class="num">OR 2.68 (1.68–4.27)</td><td class="num">30</td><td>Same</td></tr>
+        <tr><td class="what">Problem-solving delay at 2</td><td class="num">OR 2.67 (1.72–4.14)</td><td class="num">30</td><td>Same — ≥4 h/day</td></tr>
+        <tr><td class="what">Feeding problems in ASD</td><td class="num">OR 5.11 (3.74–6.97)</td><td class="num">33</td><td>Sharp et al., <em>J Autism Dev Disord</em> 2013 — meta-analysis, 17 controlled studies</td></tr>
+        <tr><td class="what">Nutrient intake in ASD</td><td class="num">↓ calcium, ↓ protein</td><td class="num">33</td><td>Same — SMD −0.65 and −0.58</td></tr>
+        <tr><td class="what">Developmental disability, ages 3–17</td><td class="num">~1 in 6 (17%)</td><td class="num">optional</td><td>CDC, 2009–2017 — includes ASD, ADHD and others</td></tr>
+        <tr><td class="what">Detection with vs without a tool</td><td class="num">~30% vs ~70–80%</td><td class="num">13</td><td style="color:var(--flag)"><strong>Verify or drop.</strong> Widely quoted, older primary-care source — get the exact citation first</td></tr>
+        <tr><td class="what">Age at diagnosis, Egypt/MENA</td><td class="num">—</td><td class="num">18</td><td style="color:var(--flag)"><strong>Needs sourcing.</strong> A local figure is far stronger here than a US one</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ OPEN ITEMS ============ -->
+<section class="panel">
+  <h2>Before I can build the deck</h2>
+  <p class="lead">Six things, in the order they block me. The first two are the only real blockers — everything else I can draft around.</p>
+
+  <ul class="checklist">
+    <li><b>Discover20, in detail</b>Your v0 site wouldn’t load for me. Paste the eight items from slide 25, or connect the folder holding the Discover20 material in the desktop app and I’ll read it directly. This blocks five slides.</li>
+    <li><b>The Egyptian referral pathway</b>Where a doctor in the room actually sends a positive screen — providers, routes, realistic waits. Slide 23 is what makes the talk change behaviour rather than just inform.</li>
+    <li><b>The detection-rate citation</b>Or the decision to drop the percentages from slide 13 and make the point qualitatively.</li>
+    <li><b>A local age-at-diagnosis figure</b>For slide 18. If none exists, the absence is itself a line worth saying out loud.</li>
+    <li><b>Conference constraints</b>Slide ratio (16:9 assumed), any template the organisers require, and whether live polling is possible in the hall or you’ll be using a show of hands.</li>
+    <li><b>Language</b>English deck assumed. Tell me if you want Arabic on the take-home slides (12, 14, 34) — those are the ones people photograph and forward.</li>
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>Two judgment calls I made</h2>
+  <p class="lead">Both are places where I steered away from what you first described. Overrule either one and I’ll rebuild that section.</p>
+  <p style="font-size:.93rem;color:var(--ink-soft);line-height:1.6;max-width:64ch;margin:0 0 14px;"><strong style="color:var(--ink)">Screen time.</strong> You framed this as “our generation is less smart.” I built Act 6 on displacement of early interaction instead. The reason is practical, not squeamish: population IQ trends are genuinely contested — the reversal findings are inconsistent across cohorts and heavily confounded by test composition, sampling and education effects. In a room of physicians, one prepared sceptic could take that claim apart and the doubt would spread backwards over your prevalence and ESDM data, which are solid. The dose-response cohort evidence makes a narrower claim that nobody in that hall can dismantle — and it is the version that tells them what to <em>do</em> on Sunday.</p>
+  <p style="font-size:.93rem;color:var(--ink-soft);line-height:1.6;max-width:64ch;margin:0;"><strong style="color:var(--ink)">Discover20’s placement.</strong> I put it at Act 5, after the friction problem is established in Act 3 and the stakes in Act 4, and gave it an explicit limits slide (28). At a scientific meeting a tool introduced early reads as a sponsor slot and the audience discounts everything after it. Introduced as the answer to a problem they have just admitted to having — and bounded honestly — it reads as a contribution. It also matches how you built the antiemetic session: clinical questions first, product as resolution.</p>
+</section>
+
+<p class="foot">
+  Blueprint for a 45-minute plenary · 35 slides · built September 2026.<br>
+  Evidence current as of this date; re-check CDC ADDM and any Egyptian prevalence figures if the conference is more than a few months out.
+</p>
+
+</div>
+
+</body></html>

@@ -1,0 +1,13 @@
+# OS files
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Office temp files
+~$*
+
+# Secrets
+.env
+.env.*
+*.key
+

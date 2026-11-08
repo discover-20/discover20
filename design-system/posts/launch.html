@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Discover20 — We're live</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #0c3f3f; }
+  .post {
+    width: 1080px; height: 1350px;
+    position: relative; overflow: hidden;
+    background: var(--d20-teal);
+    font-family: var(--d20-font-display);
+    color: #fff;
+  }
+
+  /* Top icon pattern band — icons only (linkedin-banner cropped to skip logo) */
+  .band {
+    position: absolute; left: 0; right: 0; height: 220px;
+    background-image: url("../assets/linkedin-banner.jpg");
+    background-repeat: no-repeat;
+    background-size: 2200px auto;
+    background-position: -120px center;
+  }
+  .band-top    { top: 0; }
+  .band::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 70px;
+    background: linear-gradient(to bottom, rgba(26,187,188,0) 0%, var(--d20-teal) 100%);
+  }
+
+  /* Logo halo — keeps the wordmark legible against the pattern */
+  .logo-wrap {
+    position: relative;
+    padding: 6px 14px;
+    border-radius: 22px;
+    background: radial-gradient(ellipse at center, rgba(15,138,139,.55) 0%, rgba(15,138,139,0) 70%);
+  }
+
+  /* Drifting blobs */
+  .blob {
+    position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    animation: float 7s ease-in-out infinite;
+  }
+  .b1 { width: 360px; height: 360px; top: 320px; left: -120px; }
+  .b2 { width: 240px; height: 240px; top: 720px; right: -80px; animation-delay: 2.4s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+  /* Header (logo + Now Live pill) */
+  .header {
+    position: absolute; top: 56px; left: 56px; right: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 5;
+  }
+  .header img { height: 78px; display: block; filter: drop-shadow(0 6px 18px rgba(0,0,0,.22)); }
+  .live-pill {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--d20-yellow); color: var(--d20-black);
+    border-radius: 999px; padding: 12px 24px;
+    font-weight: 900; font-size: 18px; letter-spacing: .14em;
+    text-transform: uppercase;
+    box-shadow: 0 12px 26px rgba(0,0,0,.20);
+  }
+  .live-pill .ping {
+    width: 14px; height: 14px; border-radius: 50%; background: var(--d20-coral);
+    animation: ping 1.6s ease-out infinite;
+  }
+  @keyframes ping {
+    0%   { box-shadow: 0 0 0 0 rgba(240,94,94,.7); }
+    70%  { box-shadow: 0 0 0 16px rgba(240,94,94,0); }
+    100% { box-shadow: 0 0 0 0 rgba(240,94,94,0); }
+  }
+
+  /* Body */
+  .body {
+    position: absolute; left: 56px; right: 56px;
+    top: 350px;
+    z-index: 5;
+    text-align: center;
+  }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.18);
+    border-radius: 999px; padding: 9px 20px;
+    color: #fff; font-weight: 800; font-size: 14px;
+    letter-spacing: .14em; text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  .eyebrow .dot { width: 9px; height: 9px; border-radius: 50%; background: #fff; }
+
+  h1 {
+    margin: 0; font-weight: 900;
+    font-size: 108px; line-height: .98;
+    letter-spacing: -.025em;
+    color: #fff;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--d20-yellow);
+    display: block;
+  }
+  .sub {
+    margin: 32px auto 0; max-width: 780px;
+    font-size: 24px; font-weight: 500;
+    line-height: 1.5; color: rgba(255,255,255,.94);
+  }
+  .sub b { color: #fff; font-weight: 800; }
+
+  /* Stats strip */
+  .stats {
+    position: absolute; left: 56px; right: 56px;
+    top: 940px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    z-index: 6;
+  }
+  .stat {
+    background: #fff;
+    border-radius: 22px;
+    padding: 22px 12px;
+    text-align: center;
+    box-shadow: 0 16px 32px rgba(0,0,0,.10);
+  }
+  .stat .n {
+    font-size: 56px; font-weight: 900; line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .stat .l {
+    margin-top: 8px;
+    font-size: 15px; font-weight: 800;
+    color: var(--d20-grey-90);
+  }
+
+  /* URL footer card */
+  .url-card {
+    position: absolute; left: 56px; right: 56px;
+    bottom: 78px;
+    z-index: 7;
+    background: #fff;
+    border-radius: 28px;
+    padding: 26px 30px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px;
+    box-shadow: 0 22px 44px rgba(0,0,0,.22);
+  }
+  .url-left { display: flex; align-items: center; gap: 18px; }
+  .globe {
+    width: 60px; height: 60px; border-radius: 18px;
+    background: var(--d20-teal-light);
+    color: var(--d20-teal-dark);
+    display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+  .globe svg { width: 34px; height: 34px; }
+  .url-text small {
+    display: block; font-size: 12px; font-weight: 800;
+    color: var(--d20-grey-50); letter-spacing: .14em; text-transform: uppercase;
+  }
+  .url-text strong {
+    display: block; margin-top: 2px;
+    font-size: 40px; font-weight: 900; color: var(--d20-teal-dark);
+    letter-spacing: -.015em; line-height: 1;
+  }
+  .cta-btn {
+    background: var(--d20-coral); color: #fff;
+    border-radius: 18px;
+    padding: 18px 26px;
+    font-weight: 900; font-size: 18px;
+    display: inline-flex; align-items: center; gap: 12px;
+    box-shadow: 0 14px 28px rgba(240,94,94,.42);
+    white-space: nowrap;
+  }
+  .cta-btn .arrow {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,.22);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+
+  /* Handle (subtle, below the URL card) */
+  .handle {
+    position: absolute; left: 0; right: 0;
+    bottom: 22px;
+    z-index: 7;
+    text-align: center;
+    font-size: 14px; font-weight: 700;
+    color: rgba(255,255,255,.78);
+    letter-spacing: .14em; text-transform: uppercase;
+  }
+  .handle span { color: #fff; }
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="band band-top"></div>
+
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+
+  <div class="header">
+    <div class="logo-wrap">
+      <img src="../assets/logo-white.svg" alt="Discover20"
+           onerror="this.onerror=null;this.src='../assets/logo-teal.png';this.style.filter='brightness(0) invert(1) drop-shadow(0 6px 18px rgba(0,0,0,.22))'">
+    </div>
+    <span class="live-pill"><span class="ping"></span>Now Live</span>
+  </div>
+
+  <div class="body">
+    <span class="eyebrow"><span class="dot"></span>Our website is open</span>
+    <h1>Young Secrets,<em>great solutions.</em></h1>
+    <p class="sub">
+      The early-childhood platform for moms — <b>activities, toys, stories, and developmental assessments</b> matched to your child's exact age and stage.
+    </p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n" style="color:var(--d20-teal)">+500</div><div class="l">Activities</div></div>
+    <div class="stat"><div class="n" style="color:var(--d20-coral)">+200</div><div class="l">Toys</div></div>
+    <div class="stat"><div class="n" style="color:var(--d20-purple)">+300</div><div class="l">Stories</div></div>
+    <div class="stat"><div class="n" style="color:#92700A">+5</div><div class="l">Assessments</div></div>
+  </div>
+
+  <div class="url-card">
+    <div class="url-left">
+      <div class="globe">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="16" r="12"/>
+          <path d="M4 16h24M16 4c4 4.5 4 19.5 0 24M16 4c-4 4.5-4 19.5 0 24"/>
+        </svg>
+      </div>
+      <div class="url-text">
+        <small>Visit us</small>
+        <strong>discover20.com</strong>
+      </div>
+    </div>
+    <span class="cta-btn">Start for free <span class="arrow">→</span></span>
+  </div>
+
+  <div class="handle">@Discover20 &nbsp;·&nbsp; <span>discover20.com</span></div>
+</div>
+</body>
+</html>

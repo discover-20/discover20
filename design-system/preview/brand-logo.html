@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>body{margin:0;padding:0;background:#fff;font-family:var(--d20-font-display);display:grid;grid-template-columns:1fr 1fr;gap:0;height:220px}
+.cell{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:10px}
+.cell.dark{background:var(--d20-teal)}
+img{max-width:80%;max-height:120px;object-fit:contain}
+.lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--d20-grey-70)}
+.cell.dark .lbl{color:rgba(255,255,255,.85)}
+</style></head><body>
+<div class="cell"><img src="../assets/logo-teal.png" alt="logo teal"><div class="lbl">Primary · on light</div></div>
+<div class="cell dark"><img src="../assets/logo-white.svg" alt="logo white" onerror="this.style.display='none'"><div class="lbl">Knockout · on teal</div></div>
+</body></html>

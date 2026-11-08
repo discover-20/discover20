@@ -1,0 +1,909 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Discover20 Home</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+/* Layout concept: a 20-minute dial is the brand's clock. The hero draws it; every step below
+   is one slice of the same day, in the brand's four play colours. Single light theme by choice. */
+:root{
+  --teal:#1ABBBC; --teal-ink:#0A6A6C; --teal-pale:#E6F7F7;
+  --yellow:#FFD545; --coral:#F05E5E; --purple:#5A4D9E; --green:#86C559;
+  --ink:#0E2F37; --body:#3D555B; --muted:#6A7F84; --line:#D6E8E9;
+  --paper:#FFFFFF; --ground:#F5FBFB;
+  --display:"Baloo Bhaijaan 2","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --text:"IBM Plex Sans Arabic","Segoe UI",Tahoma,system-ui,sans-serif;
+  --r-lg:28px; --r-md:18px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--text);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--display);color:var(--ink);margin:0;text-wrap:balance;line-height:1.25}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--purple);outline-offset:3px;border-radius:8px}
+
+/* language */
+html[lang="ar"] .en{display:none!important}
+html[lang="en"] .ar{display:none!important}
+html[lang="en"] body{font-size:16.5px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--text);font-weight:700;font-size:17px;text-decoration:none;border-radius:999px;padding:14px 26px;border:2px solid transparent;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s}
+.btn-main{background:var(--teal-ink);color:#fff;box-shadow:0 6px 0 #064547}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 0 #064547}
+.btn-main:active{transform:translateY(3px);box-shadow:0 3px 0 #064547}
+.btn-soft{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-soft:hover{border-color:var(--teal);color:var(--teal-ink)}
+.btn-sm{padding:9px 18px;font-size:15px;box-shadow:0 4px 0 #064547}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{font-family:var(--display);font-weight:800;font-size:25px;color:var(--ink);text-decoration:none;letter-spacing:-.3px;direction:ltr}
+.logo b{color:var(--teal);font-weight:800}
+nav{display:flex;gap:22px;font-weight:600;font-size:15px}
+nav a{text-decoration:none;color:var(--body)}
+nav a:hover{color:var(--teal-ink)}
+.hd-end{display:flex;align-items:center;gap:10px}
+.lang{font:inherit;font-size:14px;font-weight:700;background:none;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;color:var(--ink)}
+.lang:hover{border-color:var(--teal)}
+@media(max-width:900px){nav{display:none}}
+@media(max-width:480px){.hd .btn-sm{display:none}}
+
+/* hero */
+.hero{background:var(--teal-pale);position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-block:64px 72px}
+.hero-copy{min-width:0;position:relative;z-index:2}
+.asks{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.asks span{font-weight:700;font-size:15px;background:#fff;color:var(--ink);padding:5px 14px;border-radius:999px;border:1.5px solid var(--line);animation:popIn .5s cubic-bezier(.3,1.6,.5,1) both}
+.asks span:nth-child(2){animation-delay:.12s}.asks span:nth-child(3){animation-delay:.24s}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-.5px;margin-bottom:20px}
+.hero h1 .hl{display:inline-block;color:var(--teal-ink);position:relative;z-index:0}
+.hero h1 .hl::after{content:"";position:absolute;inset:auto -4px 6px -4px;height:.28em;background:var(--yellow);z-index:-1;border-radius:6px;transform-origin:left;animation:sweep .7s .5s ease-out both}
+.hero .lead{font-size:clamp(17px,2vw,19.5px);max-width:52ch;margin-bottom:28px;color:var(--body)}
+.cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.small-note{font-size:14px;color:var(--muted);margin-top:16px;font-weight:500}
+
+/* dial */
+.dial-box{position:relative;min-width:0;display:grid;place-items:center}
+.dial{width:min(100%,380px);height:auto;overflow:visible}
+.dial .track{fill:none;stroke:#fff;stroke-width:26}
+.dial .arc{fill:none;stroke-width:26;stroke-linecap:round;animation:draw 1.1s cubic-bezier(.6,0,.2,1) both}
+.dial .a2{animation-delay:.35s}.dial .a3{animation-delay:.7s}
+.dial .face{fill:#fff}
+.dial .num{font-family:"Baloo Bhaijaan 2",sans-serif;font-weight:800;font-size:96px;fill:var(--ink)}
+.dial .unit{font-family:var(--text);font-weight:700;font-size:20px;fill:var(--muted)}
+.dial .tick{stroke:var(--line);stroke-width:3;stroke-linecap:round}
+.chip{position:absolute;font-weight:700;font-size:15px;padding:6px 14px;border-radius:999px;color:#fff;box-shadow:0 4px 12px rgba(14,47,55,.12);animation:popIn .5s cubic-bezier(.3,1.6,.5,1) both}
+.chip.c1{background:var(--coral);top:6%;inset-inline-start:2%;animation-delay:1s}
+.chip.c2{background:var(--purple);bottom:12%;inset-inline-start:-2%;animation-delay:1.25s}
+.chip.c3{background:#4E8F2A;bottom:2%;inset-inline-end:8%;animation-delay:1.5s}
+.blob{position:absolute;border-radius:50%;z-index:1;animation:float 7s ease-in-out infinite}
+.blob.b1{width:120px;height:120px;background:var(--yellow);opacity:.55;top:-30px;inset-inline-end:42%}
+.blob.b2{width:70px;height:70px;background:var(--coral);opacity:.25;bottom:30px;inset-inline-end:6%;animation-delay:-2s}
+.blob.b3{width:44px;height:44px;background:var(--green);opacity:.45;top:40%;inset-inline-start:46%;animation-delay:-4s}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:44px 56px}.dial{width:min(100%,300px)}.blob.b1{inset-inline-end:10%}}
+
+/* strip */
+.strip{background:var(--ink)}
+.strip .wrap{display:grid;grid-template-columns:repeat(6,1fr);gap:0;padding-block:0}
+.strip a{display:block;text-decoration:none;color:#fff;font-weight:700;font-size:16px;padding:18px 14px;text-align:center;border-inline-start:1px solid rgba(255,255,255,.12);transition:background .2s}
+.strip a:first-child{border-inline-start:none}
+.strip a:hover{background:rgba(255,255,255,.07)}
+.strip a i{display:block;font-style:normal;font-size:12.5px;font-weight:600;color:var(--yellow);letter-spacing:.3px;margin-bottom:2px}
+@media(max-width:760px){.strip .wrap{grid-template-columns:repeat(3,1fr)}.strip a:nth-child(4){border-inline-start:none}.strip a{border-top:1px solid rgba(255,255,255,.12);padding:14px 8px;font-size:15px}}
+
+/* sections */
+section{padding-block:88px}
+.eyebrow{display:inline-block;font-weight:700;font-size:14px;letter-spacing:.4px;color:var(--teal-ink);margin-bottom:12px}
+.sec-h{font-size:clamp(28px,4vw,44px);font-weight:800;margin-bottom:14px}
+.sec-lead{font-size:18px;max-width:60ch;margin-bottom:44px}
+@media(max-width:700px){section{padding-block:60px}}
+
+/* understanding */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.why .copy{min-width:0}
+.why .copy p+p{margin-top:14px}
+.ages{display:grid;gap:14px}
+.age{display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;background:var(--ground);border-radius:var(--r-md);padding:16px 20px}
+.age .who{font-family:var(--display);font-weight:800;font-size:15px;text-align:center;line-height:1.3;color:#fff;border-radius:14px;padding:12px 6px}
+.age:nth-child(1) .who{background:var(--coral)}
+.age:nth-child(2) .who{background:var(--purple)}
+.age:nth-child(3) .who{background:var(--teal-ink)}
+.age h4{font-size:19px;margin-bottom:2px}
+.age p{font-size:15.5px}
+.quote{margin-top:26px;padding:18px 22px;border-inline-start:5px solid var(--yellow);background:#FFFBEA;border-radius:0 var(--r-md) var(--r-md) 0;font-size:16px;color:var(--ink)}
+html[dir="rtl"] .quote{border-radius:var(--r-md) 0 0 var(--r-md)}
+.quote small{display:block;color:var(--muted);font-size:13.5px;margin-top:6px}
+@media(max-width:860px){.why{grid-template-columns:1fr;gap:36px}}
+
+/* steps */
+.steps-sec{background:var(--ground)}
+.steps-head{display:flex;justify-content:space-between;gap:24px;align-items:end;flex-wrap:wrap;margin-bottom:44px}
+.steps-head .sec-lead{margin-bottom:0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
+.path{position:absolute;top:34px;inset-inline:6%;height:6px;z-index:0}
+.path line{stroke:var(--line);stroke-width:6;stroke-linecap:round;stroke-dasharray:2 14}
+.step{position:relative;z-index:1;background:#fff;border-radius:var(--r-lg);padding:24px 22px 26px;display:flex;flex-direction:column;border:2px solid transparent;transition:transform .25s,border-color .25s,box-shadow .25s;scroll-margin-top:90px;min-width:0}
+.step:hover{transform:translateY(-6px);border-color:var(--c);box-shadow:0 14px 30px rgba(14,47,55,.1)}
+.step .n{width:52px;height:52px;border-radius:16px;background:var(--c);color:#fff;font-family:var(--display);font-weight:800;font-size:26px;display:grid;place-items:center;margin-bottom:18px;transform:rotate(-6deg)}
+.step:nth-child(odd) .n{transform:rotate(5deg)}
+.step .lbl{font-weight:700;font-size:14.5px;color:var(--c-ink);margin-bottom:6px}
+.step h3{font-size:21px;margin-bottom:10px}
+.step p{font-size:15.5px;flex:1;margin-bottom:18px}
+.step a.go{font-weight:700;font-size:15.5px;color:var(--c-ink);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.step a.go:hover{text-decoration:underline}
+.s1{--c:var(--coral);--c-ink:#C23B3B}
+.s2{--c:var(--purple);--c-ink:var(--purple)}
+.s3{--c:var(--teal);--c-ink:var(--teal-ink)}
+.s4{--c:#5E9E37;--c-ink:#3F7A1E}
+.mini{display:flex;gap:6px;margin-bottom:16px}
+.mini span{font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--ground);color:var(--ink)}
+.flip{perspective:700px;height:118px;margin-bottom:16px;cursor:pointer}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face-c{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10px;font-family:var(--display);font-weight:700;color:#fff;line-height:1.35}
+.face-c small{font-family:var(--text);font-size:11.5px;font-weight:600;opacity:.85;letter-spacing:.3px;margin-bottom:4px}
+.face-c .t{font-size:18px}
+.face-c .t2{font-size:13px;font-family:var(--text);font-weight:500;opacity:.9;direction:ltr}
+.face-c.front{background:var(--purple)}
+.face-c.back{background:var(--coral);transform:rotateY(180deg)}
+.bars{display:grid;gap:7px;margin-bottom:16px}
+.bars div{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;font-size:13px;font-weight:600;color:var(--ink)}
+.bars i{display:block;height:8px;border-radius:99px;background:var(--line);position:relative;overflow:hidden}
+.bars i::after{content:"";position:absolute;inset:0;background:var(--teal);border-radius:99px;transform-origin:left;transform:scaleX(var(--w));transition:transform 1s}
+html[dir="rtl"] .bars i::after{transform-origin:right}
+.bars small{grid-column:1/-1;font-size:11.5px;color:var(--muted);font-weight:500}
+.experts{display:flex;margin-bottom:16px}
+.experts span{width:40px;height:40px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;margin-inline-start:-10px}
+.experts span:first-child{margin-inline-start:0}
+@media(max-width:980px){.steps{grid-template-columns:1fr 1fr}.path{display:none}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* science */
+.sci{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sci-card{border:2px solid var(--line);border-radius:var(--r-lg);padding:26px;min-width:0}
+.sci-card .src{font-family:var(--display);font-weight:800;font-size:22px;color:var(--ink);direction:ltr;text-align:start;margin-bottom:4px}
+.sci-card .prog{font-weight:700;font-size:14px;color:var(--teal-ink);margin-bottom:12px;direction:ltr;text-align:start}
+html[dir="rtl"] .sci-card .src,html[dir="rtl"] .sci-card .prog{text-align:right}
+.sci-card p{font-size:15.5px}
+.sci-card.dark{background:var(--ink);border-color:var(--ink)}
+.sci-card.dark h4{color:#fff;font-size:21px;margin-bottom:10px}
+.sci-card.dark p{color:#C9DDE0}
+@media(max-width:860px){.sci{grid-template-columns:1fr}}
+
+/* licences */
+.lic-sec{background:var(--purple);color:#E8E5F6}
+.lic-sec .eyebrow{color:var(--yellow)}
+.lic-sec .sec-h{color:#fff}
+.lic-sec .sec-lead{color:#D8D3F0}
+.lic-table-wrap{overflow-x:auto;border-radius:var(--r-md);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+table{width:100%;border-collapse:collapse;min-width:620px;font-size:15.5px}
+th,td{text-align:start;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.12);vertical-align:top}
+th{font-size:13px;font-weight:700;color:var(--yellow);letter-spacing:.3px}
+td{color:#F1EFFA}
+td .inst{font-weight:700;color:#fff;direction:ltr;display:inline-block}
+tr:last-child td{border-bottom:none}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:3px 11px;border-radius:999px;white-space:nowrap}
+.badge.ok{background:var(--green);color:#173A07}
+.badge.pd{background:var(--yellow);color:#4A3A00}
+.badge.own{background:#fff;color:var(--purple)}
+.attrib{margin-top:22px;font-size:13.5px;color:#CFC9EC;line-height:1.7;max-width:80ch}
+.attrib p+p{margin-top:6px}
+
+/* proof */
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.slot{border:2.5px dashed #B9D3D5;border-radius:var(--r-lg);padding:26px;background:var(--ground);min-width:0}
+.slot .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.3px;background:var(--yellow);color:#4A3A00;padding:2px 10px;border-radius:999px;margin-bottom:14px}
+.slot .q{font-family:var(--display);font-size:20px;color:var(--muted);font-weight:700;margin-bottom:14px;line-height:1.4}
+.slot .who{font-size:14px;color:var(--muted)}
+.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:22px}
+.logo-slot{height:88px;border:2.5px dashed #B9D3D5;border-radius:var(--r-md);display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--muted);background:var(--ground);text-align:center;padding:6px}
+.sub-h{font-size:clamp(22px,3vw,30px);font-weight:800;margin-top:72px}
+@media(max-width:860px){.proof-grid{grid-template-columns:1fr}.logos{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:480px){.logos{grid-template-columns:1fr 1fr}}
+
+/* final */
+.final{background:var(--teal-pale);text-align:center}
+.final .sec-h{max-width:22ch;margin-inline:auto}
+.final .sec-lead{margin-inline:auto}
+.start{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:880px;margin:0 auto 36px;text-align:start}
+.start div{background:#fff;border-radius:var(--r-md);padding:20px}
+.start b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--display);margin-bottom:10px}
+.start h4{font-size:18px;margin-bottom:2px}
+.start p{font-size:15px}
+@media(max-width:700px){.start{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:#A9C3C7;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;padding-block:36px}
+footer .logo{color:#fff;font-size:22px}
+.mail{user-select:all;color:#fff;font-weight:600}
+
+
+/* journey + feature sections */
+.secrets-head{text-align:center;padding-block:80px 8px}
+.secrets-head .sec-h{max-width:24ch;margin-inline:auto}
+.secrets-head .sec-lead{margin-inline:auto;margin-bottom:28px}
+.journey{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.journey li{display:flex;align-items:center;gap:8px;background:var(--ground);border:1.5px solid var(--line);border-radius:999px;padding:6px 16px 6px 8px;font-weight:700;color:var(--ink);font-size:15px}
+html[dir="rtl"] .journey li{padding:6px 8px 6px 16px}
+.journey b{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--display);font-size:15px}
+.journey li:nth-child(1) b{background:var(--coral)}.journey li:nth-child(2) b{background:var(--purple)}.journey li:nth-child(3) b{background:#4E8F2A}.journey li:nth-child(4) b{background:#8A6A00}.journey li:nth-child(5) b{background:var(--teal-ink)}
+.feat{padding-block:72px}
+.feat.alt{background:var(--ground)}
+.feat-in{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.feat-in.rev .visual{order:-1}
+.feat .copy{min-width:0}
+.feat .lbl{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15.5px;color:var(--c-ink);margin-bottom:12px}
+.feat .lbl b{width:34px;height:34px;border-radius:11px;background:var(--c);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:18px;transform:rotate(-6deg)}
+.feat h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;margin-bottom:14px}
+.feat .copy p{font-size:17.5px;max-width:52ch;margin-bottom:26px}
+.visual{background:var(--c-pale);border-radius:36px;padding:36px 24px;min-height:320px;display:grid;place-items:center;position:relative;overflow:hidden;min-width:0}
+.visual::before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--c);opacity:.12;top:-50px;inset-inline-end:-40px}
+.c-act{--c:var(--coral);--c-ink:#C23B3B;--c-pale:#FDECEC}
+.c-story{--c:var(--purple);--c-ink:var(--purple);--c-pale:#ECEAF7}
+.c-toy{--c:#6DAE45;--c-ink:#3F7A1E;--c-pale:#EDF6E5}
+.c-card{--c:#E8B800;--c-ink:#7A5D00;--c-pale:#FFF5CC}
+.c-assess{--c:var(--teal);--c-ink:var(--teal-ink);--c-pale:var(--teal-pale)}
+.c-exp{--c:var(--purple);--c-ink:var(--purple);--c-pale:#fff}
+.ex{font-size:12px;color:var(--muted);text-align:center;margin-top:10px!important}
+.plan{position:relative;background:#fff;border-radius:24px;padding:20px;width:min(100%,320px);box-shadow:0 16px 40px rgba(14,47,55,.12);display:grid;gap:10px}
+.plan-h{display:flex;justify-content:space-between;align-items:center;font-family:var(--display);color:var(--ink);font-size:18px;margin-bottom:4px}
+.timer{background:var(--ink);color:#fff;border-radius:999px;padding:2px 12px;font-family:var(--display);font-weight:800;direction:ltr}
+html[dir="rtl"] .timer{direction:rtl}
+.timer small{font-size:12px;font-weight:600}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--ground);font-weight:700;color:var(--ink)}
+.row .dot{width:14px;height:14px;border-radius:50%}
+.row .ck{margin-inline-start:auto;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;color:transparent;font-size:14px;transition:background .3s,border-color .3s,color .3s,transform .3s}
+.row.done .ck{background:#4E8F2A;border-color:#4E8F2A;color:#fff;transform:scale(1.1)}
+.shelf{position:relative;display:grid;gap:22px;justify-items:center}
+.books{display:flex;gap:14px;align-items:end}
+.book{width:112px;height:156px;border-radius:6px 14px 14px 6px;padding:14px 12px 14px 18px;background:var(--bk);color:#fff;font-family:"Baloo Bhaijaan 2",sans-serif;font-weight:700;font-size:14px;line-height:1.25;display:flex;align-items:flex-end;direction:ltr;text-align:left;position:relative;transform:rotate(var(--rot));box-shadow:0 10px 22px rgba(14,47,55,.18);transition:transform .3s}
+.book::before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:rgba(0,0,0,.18);border-radius:6px 0 0 6px}
+.book:hover{transform:rotate(0) translateY(-10px)}
+.values,.tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.values span,.tags span{background:#fff;color:var(--c-ink);font-weight:700;font-size:14px;padding:5px 14px;border-radius:999px;border:1.5px solid var(--c)}
+.toy{position:relative;background:#fff;border-radius:24px;padding:24px;width:min(100%,290px);box-shadow:0 16px 40px rgba(14,47,55,.12);display:grid;gap:12px;justify-items:center;text-align:center}
+.toy b{font-family:var(--display);color:var(--ink);font-size:20px}
+.stack{display:flex;flex-direction:column;align-items:center;gap:4px;width:150px;padding-top:30px;position:relative}
+.stack::before{content:"";position:absolute;top:0;width:10px;height:120px;background:#C9A26B;border-radius:6px;z-index:0}
+.stack i{display:block;width:var(--w);height:24px;border-radius:12px;background:var(--c);position:relative;z-index:1;animation:bob 3s ease-in-out infinite}
+.stack i:nth-child(2){animation-delay:.15s}.stack i:nth-child(3){animation-delay:.3s}.stack i:nth-child(4){animation-delay:.45s}
+.stack .base{width:100%;height:12px;border-radius:6px;background:#C9A26B;position:relative;z-index:1}
+@keyframes bob{50%{transform:translateY(-4px)}}
+.flip.big{width:min(100%,300px);height:200px;margin:0}
+.flip.big .face-c .t{font-size:26px}
+.flip.big .face-c .t2{font-size:15px}
+.flip.big .face-c small{font-size:13px}
+.flip.big .face-c{border-radius:22px;box-shadow:0 16px 36px rgba(14,47,55,.18)}
+.hint{font-size:13.5px;color:var(--c-ink);font-weight:600;margin-top:16px;text-align:center;position:relative}
+.visual:has(.flip){align-content:center}
+.assess-card{position:relative;background:#fff;border-radius:24px;padding:24px;width:min(100%,320px);box-shadow:0 16px 40px rgba(14,47,55,.12)}
+.assess-card>b{display:block;font-family:var(--display);color:var(--ink);font-size:19px;margin-bottom:12px}
+.assess-card .bars{gap:12px;margin:0}
+.assess-card .bars div{font-size:14px}
+.assess-card .bars i{height:10px}
+.cloud{position:relative;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:340px}
+.cloud>span{background:var(--c);color:#fff;font-weight:700;font-size:16px;padding:10px 18px;border-radius:999px;animation:float 6s ease-in-out infinite}
+.cloud>span:nth-child(2){animation-delay:-1s}.cloud>span:nth-child(3){animation-delay:-2s}.cloud>span:nth-child(4){animation-delay:-3s}.cloud>span:nth-child(5){animation-delay:-4s}
+.c-exp .visual{border:2px solid var(--line)}
+.journal-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.journal-head .sec-lead{margin-bottom:0}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.post{display:block;text-decoration:none;border-radius:24px;overflow:hidden;background:#fff;border:2px solid var(--line);transition:transform .25s,box-shadow .25s,border-color .25s;min-width:0}
+.post:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(14,47,55,.1);border-color:var(--teal)}
+.post .img{height:160px;background:radial-gradient(circle at 80% 20%,var(--b) 0 22%,transparent 23%),radial-gradient(circle at 15% 90%,var(--b) 0 18%,transparent 19%),var(--a);display:grid;place-items:center}
+.post .img span{font-family:var(--display);font-weight:800;font-size:46px;color:#fff;direction:ltr}
+.post .body{padding:20px 22px 24px}
+.post .tag{font-size:13px;font-weight:700;color:var(--teal-ink)}
+.post h3{font-size:21px;margin-top:4px}
+@media(max-width:860px){.feat-in{grid-template-columns:1fr;gap:32px}.feat-in.rev .visual{order:0}.posts{grid-template-columns:1fr}.visual{min-height:260px}}
+@media(max-width:420px){.book{width:92px;height:132px;font-size:12.5px}}
+
+
+.cta-band{background:var(--ink);padding-block:56px;position:relative;overflow:hidden}
+.cta-band::before,.cta-band::after{content:"";position:absolute;border-radius:50%}
+.cta-band::before{width:220px;height:220px;background:var(--teal);opacity:.25;top:-90px;inset-inline-start:-60px}
+.cta-band::after{width:120px;height:120px;background:var(--coral);opacity:.3;bottom:-50px;inset-inline-end:12%}
+.cta-band-in{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.cta-band h2{color:#fff;font-size:clamp(26px,3.6vw,40px);font-weight:800;margin-bottom:6px}
+.cta-band p{color:#BFD8DC;font-size:17.5px}
+.btn-yellow{background:var(--yellow);color:var(--ink);box-shadow:0 6px 0 #B89400;font-size:18px}
+.btn-yellow:hover{transform:translateY(-2px);box-shadow:0 8px 0 #B89400}
+.sticky-cta{display:none}
+@media(max-width:700px){
+  .sticky-cta{display:block;position:fixed;z-index:55;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));text-align:center;background:var(--teal-ink);color:#fff;font-weight:700;text-decoration:none;padding:14px;border-radius:999px;box-shadow:0 10px 26px rgba(14,47,55,.3)}
+  footer .wrap{padding-bottom:96px}
+}
+
+
+/* discovery call */
+.btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.btn-line:hover{border-color:var(--yellow);color:var(--yellow)}
+.call-sec{background:var(--ground)}
+.call-in{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.call-copy{min-width:0;background:var(--teal-ink);color:#D7EFEF;border-radius:var(--r-lg);padding:36px 32px;position:relative;overflow:hidden}
+.call-copy .eyebrow{color:var(--yellow)}
+.call-copy .sec-h{color:#fff}
+.call-copy p{font-size:17px}
+.call-copy .next{font-size:15px;color:#BFE3E3;margin-top:8px}
+.ring{position:relative;width:96px;height:96px;margin:30px 0 18px;display:grid;place-items:center}
+.ring b{position:relative;z-index:1;width:64px;height:64px;border-radius:50%;background:var(--yellow);color:var(--ink);display:grid;place-items:center;font-size:30px;animation:wiggle 2.4s ease-in-out infinite}
+.ring span{position:absolute;inset:16px;border-radius:50%;border:3px solid var(--yellow);animation:pulse 2.4s ease-out infinite}
+.ring span+span{animation-delay:1.2s}
+@keyframes pulse{from{transform:scale(.8);opacity:.9}to{transform:scale(1.6);opacity:0}}
+@keyframes wiggle{0%,60%,100%{transform:rotate(0)}65%{transform:rotate(-14deg)}75%{transform:rotate(12deg)}85%{transform:rotate(-8deg)}}
+.call-form,.call-done{min-width:0;background:#fff;border-radius:var(--r-lg);padding:30px;display:grid;gap:18px;border:2px solid var(--line)}
+.call-done{place-items:center;text-align:center;padding-block:56px;grid-column:2}
+.call-done b{width:64px;height:64px;border-radius:50%;background:#4E8F2A;color:#fff;display:grid;place-items:center;font-size:30px}
+.call-done h3{font-size:26px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fld{display:grid;gap:6px;border:0;padding:0;margin:0;min-width:0}
+.lab{font-weight:700;font-size:15px;color:var(--ink);padding:0}
+.fld input,.fld select,.fld textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--ground);border:2px solid var(--line);border-radius:14px;padding:11px 14px;width:100%;min-width:0}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--teal);background:#fff}
+.fld .bad{border-color:var(--coral)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label>span{display:inline-block;padding:7px 16px;border-radius:999px;border:2px solid var(--line);font-weight:700;font-size:14.5px;color:var(--ink);background:var(--ground);transition:background .2s,border-color .2s,color .2s}
+.chips input:checked+span{background:var(--teal-ink);border-color:var(--teal-ink);color:#fff}
+.chips input:focus-visible+span{outline:3px solid var(--purple);outline-offset:2px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--body)}
+.consent input{width:20px;height:20px;margin-top:3px;accent-color:var(--teal-ink);flex:none}
+.call-form .btn{justify-self:start}
+.cf-status{font-size:14.5px;font-weight:600;color:#C23B3B;min-height:1em}
+.cf-status.info{color:var(--teal-ink)}
+.cf-status .mail{color:var(--ink)}
+@media(max-width:860px){.call-in{grid-template-columns:1fr}.call-done{grid-column:auto}.f2{grid-template-columns:1fr}.call-form .btn{justify-self:stretch;justify-content:center}}
+
+.feat .copy p.big-line{font-family:var(--display);font-weight:800;font-size:clamp(24px,3vw,32px);color:var(--teal-ink);margin:-4px 0 12px}
+footer .wrap.disc-row{display:block;padding-block:26px 0;font-size:14px;color:#D6E6E8}
+.swyc-ph{display:inline-block;border:1.5px dashed rgba(255,255,255,.5);border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;margin-bottom:10px}
+.sci-sum{padding-block:64px;background:var(--ground)}
+.sci-sum-in{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.sci-sum-in>div{max-width:62ch;min-width:0}
+.sci-sum p{font-size:17px}
+.story-grid{grid-template-columns:2fr 1fr}
+.story{margin:0;background:var(--purple);color:#fff;border-radius:var(--r-lg);padding:32px;display:grid;gap:16px;position:relative;overflow:hidden;min-width:0}
+.story::before{content:"”";position:absolute;font-family:Georgia,serif;font-size:220px;line-height:1;color:rgba(255,255,255,.12);top:-20px;inset-inline-end:20px}
+.story .tag{justify-self:start;font-size:12.5px;font-weight:700;background:var(--yellow);color:#4A3A00;padding:2px 12px;border-radius:999px}
+.story blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(19px,2.2vw,24px);line-height:1.5;position:relative}
+.story figcaption{font-size:14px;color:#D8D3F0}
+.slot.share{display:grid;gap:10px;align-content:center;border-style:solid}
+.slot.share h4{font-size:21px}
+.swyc-line{font-size:12.5px;color:#9FC0C5;margin-bottom:10px!important;text-align:left}
+.swyc-line .swyc-ph{margin:0 8px 0 0}
+@media(max-width:860px){.story-grid{grid-template-columns:1fr}}
+.slot.share .mail{color:var(--teal-ink)}
+.call-done[hidden]{display:none}
+
+/* in-place editing */
+.editing [data-k]{outline:1.5px dashed rgba(90,77,158,.6);outline-offset:3px;border-radius:4px;cursor:text}
+.editing [data-k]:hover{background:rgba(255,213,69,.18)}
+.editing [data-k]:focus{outline:2px solid var(--purple);background:rgba(255,213,69,.3)}
+.editing .rise.pre{transform:none}
+#d20-bar{position:fixed;z-index:80;inset-inline-start:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--ink);color:#fff;padding:8px;border-radius:24px;box-shadow:0 12px 30px rgba(14,47,55,.35);max-width:calc(100% - 32px);font-family:var(--text)}
+#d20-bar button{font:inherit;font-weight:700;font-size:14px;border:0;border-radius:999px;padding:9px 16px;cursor:pointer;color:var(--ink);background:var(--yellow)}
+#d20-bar button.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+#d20-bar button:disabled{opacity:.6;cursor:wait}
+#d20-bar .msg{font-size:13px;padding-inline:8px;line-height:1.4;max-width:42ch}
+@media(max-width:700px){#d20-bar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+
+/* motion */
+@keyframes draw{from{stroke-dashoffset:var(--len)}}
+@keyframes popIn{from{transform:scale(.4);opacity:0}}
+@keyframes sweep{from{transform:scaleX(0)}}
+@keyframes float{50%{transform:translateY(-14px)}}
+.rise{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.rise.pre{transform:translateY(36px) scale(.98)}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rise.pre{transform:none}
+}
+</style>
+<header>
+<div class="wrap hd">
+<a class="logo" href="#top">Discover<b>20</b></a>
+<nav>
+<a href="#activities"><span class="ar" data-k="k1">أسرار الصغار</span><span class="en" data-k="k2">Young Secrets</span></a>
+<a href="#journal"><span class="ar" data-k="k3">المجلة</span><span class="en" data-k="k4">Journal</span></a>
+<a href="assessments.html"><span class="ar" data-k="k5">التقييمات</span><span class="en" data-k="k6">Assessments</span></a>
+<a href="#science"><span class="ar" data-k="k7">العلم وراءنا</span><span class="en" data-k="k8">The science</span></a>
+<a href="#call"><span class="ar" data-k="k9">احجزوا مكالمة</span><span class="en" data-k="k10">Book a call</span></a>
+</nav>
+<div class="hd-end">
+<button class="lang" id="lang" type="button"><span class="ar">English</span><span class="en">العربية</span></button>
+<a class="btn btn-main btn-sm" href="#start"><span class="ar" data-k="k11">ابدأوا مجانًا</span><span class="en" data-k="k12">Start free</span></a>
+</div>
+</div>
+</header>
+<main id="top">
+<!-- HERO -->
+<div class="hero">
+<span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+<div class="wrap">
+<div class="hero-copy">
+<div class="asks ar" data-k="k13"><span>يبكي؟</span><span>يعاند؟</span><span>لا يحكي؟</span></div>
+<div class="asks en" data-k="k14"><span>Crying?</span><span>Stubborn?</span><span>Won't talk?</span></div>
+<h1 class="ar" data-k="k15">اكتشفوا أسرار طفلكم الصغيرة… <span class="hl">كل يوم</span></h1>
+<h1 class="en" data-k="k16">Discover your child's young secrets… <span class="hl">every day</span></h1>
+<p class="lead ar" data-k="k17">وراء كل سلوك رسالة. في 20 دقيقة يوميًا تصلكم خطة قصيرة تناسب عمر طفلكم (نشاط، وقصة، ولعبة) تساعدكم على فهمه والاقتراب منه. من الولادة حتى ١٠ سنوات.</p>
+<p class="lead en" data-k="k18">Every behaviour carries a message. In 20 minutes a day, you get a short plan for your child's age (an activity, a story, a toy) to help you understand them and grow closer. Birth to 10 years.</p>
+<div class="cta">
+<a class="btn btn-main" href="assessments.html#development"><span class="ar" data-k="k19">ابدأوا التقييم المجاني — ٤ دقائق</span><span class="en" data-k="k20">Start the free assessment — 4 minutes</span></a>
+<a class="btn btn-soft" href="#activities"><span class="ar" data-k="k21">اكتشفوا الأسرار</span><span class="en" data-k="k22">Explore the secrets</span></a>
+</div>
+<p class="small-note"><span class="ar" data-k="k23">مجاني · دون بطاقة · دون موعد</span><span class="en" data-k="k24">Free · no card · no appointment</span></p>
+</div>
+<div aria-hidden="true" class="dial-box">
+<svg class="dial" viewbox="-160 -160 320 320">
+<circle class="track" r="120"></circle>
+<g transform="rotate(-90)">
+<circle class="arc a1" r="120" stroke="#F05E5E" stroke-dasharray="225 529" stroke-dashoffset="0" style="--len:754"></circle>
+<circle class="arc a2" r="120" stroke="#5A4D9E" stroke-dasharray="225 529" stroke-dashoffset="-251" style="--len:754"></circle>
+<circle class="arc a3" r="120" stroke="#86C559" stroke-dasharray="225 529" stroke-dashoffset="-502" style="--len:754"></circle>
+</g>
+<circle class="face" r="96"></circle>
+<g id="ticks"></g>
+<text class="num" text-anchor="middle" y="28">20</text>
+<text class="unit ar" text-anchor="middle" y="62">دقيقة</text>
+<text class="unit en" text-anchor="middle" y="62">minutes</text>
+</svg>
+<span class="chip c1"><span class="ar" data-k="k25">نشاط</span><span class="en" data-k="k26">Activity</span></span>
+<span class="chip c2"><span class="ar" data-k="k27">قصة</span><span class="en" data-k="k28">Story</span></span>
+<span class="chip c3"><span class="ar" data-k="k29">لعبة</span><span class="en" data-k="k30">Toy</span></span>
+</div>
+</div>
+</div>
+<!-- SECRETS NAV -->
+<div class="strip">
+<div class="wrap">
+<a href="#activities"><i>١</i><span class="ar" data-k="k31">أنشطة للعب</span><span class="en" data-k="k32">Activities</span></a>
+<a href="#stories"><i>٢</i><span class="ar" data-k="k33">قصص للقيم</span><span class="en" data-k="k34">Stories</span></a>
+<a href="#toys"><i>٣</i><span class="ar" data-k="k35">ألعاب للذكاء</span><span class="en" data-k="k36">Toys</span></a>
+<a href="#cards"><i>٤</i><span class="ar" data-k="k37">بطاقات للحديث</span><span class="en" data-k="k38">Cards</span></a>
+<a href="#assessments"><i>٥</i><span class="ar" data-k="k39">تقييمات للنموّ</span><span class="en" data-k="k40">Assessments</span></a>
+<a href="#journal"><i>✎</i><span class="ar" data-k="k41">المجلة</span><span class="en" data-k="k42">Journal</span></a>
+</div>
+</div>
+<div class="secrets-head wrap rise">
+<span class="eyebrow"><span class="ar" data-k="k43">رحلة الاكتشاف</span><span class="en" data-k="k44">The discovery journey</span></span>
+<h2 class="sec-h ar" data-k="k45">نساعدكم على اكتشاف طفلكم… اكتشافًا بعد اكتشاف</h2>
+<h2 class="sec-h en" data-k="k46">We help you discover your child, one discovery at a time</h2>
+<p class="sec-lead ar" data-k="k47">أنشطة للعب معًا، وقصص تعلّم القيم، وألعاب تنمّي ذكاءه، وبطاقات تسمعون بها ما يفكّر فيه، وتقييمات تطمئنكم على نموّه. كلها مختارة حسب عمر طفلكم.</p>
+<p class="sec-lead en" data-k="k48">Activities to play together, stories that teach values, toys that build intelligence, cards to hear what they think, and checks that reassure you about their growth. All chosen for your child's age.</p>
+<ol class="journey"><li><b>١</b><span class="ar" data-k="k49">العبوا</span><span class="en" data-k="k50">Play</span></li><li><b>٢</b><span class="ar" data-k="k51">علّموا القيم</span><span class="en" data-k="k52">Teach values</span></li><li><b>٣</b><span class="ar" data-k="k53">نمّوا ذكاءه</span><span class="en" data-k="k54">Build intelligence</span></li><li><b>٤</b><span class="ar" data-k="k55">استمعوا إليه</span><span class="en" data-k="k56">Listen</span></li><li><b>٥</b><span class="ar" data-k="k57">اطمئنوا على نموّه</span><span class="en" data-k="k58">Check growth</span></li></ol>
+</div>
+<!-- ACTIVITIES -->
+<section class="feat c-act" id="activities">
+<div class="wrap feat-in">
+<div class="copy rise">
+<span class="lbl"><b>١</b><span class="ar" data-k="k59">اكتشفوا أنشطة للعب معًا</span><span class="en" data-k="k60">Discover activities to play</span></span>
+<h2 class="ar" data-k="k61">أكثر من مجرد لعب</h2><h2 class="en" data-k="k62">More than just play</h2>
+<p class="ar" data-k="k63">أنشطة بسيطة ومركّزة لعشرين دقيقة من اللعب الحقيقي معًا، تدعم سلوك طفلكم ومهاراته، مختارة حسب عمره والمهارات التي تحتاج إلى دعم.</p>
+<p class="en" data-k="k64">Simple, focused activities for 20 minutes of real play together. They support your child's behaviour and skills, chosen for their age and the skills that need support.</p>
+<a class="btn btn-main" href="#start"><span class="ar" data-k="k65">شاهدوا خطة اليوم</span><span class="en" data-k="k66">See today's plan</span></a>
+</div>
+<div aria-hidden="true" class="visual rise">
+<div class="plan" id="plan">
+<div class="plan-h"><b class="ar" data-k="k67">خطة اليوم</b><b class="en" data-k="k68">Today's plan</b><span class="timer">20<small class="ar" data-k="k69"> دقيقة</small><small class="en" data-k="k70"> min</small></span></div>
+<div class="row done"><span class="dot" style="background:var(--coral)"></span><span class="ar" data-k="k71">نشاط</span><span class="en" data-k="k72">Activity</span><span class="ck">✓</span></div>
+<div class="row done"><span class="dot" style="background:var(--purple)"></span><span class="ar" data-k="k73">قصة</span><span class="en" data-k="k74">Story</span><span class="ck">✓</span></div>
+<div class="row done"><span class="dot" style="background:var(--green)"></span><span class="ar" data-k="k75">لعبة</span><span class="en" data-k="k76">Toy</span><span class="ck">✓</span></div>
+<p class="ex"><span class="ar" data-k="k77">مثال توضيحي</span><span class="en" data-k="k78">Illustration</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- STORIES -->
+<section class="feat c-story alt" id="stories">
+<div class="wrap feat-in rev">
+<div class="copy rise">
+<span class="lbl"><b>٢</b><span class="ar" data-k="k79">اكتشفوا قصصًا تعلّم القيم</span><span class="en" data-k="k80">Discover stories that teach values</span></span>
+<h2 class="ar" data-k="k81">قصة تُكتب حول القيمة التي تريدون تعليمها</h2><h2 class="en" data-k="k82">A story written around the value you want to teach</h2>
+<p class="ar" data-k="k83">اختاروا القيمة، مثل المشاركة أو الصبر، فتصلكم قصة مصمّمة لطفلكم بالعربية والإنجليزية، تقرؤونها معه قبل النوم أو في أي وقت.</p>
+<p class="en" data-k="k84">Choose a value, like sharing or patience, and get a story made for your child in Arabic and English, to read together at bedtime or any time.</p>
+<a class="btn btn-main" href="#start"><span class="ar" data-k="k85">اقرؤوا قصة اليوم</span><span class="en" data-k="k86">Read today's story</span></a>
+</div>
+<div aria-hidden="true" class="visual rise">
+<div class="shelf">
+<div class="books">
+<div class="book" data-k="k87" style="--bk:#5A4D9E;--rot:-5deg">Grandpa Ali's Happy Farm</div>
+<div class="book" data-k="k88" style="--bk:#F05E5E;--rot:2deg">Zannah the Busy Bee</div>
+<div class="book" data-k="k89" style="--bk:#0A6A6C;--rot:6deg">The Little Red Tomato's Song</div>
+</div>
+<div class="values"><span class="ar" data-k="k90">المشاركة</span><span class="ar" data-k="k91">الصبر</span><span class="en" data-k="k92">Sharing</span><span class="en" data-k="k93">Patience</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- TOYS -->
+<section class="feat c-toy" id="toys">
+<div class="wrap feat-in">
+<div class="copy rise">
+<span class="lbl"><b>٣</b><span class="ar" data-k="k94">اكتشفوا ألعابًا تنمّي ذكاءه</span><span class="en" data-k="k95">Discover toys that build intelligence</span></span>
+<h2 class="ar" data-k="k96">اعرفوا ماذا تنمّي كل لعبة قبل أن تشتروها</h2><h2 class="en" data-k="k97">Know what each toy builds before you buy it</h2>
+<p class="ar" data-k="k98">لكل لعبة نُبيّن المهارة التي تدعمها، والعمر الذي يناسبها، فتختارون ما يفيد طفلكم فعلًا، لا ما هو أغلى.</p>
+<p class="en" data-k="k99">For every toy we show the skill it supports and the age it suits, so you choose what really helps your child, not what costs more.</p>
+<a class="btn btn-main" href="#start"><span class="ar" data-k="k100">تصفّحوا حسب العمر</span><span class="en" data-k="k101">Browse by age</span></a>
+</div>
+<div aria-hidden="true" class="visual rise">
+<div class="toy">
+<div class="stack"><i style="--w:44%;--c:#86C559"></i><i style="--w:58%;--c:#FFD545"></i><i style="--w:72%;--c:#F05E5E"></i><i style="--w:86%;--c:#5A4D9E"></i><span class="base"></span></div>
+<b class="ar" data-k="k102">مكعبات التكديس</b><b class="en" data-k="k103">Stacking toy</b>
+<div class="tags"><span class="ar" data-k="k104">حركة دقيقة</span><span class="ar" data-k="k105">تفكير</span><span class="en" data-k="k106">Fine motor</span><span class="en" data-k="k107">Thinking</span></div>
+<p class="ex"><span class="ar" data-k="k108">مثال توضيحي</span><span class="en" data-k="k109">Illustration</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- CARDS -->
+<section class="feat c-card alt" id="cards">
+<div class="wrap feat-in rev">
+<div class="copy rise">
+<span class="lbl"><b>٤</b><span class="ar" data-k="k110">اكتشفوا ما يفكّر فيه</span><span class="en" data-k="k111">Discover what they think</span></span>
+<h2 class="ar" data-k="k112">بطاقات تفتح باب الحديث</h2><h2 class="en" data-k="k113">Cards that open up conversation</h2>
+<p class="ar" data-k="k114">مجموعتان بالعربية والإنجليزية: «اسألني» بـ٢٠ سؤالًا تجعل طفلكم يتكلّم، و«كلمات حلوة» بـ٢٠ عبارة تبني ثقته بنفسه. صغيرة بما يكفي لطاولة الطعام، أو السيارة، أو قبل النوم.</p>
+<p class="en" data-k="k115">Two bilingual sets: Ask Me, 20 questions that get your child talking, and Sweet Words, 20 affirmations that build confidence. Small enough for the dinner table, the car or bedtime.</p>
+<a class="btn btn-main" href="#start"><span class="ar" data-k="k116">تعرّفوا على البطاقات</span><span class="en" data-k="k117">Meet the cards</span></a>
+</div>
+<div class="visual rise">
+<div aria-label="Flip card" class="flip big" id="flip" role="button" tabindex="0">
+<div class="flip-in">
+<div class="face-c front"><small><span class="ar" data-k="k118">اسألني</span><span class="en" data-k="k119">Ask Me</span></small><span class="t" data-k="k120">ما الذي أضحكك اليوم؟</span><span class="t2" data-k="k121">What made you laugh today?</span></div>
+<div class="face-c back"><small><span class="ar" data-k="k122">كلمات حلوة</span><span class="en" data-k="k123">Sweet Words</span></small><span class="t" data-k="k124">أنا قوي</span><span class="t2" data-k="k125">I am strong</span></div>
+</div>
+</div>
+<p class="hint"><span class="ar" data-k="k126">اضغطوا على البطاقة لقلبها</span><span class="en" data-k="k127">Tap the card to flip it</span></p>
+</div>
+</div>
+</section>
+<!-- ASSESSMENTS -->
+<section class="feat c-assess" id="assessments">
+<div class="wrap feat-in">
+<div class="copy rise">
+<span class="lbl"><b>٥</b><span class="ar" data-k="k128">اكتشفوا مبكرًا كيف ينمو</span><span class="en" data-k="k129">Discover early how they grow</span></span>
+<h2 class="ar" data-k="k130">اعرفوا مهارات طفلكم الآن</h2><h2 class="en" data-k="k131">Discover your child's skills now</h2>
+<p class="big-line ar" data-k="k132">٤ دقائق، ومجانًا.</p>
+<p class="big-line en" data-k="k133">4 minutes. And free.</p>
+<p class="ar" data-k="k134">في الحركة، والتفكير، والمشاعر، واللغة، بأدوات فحص عالمية مرخّصة لنا رسميًا. فحصٌ مبكر، وليس تشخيصًا.</p>
+<p class="en" data-k="k135">Movement, thinking, feelings and language, using international screening tools formally licensed to us. Early screening, not a diagnosis.</p>
+<div class="cta">
+<a class="btn btn-main" href="assessments.html#development"><span class="ar" data-k="k136">ابدأوا التقييم المجاني</span><span class="en" data-k="k137">Start the free assessment</span></a>
+<a class="btn btn-soft" href="assessments.html#assessments"><span class="ar" data-k="k138">كل التقييمات</span><span class="en" data-k="k139">All assessments</span></a>
+<a class="btn btn-soft" href="https://discover20.com/about"><span class="ar" data-k="k140">شاهدوا التراخيص</span><span class="en" data-k="k141">See the licences</span></a>
+</div>
+</div>
+<div aria-hidden="true" class="visual rise">
+<div class="assess-card">
+<b class="ar" data-k="k142">متابعة النموّ</b><b class="en" data-k="k143">Growth check</b>
+<div class="bars" id="bars">
+<div><span class="ar" data-k="k144">الحركة</span><span class="en" data-k="k145">Movement</span><i style="--w:0"></i></div>
+<div><span class="ar" data-k="k146">التفكير</span><span class="en" data-k="k147">Thinking</span><i style="--w:0"></i></div>
+<div><span class="ar" data-k="k148">المشاعر</span><span class="en" data-k="k149">Feelings</span><i style="--w:0"></i></div>
+<div><span class="ar" data-k="k150">اللغة</span><span class="en" data-k="k151">Language</span><i style="--w:0"></i></div>
+<small><span class="ar" data-k="k152">مثال توضيحي</span><span class="en" data-k="k153">Illustration only</span></small>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FINAL -->
+<section class="final" id="start">
+<div class="wrap">
+<div class="rise">
+<span class="eyebrow"><span class="ar" data-k="k154">البداية</span><span class="en" data-k="k155">Getting started</span></span>
+<h2 class="sec-h ar" data-k="k156">لا تحتاجون إلى مشكلة حتى تبدأوا</h2>
+<h2 class="sec-h en" data-k="k157">You don't need a problem to start</h2>
+<p class="sec-lead ar" data-k="k158">ثلاث خطوات، وأربع دقائق. ابدأوا بطفلكم.</p>
+<p class="sec-lead en" data-k="k159">Three steps, four minutes. Start with your child.</p>
+</div>
+<div class="start rise">
+<div><b>١</b><h4 class="ar" data-k="k160">أضيفوا طفلكم</h4><h4 class="en" data-k="k161">Add your child</h4><p class="ar" data-k="k162">الاسم وتاريخ الميلاد فقط.</p><p class="en" data-k="k163">Just a name and date of birth.</p></div>
+<div><b>٢</b><h4 class="ar" data-k="k164">أجيبوا عن بعض الأسئلة</h4><h4 class="en" data-k="k165">Answer a few questions</h4><p class="ar" data-k="k166">عمّا يفعله في يومه، لا اختبار للطفل.</p><p class="en" data-k="k167">About their day. No test for the child.</p></div>
+<div><b>٣</b><h4 class="ar" data-k="k168">خطتكم جاهزة</h4><h4 class="en" data-k="k169">Your plan is ready</h4><p class="ar" data-k="k170">عشرون دقيقة يوميًا مصمَّمة له.</p><p class="en" data-k="k171">20 minutes a day, made for them.</p></div>
+</div>
+<div class="cta" style="justify-content:center"><a class="btn btn-main" href="assessments.html#development"><span class="ar" data-k="k172">ابدأوا التقييم المجاني</span><span class="en" data-k="k173">Start the free assessment</span></a><a class="btn btn-soft" href="#call"><span class="ar" data-k="k174">احجزوا مكالمة الاكتشاف</span><span class="en" data-k="k175">Book a discovery call</span></a></div>
+<p class="small-note"><span class="ar" data-k="k176">مجاني · ٤ دقائق · دون أي بيانات دفع</span><span class="en" data-k="k177">Free · 4 minutes · no payment details</span></p>
+</div>
+</section>
+<!-- EXPERTS -->
+<section class="feat c-exp alt" id="experts">
+<div class="wrap feat-in rev">
+<div class="copy rise">
+<span class="lbl"><b>+</b><span class="ar" data-k="k178">وحين تحتاجون… اكتشفوا الإجابة</span><span class="en" data-k="k179">And when you need it, discover answers</span></span>
+<h2 class="ar" data-k="k180">متخصص حين تحتاجون</h2><h2 class="en" data-k="k181">A specialist when you need one</h2>
+<p class="ar" data-k="k182">استشارة من بيتكم، دون غرفة انتظار، مع متخصصين في:</p>
+<p class="en" data-k="k183">A consultation from home, no waiting room, with specialists in:</p>
+<a class="btn btn-main" href="#start"><span class="ar" data-k="k184">احجزوا جلسة</span><span class="en" data-k="k185">Book a session</span></a>
+</div>
+<div class="visual rise">
+<div class="cloud">
+<span style="--c:var(--coral)"><span class="ar" data-k="k186">طب الأطفال</span><span class="en" data-k="k187">Paediatrics</span></span>
+<span style="--c:var(--purple)"><span class="ar" data-k="k188">السلوك</span><span class="en" data-k="k189">Behaviour</span></span>
+<span style="--c:var(--teal-ink)"><span class="ar" data-k="k190">النطق</span><span class="en" data-k="k191">Speech</span></span>
+<span style="--c:#4E8F2A"><span class="ar" data-k="k192">التغذية</span><span class="en" data-k="k193">Nutrition</span></span>
+<span style="--c:#8A6A00"><span class="ar" data-k="k194">نفسية الطفل</span><span class="en" data-k="k195">Child psychology</span></span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA BAND -->
+<div class="cta-band">
+<div class="wrap">
+<div class="cta-band-in rise">
+<div>
+<h2 class="ar" data-k="k196">جاهزون لاكتشاف طفلكم؟</h2>
+<h2 class="en" data-k="k197">Ready to discover your child?</h2>
+<p class="ar" data-k="k198">ابدأوا بتقييم مجاني في ٤ دقائق، وتصلكم أول خطة 20 دقيقة اليوم.</p>
+<p class="en" data-k="k199">Start with a free 4-minute assessment and get your first 20-minute plan today.</p>
+</div>
+<div class="cta"><a class="btn btn-yellow" href="assessments.html#development"><span class="ar" data-k="k200">ابدأوا رحلة الاكتشاف</span><span class="en" data-k="k201">Start the discovery journey</span></a><a class="btn btn-line" href="#call"><span class="ar" data-k="k202">أو احجزوا مكالمة الاكتشاف</span><span class="en" data-k="k203">Or book a discovery call</span></a></div>
+</div>
+</div>
+</div>
+<!-- JOURNAL -->
+<section id="journal">
+<div class="wrap">
+<div class="journal-head rise">
+<div>
+<span class="eyebrow"><span class="ar" data-k="k204">مجلة أسرار الصغار</span><span class="en" data-k="k205">Young Secrets Journal</span></span>
+<h2 class="sec-h ar" data-k="k206">اقرؤوا، وافهموا أكثر</h2>
+<h2 class="sec-h en" data-k="k207">Read, and understand more</h2>
+<p class="sec-lead ar" data-k="k208">مقالات قصيرة تحوّل أبحاث نموّ الطفل إلى نصائح تستطيعون تطبيقها اليوم.</p>
+<p class="sec-lead en" data-k="k209">Short articles that turn child-development research into tips you can use today.</p>
+</div>
+<a class="btn btn-soft" href="#journal"><span class="ar" data-k="k210">كل المقالات</span><span class="en" data-k="k211">All articles</span></a>
+</div>
+<div class="posts">
+<a class="post rise" href="#journal"><div class="img" style="--a:#F05E5E;--b:#FFD545"><span>20</span></div><div class="body"><span class="tag ar" data-k="k212">الفكرة</span><span class="tag en" data-k="k213">The idea</span><h3 class="ar" data-k="k214">لماذا عشرون دقيقة؟</h3><h3 class="en" data-k="k215">Why 20 minutes?</h3></div></a>
+<a class="post rise" href="#journal"><div class="img" style="--a:#1ABBBC;--b:#86C559"><span>↗</span></div><div class="body"><span class="tag ar" data-k="k216">النموّ</span><span class="tag en" data-k="k217">Growth</span><h3 class="ar" data-k="k218">لماذا تهمّ متابعة النموّ؟</h3><h3 class="en" data-k="k219">Why tracking matters</h3></div></a>
+<a class="post rise" href="#journal"><div class="img" style="--a:#5A4D9E;--b:#F05E5E"><span>D20</span></div><div class="body"><span class="tag ar" data-k="k220">من Discover20</span><span class="tag en" data-k="k221">From Discover20</span><h3 class="ar" data-k="k222">مرحبًا بكم في Discover20</h3><h3 class="en" data-k="k223">Welcome to Discover20</h3></div></a>
+</div>
+</div>
+</section>
+<!-- SCIENCE -->
+<section class="sci-sum" id="science">
+<div class="wrap sci-sum-in rise">
+<div>
+<span class="eyebrow"><span class="ar" data-k="k224">العلم وراءنا</span><span class="en" data-k="k225">The science behind it</span></span>
+<h2 class="sec-h ar" data-k="k226">مبني على الإرشادات التي يعتمدها أطباء الأطفال</h2>
+<h2 class="sec-h en" data-k="k227">Built on the guidelines paediatricians use</h2>
+<p class="ar" data-k="k228">مراحل النموّ والأسئلة مأخوذة من إرشادات CDC والأكاديمية الأمريكية لطب الأطفال، ونستخدم أدوات فحص عالمية مرخّصة لنا رسميًا. فحصٌ مبكر، وليس تشخيصًا.</p>
+<p class="en" data-k="k229">Milestones and questions come from CDC and American Academy of Pediatrics guidelines, and we use international screening tools formally licensed to us. Early screening, not a diagnosis.</p>
+</div>
+<a class="btn btn-soft" href="https://discover20.com/about"><span class="ar" data-k="k230">اعرفوا المزيد في «من نحن»</span><span class="en" data-k="k231">Read more in About us</span></a>
+</div>
+</section>
+<!-- TESTIMONIALS + PARTNERS -->
+<section id="voices">
+<div class="wrap">
+<div class="rise">
+<span class="eyebrow"><span class="ar" data-k="k232">قصص حقيقية</span><span class="en" data-k="k233">Real stories</span></span>
+<h2 class="sec-h ar" data-k="k234">ماذا يحدث في عشرين دقيقة؟</h2>
+<h2 class="sec-h en" data-k="k235">What happens in 20 minutes?</h2>
+</div>
+<div class="proof-grid story-grid">
+<figure class="story rise">
+<span class="tag"><span class="ar" data-k="k236">من جلساتنا</span><span class="en" data-k="k237">From our sessions</span></span>
+<blockquote class="ar" data-k="k238">جرّبنا بطاقات «اسألني» و«كلمات حلوة» مع طفلة عمرها ٤ سنوات. تفاعلت مع كل سؤال بحماس، وكرّرت بصوت عالٍ عبارات مثل «أنتِ لطيفة» و«أنتِ تقدرين» وهي تبتسم بفخر. وفي اليوم التالي، طلبت بنفسها أن تلعب اللعبة نفسها مرة أخرى.</blockquote>
+<blockquote class="en" data-k="k239">We tried the Ask Me and Sweet Words cards with a 4-year-old girl. She answered every question with excitement and repeated affirmations like "You are kind" and "You can do it" out loud, smiling proudly. The next day, she asked on her own to play the same game again.</blockquote>
+<figcaption><span class="ar" data-k="k240">جلسة تجريبية، أكتوبر ٢٠٢٥ · أدارتها د. ولاء نصر</span><span class="en" data-k="k241">Pilot session, October 2025 · led by Dr Walaa Nasr</span></figcaption>
+</figure>
+<div class="slot share rise">
+<h4 class="ar" data-k="k242">جرّبتم Discover20؟</h4><h4 class="en" data-k="k243">Tried Discover20?</h4>
+<p class="ar" data-k="k244">شاركونا ما اكتشفتموه مع طفلكم، وقد ننشر قصتكم هنا بإذنكم.</p>
+<p class="en" data-k="k245">Tell us what you discovered with your child, and with your permission we may share your story here.</p>
+<span class="mail" data-k="k246">support@discover20.com</span>
+</div>
+</div>
+<h3 class="sub-h rise"><span class="ar" data-k="k247">شركاؤنا</span><span class="en" data-k="k248">Our partners</span></h3>
+<div class="logos rise">
+<div class="logo-slot"><span class="ar" data-k="k249">شعار شريك مؤكَّد</span><span class="en" data-k="k250">Confirmed partner logo</span></div>
+<div class="logo-slot"><span class="ar" data-k="k251">شعار شريك مؤكَّد</span><span class="en" data-k="k252">Confirmed partner logo</span></div>
+<div class="logo-slot"><span class="ar" data-k="k253">شعار شريك مؤكَّد</span><span class="en" data-k="k254">Confirmed partner logo</span></div>
+<div class="logo-slot"><span class="ar" data-k="k255">شعار شريك مؤكَّد</span><span class="en" data-k="k256">Confirmed partner logo</span></div>
+<div class="logo-slot"><span class="ar" data-k="k257">شعار شريك مؤكَّد</span><span class="en" data-k="k258">Confirmed partner logo</span></div>
+</div>
+</div>
+</section>
+<!-- DISCOVERY CALL -->
+<section class="call-sec" id="call">
+<div class="wrap call-in">
+<div class="call-copy rise">
+<span class="eyebrow"><span class="ar" data-k="k259">مكالمة الاكتشاف</span><span class="en" data-k="k260">Discovery call</span></span>
+<h2 class="sec-h ar" data-k="k261">لستم متأكدين من أين تبدأون؟</h2>
+<h2 class="sec-h en" data-k="k262">Not sure where to start?</h2>
+<p class="ar" data-k="k263">احجزوا مكالمة مع فريق Discover20. نسمع منكم عن طفلكم، ونقترح عليكم نقطة البداية المناسبة له.</p>
+<p class="en" data-k="k264">Book a call with the Discover20 team. We'll hear about your child and suggest the right place to start.</p>
+<div aria-hidden="true" class="ring"><span></span><span></span><b>☎</b></div>
+<p class="next ar" data-k="k265">بعد إرسال الطلب، يتواصل معكم فريقنا لتحديد موعد المكالمة.</p>
+<p class="next en" data-k="k266">After you send the request, our team will contact you to set a time.</p>
+</div>
+<form class="call-form rise" id="call-form" novalidate="">
+<div class="f2">
+<label class="fld"><span class="lab"><span class="ar" data-k="k267">الاسم</span><span class="en" data-k="k268">Your name</span></span><input autocomplete="name" id="cf-name" name="name" required="" type="text"/></label>
+<label class="fld"><span class="lab"><span class="ar" data-k="k269">رقم الهاتف أو واتساب</span><span class="en" data-k="k270">Phone or WhatsApp</span></span><input autocomplete="tel" dir="ltr" id="cf-phone" name="phone" required="" type="tel"/></label>
+</div>
+<label class="fld"><span class="lab"><span class="ar" data-k="k271">عمر الطفل</span><span class="en" data-k="k272">Child's age</span></span>
+<select id="cf-age" name="age" required="">
+<option value="">— · —</option>
+<option value="0-1">أقل من سنة · Under 1</option>
+<option value="1-3">١–٣ سنوات · 1–3 years</option>
+<option value="3-6">٣–٦ سنوات · 3–6 years</option>
+<option value="6-10">٦–١٠ سنوات · 6–10 years</option>
+</select>
+</label>
+<fieldset class="fld"><legend class="lab"><span class="ar" data-k="k273">ما الذي تريدون الحديث عنه؟</span><span class="en" data-k="k274">What would you like to talk about?</span></legend>
+<div class="chips">
+<label><input id="cf-t1" name="topic" type="checkbox" value="behaviour"/><span><span class="ar" data-k="k275">السلوك</span><span class="en" data-k="k276">Behaviour</span></span></label>
+<label><input id="cf-t2" name="topic" type="checkbox" value="development"/><span><span class="ar" data-k="k277">النموّ</span><span class="en" data-k="k278">Development</span></span></label>
+<label><input id="cf-t3" name="topic" type="checkbox" value="speech"/><span><span class="ar" data-k="k279">الكلام</span><span class="en" data-k="k280">Speech</span></span></label>
+<label><input id="cf-t4" name="topic" type="checkbox" value="nutrition"/><span><span class="ar" data-k="k281">التغذية</span><span class="en" data-k="k282">Nutrition</span></span></label>
+<label><input id="cf-t5" name="topic" type="checkbox" value="sleep"/><span><span class="ar" data-k="k283">النوم</span><span class="en" data-k="k284">Sleep</span></span></label>
+<label><input id="cf-t6" name="topic" type="checkbox" value="other"/><span><span class="ar" data-k="k285">أخرى</span><span class="en" data-k="k286">Other</span></span></label>
+</div>
+</fieldset>
+<fieldset class="fld"><legend class="lab"><span class="ar" data-k="k287">أفضل وقت للتواصل</span><span class="en" data-k="k288">Best time to call</span></legend>
+<div class="chips">
+<label><input id="cf-m" name="time" type="radio" value="morning"/><span><span class="ar" data-k="k289">صباحًا</span><span class="en" data-k="k290">Morning</span></span></label>
+<label><input id="cf-e" name="time" type="radio" value="evening"/><span><span class="ar" data-k="k291">مساءً</span><span class="en" data-k="k292">Evening</span></span></label>
+</div>
+</fieldset>
+<label class="fld"><span class="lab"><span class="ar" data-k="k293">هل تريدون إضافة شيء؟ (اختياري)</span><span class="en" data-k="k294">Anything else? (optional)</span></span><textarea id="cf-note" name="note" rows="3"></textarea></label>
+<label class="consent"><input id="cf-ok" required="" type="checkbox"/><span><span class="ar" data-k="k295">أوافق على أن يتواصل معي فريق Discover20 بخصوص هذا الطلب.</span><span class="en" data-k="k296">I agree that the Discover20 team may contact me about this request.</span></span></label>
+<button class="btn btn-main" id="cf-send" type="submit"><span class="ar" data-k="k297">احجزوا مكالمة الاكتشاف</span><span class="en" data-k="k298">Book the discovery call</span></button>
+<p aria-live="polite" class="cf-status" id="cf-status" role="status"></p>
+</form>
+<div class="call-done" hidden="" id="call-done">
+<b>✓</b>
+<h3 class="ar" data-k="k299">وصلنا طلبكم</h3><h3 class="en" data-k="k300">We got your request</h3>
+<p class="ar" data-k="k301">سيتواصل معكم فريق Discover20 لتحديد موعد المكالمة.</p>
+<p class="en" data-k="k302">The Discover20 team will contact you to set a time for the call.</p>
+</div>
+</div>
+</section>
+</main>
+<footer id="contact">
+<div class="wrap disc-row"><p class="swyc-line" dir="ltr"><span class="swyc-ph">SWYC logo</span> Discover20 is licensed to use the SWYC, owned by Boston Medical Center.</p><p class="ar" data-k="k303">هذه المواد للمعلومات فقط، ولا تُغني عن الاستشارة الطبية المتخصصة، ولا تُعدّ علاجًا أو تشخيصًا.</p><p class="en" data-k="k304">These materials are for informational purposes only: they are NOT a substitute for professional medical advice and do not constitute therapy, or diagnosis.</p></div>
+<div class="wrap">
+<div><span class="logo">Discover<b>20</b></span><div><span class="ar" data-k="k305">أسرار الصغار</span><span class="en" data-k="k306">Young Secrets</span></div></div>
+<div><span class="ar" data-k="k307">تواصلوا معنا: </span><span class="en" data-k="k308">Contact: </span><span class="mail" data-k="k309">support@discover20.com</span></div>
+<div>© 2026 Discover20</div>
+</div>
+</footer>
+<a class="sticky-cta" href="assessments.html#development"><span class="ar" data-k="k310">ابدأوا التقييم المجاني</span><span class="en" data-k="k311">Start the free assessment</span></a>
+
+<script type="application/json" id="d20-data">{"tpl": "\u003ctitle>Discover20 Home\u003c/title>\n\u003clink href=\"https://fonts.googleapis.com\" rel=\"preconnect\"/>\n\u003clink crossorigin=\"\" href=\"https://fonts.gstatic.com\" rel=\"preconnect\"/>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap\" rel=\"stylesheet\"/>\n\u003cstyle>\n/* Layout concept: a 20-minute dial is the brand's clock. The hero draws it; every step below\n   is one slice of the same day, in the brand's four play colours. Single light theme by choice. */\n:root{\n  --teal:#1ABBBC; --teal-ink:#0A6A6C; --teal-pale:#E6F7F7;\n  --yellow:#FFD545; --coral:#F05E5E; --purple:#5A4D9E; --green:#86C559;\n  --ink:#0E2F37; --body:#3D555B; --muted:#6A7F84; --line:#D6E8E9;\n  --paper:#FFFFFF; --ground:#F5FBFB;\n  --display:\"Baloo Bhaijaan 2\",\"IBM Plex Sans Arabic\",system-ui,sans-serif;\n  --text:\"IBM Plex Sans Arabic\",\"Segoe UI\",Tahoma,system-ui,sans-serif;\n  --r-lg:28px; --r-md:18px;\n  color-scheme:light;\n}\n*{box-sizing:border-box}\nhtml{scroll-behavior:smooth}\nbody{margin:0;background:var(--paper);color:var(--body);font-family:var(--text);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}\nbody::before{content:\"\";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}\n.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}\nh1,h2,h3,h4{font-family:var(--display);color:var(--ink);margin:0;text-wrap:balance;line-height:1.25}\np{margin:0}\na{color:inherit}\n:focus-visible{outline:3px solid var(--purple);outline-offset:3px;border-radius:8px}\n\n/* language */\nhtml[lang=\"ar\"] .en{display:none!important}\nhtml[lang=\"en\"] .ar{display:none!important}\nhtml[lang=\"en\"] body{font-size:16.5px}\n\n/* buttons */\n.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--text);font-weight:700;font-size:17px;text-decoration:none;border-radius:999px;padding:14px 26px;border:2px solid transparent;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s}\n.btn-main{background:var(--teal-ink);color:#fff;box-shadow:0 6px 0 #064547}\n.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 0 #064547}\n.btn-main:active{transform:translateY(3px);box-shadow:0 3px 0 #064547}\n.btn-soft{background:#fff;color:var(--ink);border-color:var(--line)}\n.btn-soft:hover{border-color:var(--teal);color:var(--teal-ink)}\n.btn-sm{padding:9px 18px;font-size:15px;box-shadow:0 4px 0 #064547}\n\n/* header */\nheader{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}\n.hd{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}\n.logo{font-family:var(--display);font-weight:800;font-size:25px;color:var(--ink);text-decoration:none;letter-spacing:-.3px;direction:ltr}\n.logo b{color:var(--teal);font-weight:800}\nnav{display:flex;gap:22px;font-weight:600;font-size:15px}\nnav a{text-decoration:none;color:var(--body)}\nnav a:hover{color:var(--teal-ink)}\n.hd-end{display:flex;align-items:center;gap:10px}\n.lang{font:inherit;font-size:14px;font-weight:700;background:none;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;color:var(--ink)}\n.lang:hover{border-color:var(--teal)}\n@media(max-width:900px){nav{display:none}}\n@media(max-width:480px){.hd .btn-sm{display:none}}\n\n/* hero */\n.hero{background:var(--teal-pale);position:relative;overflow:hidden}\n.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-block:64px 72px}\n.hero-copy{min-width:0;position:relative;z-index:2}\n.asks{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}\n.asks span{font-weight:700;font-size:15px;background:#fff;color:var(--ink);padding:5px 14px;border-radius:999px;border:1.5px solid var(--line);animation:popIn .5s cubic-bezier(.3,1.6,.5,1) both}\n.asks span:nth-child(2){animation-delay:.12s}.asks span:nth-child(3){animation-delay:.24s}\n.hero h1{font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-.5px;margin-bottom:20px}\n.hero h1 .hl{display:inline-block;color:var(--teal-ink);position:relative;z-index:0}\n.hero h1 .hl::after{content:\"\";position:absolute;inset:auto -4px 6px -4px;height:.28em;background:var(--yellow);z-index:-1;border-radius:6px;transform-origin:left;animation:sweep .7s .5s ease-out both}\n.hero .lead{font-size:clamp(17px,2vw,19.5px);max-width:52ch;margin-bottom:28px;color:var(--body)}\n.cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}\n.small-note{font-size:14px;color:var(--muted);margin-top:16px;font-weight:500}\n\n/* dial */\n.dial-box{position:relative;min-width:0;display:grid;place-items:center}\n.dial{width:min(100%,380px);height:auto;overflow:visible}\n.dial .track{fill:none;stroke:#fff;stroke-width:26}\n.dial .arc{fill:none;stroke-width:26;stroke-linecap:round;animation:draw 1.1s cubic-bezier(.6,0,.2,1) both}\n.dial .a2{animation-delay:.35s}.dial .a3{animation-delay:.7s}\n.dial .face{fill:#fff}\n.dial .num{font-family:\"Baloo Bhaijaan 2\",sans-serif;font-weight:800;font-size:96px;fill:var(--ink)}\n.dial .unit{font-family:var(--text);font-weight:700;font-size:20px;fill:var(--muted)}\n.dial .tick{stroke:var(--line);stroke-width:3;stroke-linecap:round}\n.chip{position:absolute;font-weight:700;font-size:15px;padding:6px 14px;border-radius:999px;color:#fff;box-shadow:0 4px 12px rgba(14,47,55,.12);animation:popIn .5s cubic-bezier(.3,1.6,.5,1) both}\n.chip.c1{background:var(--coral);top:6%;inset-inline-start:2%;animation-delay:1s}\n.chip.c2{background:var(--purple);bottom:12%;inset-inline-start:-2%;animation-delay:1.25s}\n.chip.c3{background:#4E8F2A;bottom:2%;inset-inline-end:8%;animation-delay:1.5s}\n.blob{position:absolute;border-radius:50%;z-index:1;animation:float 7s ease-in-out infinite}\n.blob.b1{width:120px;height:120px;background:var(--yellow);opacity:.55;top:-30px;inset-inline-end:42%}\n.blob.b2{width:70px;height:70px;background:var(--coral);opacity:.25;bottom:30px;inset-inline-end:6%;animation-delay:-2s}\n.blob.b3{width:44px;height:44px;background:var(--green);opacity:.45;top:40%;inset-inline-start:46%;animation-delay:-4s}\n@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:44px 56px}.dial{width:min(100%,300px)}.blob.b1{inset-inline-end:10%}}\n\n/* strip */\n.strip{background:var(--ink)}\n.strip .wrap{display:grid;grid-template-columns:repeat(6,1fr);gap:0;padding-block:0}\n.strip a{display:block;text-decoration:none;color:#fff;font-weight:700;font-size:16px;padding:18px 14px;text-align:center;border-inline-start:1px solid rgba(255,255,255,.12);transition:background .2s}\n.strip a:first-child{border-inline-start:none}\n.strip a:hover{background:rgba(255,255,255,.07)}\n.strip a i{display:block;font-style:normal;font-size:12.5px;font-weight:600;color:var(--yellow);letter-spacing:.3px;margin-bottom:2px}\n@media(max-width:760px){.strip .wrap{grid-template-columns:repeat(3,1fr)}.strip a:nth-child(4){border-inline-start:none}.strip a{border-top:1px solid rgba(255,255,255,.12);padding:14px 8px;font-size:15px}}\n\n/* sections */\nsection{padding-block:88px}\n.eyebrow{display:inline-block;font-weight:700;font-size:14px;letter-spacing:.4px;color:var(--teal-ink);margin-bottom:12px}\n.sec-h{font-size:clamp(28px,4vw,44px);font-weight:800;margin-bottom:14px}\n.sec-lead{font-size:18px;max-width:60ch;margin-bottom:44px}\n@media(max-width:700px){section{padding-block:60px}}\n\n/* understanding */\n.why{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}\n.why .copy{min-width:0}\n.why .copy p+p{margin-top:14px}\n.ages{display:grid;gap:14px}\n.age{display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:center;background:var(--ground);border-radius:var(--r-md);padding:16px 20px}\n.age .who{font-family:var(--display);font-weight:800;font-size:15px;text-align:center;line-height:1.3;color:#fff;border-radius:14px;padding:12px 6px}\n.age:nth-child(1) .who{background:var(--coral)}\n.age:nth-child(2) .who{background:var(--purple)}\n.age:nth-child(3) .who{background:var(--teal-ink)}\n.age h4{font-size:19px;margin-bottom:2px}\n.age p{font-size:15.5px}\n.quote{margin-top:26px;padding:18px 22px;border-inline-start:5px solid var(--yellow);background:#FFFBEA;border-radius:0 var(--r-md) var(--r-md) 0;font-size:16px;color:var(--ink)}\nhtml[dir=\"rtl\"] .quote{border-radius:var(--r-md) 0 0 var(--r-md)}\n.quote small{display:block;color:var(--muted);font-size:13.5px;margin-top:6px}\n@media(max-width:860px){.why{grid-template-columns:1fr;gap:36px}}\n\n/* steps */\n.steps-sec{background:var(--ground)}\n.steps-head{display:flex;justify-content:space-between;gap:24px;align-items:end;flex-wrap:wrap;margin-bottom:44px}\n.steps-head .sec-lead{margin-bottom:0}\n.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}\n.path{position:absolute;top:34px;inset-inline:6%;height:6px;z-index:0}\n.path line{stroke:var(--line);stroke-width:6;stroke-linecap:round;stroke-dasharray:2 14}\n.step{position:relative;z-index:1;background:#fff;border-radius:var(--r-lg);padding:24px 22px 26px;display:flex;flex-direction:column;border:2px solid transparent;transition:transform .25s,border-color .25s,box-shadow .25s;scroll-margin-top:90px;min-width:0}\n.step:hover{transform:translateY(-6px);border-color:var(--c);box-shadow:0 14px 30px rgba(14,47,55,.1)}\n.step .n{width:52px;height:52px;border-radius:16px;background:var(--c);color:#fff;font-family:var(--display);font-weight:800;font-size:26px;display:grid;place-items:center;margin-bottom:18px;transform:rotate(-6deg)}\n.step:nth-child(odd) .n{transform:rotate(5deg)}\n.step .lbl{font-weight:700;font-size:14.5px;color:var(--c-ink);margin-bottom:6px}\n.step h3{font-size:21px;margin-bottom:10px}\n.step p{font-size:15.5px;flex:1;margin-bottom:18px}\n.step a.go{font-weight:700;font-size:15.5px;color:var(--c-ink);text-decoration:none;display:inline-flex;gap:6px;align-items:center}\n.step a.go:hover{text-decoration:underline}\n.s1{--c:var(--coral);--c-ink:#C23B3B}\n.s2{--c:var(--purple);--c-ink:var(--purple)}\n.s3{--c:var(--teal);--c-ink:var(--teal-ink)}\n.s4{--c:#5E9E37;--c-ink:#3F7A1E}\n.mini{display:flex;gap:6px;margin-bottom:16px}\n.mini span{font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--ground);color:var(--ink)}\n.flip{perspective:700px;height:118px;margin-bottom:16px;cursor:pointer}\n.flip-in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}\n.flip.on .flip-in{transform:rotateY(180deg)}\n.face-c{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10px;font-family:var(--display);font-weight:700;color:#fff;line-height:1.35}\n.face-c small{font-family:var(--text);font-size:11.5px;font-weight:600;opacity:.85;letter-spacing:.3px;margin-bottom:4px}\n.face-c .t{font-size:18px}\n.face-c .t2{font-size:13px;font-family:var(--text);font-weight:500;opacity:.9;direction:ltr}\n.face-c.front{background:var(--purple)}\n.face-c.back{background:var(--coral);transform:rotateY(180deg)}\n.bars{display:grid;gap:7px;margin-bottom:16px}\n.bars div{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;font-size:13px;font-weight:600;color:var(--ink)}\n.bars i{display:block;height:8px;border-radius:99px;background:var(--line);position:relative;overflow:hidden}\n.bars i::after{content:\"\";position:absolute;inset:0;background:var(--teal);border-radius:99px;transform-origin:left;transform:scaleX(var(--w));transition:transform 1s}\nhtml[dir=\"rtl\"] .bars i::after{transform-origin:right}\n.bars small{grid-column:1/-1;font-size:11.5px;color:var(--muted);font-weight:500}\n.experts{display:flex;margin-bottom:16px}\n.experts span{width:40px;height:40px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;margin-inline-start:-10px}\n.experts span:first-child{margin-inline-start:0}\n@media(max-width:980px){.steps{grid-template-columns:1fr 1fr}.path{display:none}}\n@media(max-width:560px){.steps{grid-template-columns:1fr}}\n\n/* science */\n.sci{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}\n.sci-card{border:2px solid var(--line);border-radius:var(--r-lg);padding:26px;min-width:0}\n.sci-card .src{font-family:var(--display);font-weight:800;font-size:22px;color:var(--ink);direction:ltr;text-align:start;margin-bottom:4px}\n.sci-card .prog{font-weight:700;font-size:14px;color:var(--teal-ink);margin-bottom:12px;direction:ltr;text-align:start}\nhtml[dir=\"rtl\"] .sci-card .src,html[dir=\"rtl\"] .sci-card .prog{text-align:right}\n.sci-card p{font-size:15.5px}\n.sci-card.dark{background:var(--ink);border-color:var(--ink)}\n.sci-card.dark h4{color:#fff;font-size:21px;margin-bottom:10px}\n.sci-card.dark p{color:#C9DDE0}\n@media(max-width:860px){.sci{grid-template-columns:1fr}}\n\n/* licences */\n.lic-sec{background:var(--purple);color:#E8E5F6}\n.lic-sec .eyebrow{color:var(--yellow)}\n.lic-sec .sec-h{color:#fff}\n.lic-sec .sec-lead{color:#D8D3F0}\n.lic-table-wrap{overflow-x:auto;border-radius:var(--r-md);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}\ntable{width:100%;border-collapse:collapse;min-width:620px;font-size:15.5px}\nth,td{text-align:start;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.12);vertical-align:top}\nth{font-size:13px;font-weight:700;color:var(--yellow);letter-spacing:.3px}\ntd{color:#F1EFFA}\ntd .inst{font-weight:700;color:#fff;direction:ltr;display:inline-block}\ntr:last-child td{border-bottom:none}\n.badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:3px 11px;border-radius:999px;white-space:nowrap}\n.badge.ok{background:var(--green);color:#173A07}\n.badge.pd{background:var(--yellow);color:#4A3A00}\n.badge.own{background:#fff;color:var(--purple)}\n.attrib{margin-top:22px;font-size:13.5px;color:#CFC9EC;line-height:1.7;max-width:80ch}\n.attrib p+p{margin-top:6px}\n\n/* proof */\n.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}\n.slot{border:2.5px dashed #B9D3D5;border-radius:var(--r-lg);padding:26px;background:var(--ground);min-width:0}\n.slot .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.3px;background:var(--yellow);color:#4A3A00;padding:2px 10px;border-radius:999px;margin-bottom:14px}\n.slot .q{font-family:var(--display);font-size:20px;color:var(--muted);font-weight:700;margin-bottom:14px;line-height:1.4}\n.slot .who{font-size:14px;color:var(--muted)}\n.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:22px}\n.logo-slot{height:88px;border:2.5px dashed #B9D3D5;border-radius:var(--r-md);display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--muted);background:var(--ground);text-align:center;padding:6px}\n.sub-h{font-size:clamp(22px,3vw,30px);font-weight:800;margin-top:72px}\n@media(max-width:860px){.proof-grid{grid-template-columns:1fr}.logos{grid-template-columns:repeat(3,1fr)}}\n@media(max-width:480px){.logos{grid-template-columns:1fr 1fr}}\n\n/* final */\n.final{background:var(--teal-pale);text-align:center}\n.final .sec-h{max-width:22ch;margin-inline:auto}\n.final .sec-lead{margin-inline:auto}\n.start{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:880px;margin:0 auto 36px;text-align:start}\n.start div{background:#fff;border-radius:var(--r-md);padding:20px}\n.start b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--display);margin-bottom:10px}\n.start h4{font-size:18px;margin-bottom:2px}\n.start p{font-size:15px}\n@media(max-width:700px){.start{grid-template-columns:1fr}}\n\nfooter{background:var(--ink);color:#A9C3C7;font-size:14px}\nfooter .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;padding-block:36px}\nfooter .logo{color:#fff;font-size:22px}\n.mail{user-select:all;color:#fff;font-weight:600}\n\n\n/* journey + feature sections */\n.secrets-head{text-align:center;padding-block:80px 8px}\n.secrets-head .sec-h{max-width:24ch;margin-inline:auto}\n.secrets-head .sec-lead{margin-inline:auto;margin-bottom:28px}\n.journey{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}\n.journey li{display:flex;align-items:center;gap:8px;background:var(--ground);border:1.5px solid var(--line);border-radius:999px;padding:6px 16px 6px 8px;font-weight:700;color:var(--ink);font-size:15px}\nhtml[dir=\"rtl\"] .journey li{padding:6px 8px 6px 16px}\n.journey b{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--display);font-size:15px}\n.journey li:nth-child(1) b{background:var(--coral)}.journey li:nth-child(2) b{background:var(--purple)}.journey li:nth-child(3) b{background:#4E8F2A}.journey li:nth-child(4) b{background:#8A6A00}.journey li:nth-child(5) b{background:var(--teal-ink)}\n.feat{padding-block:72px}\n.feat.alt{background:var(--ground)}\n.feat-in{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}\n.feat-in.rev .visual{order:-1}\n.feat .copy{min-width:0}\n.feat .lbl{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15.5px;color:var(--c-ink);margin-bottom:12px}\n.feat .lbl b{width:34px;height:34px;border-radius:11px;background:var(--c);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:18px;transform:rotate(-6deg)}\n.feat h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;margin-bottom:14px}\n.feat .copy p{font-size:17.5px;max-width:52ch;margin-bottom:26px}\n.visual{background:var(--c-pale);border-radius:36px;padding:36px 24px;min-height:320px;display:grid;place-items:center;position:relative;overflow:hidden;min-width:0}\n.visual::before{content:\"\";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--c);opacity:.12;top:-50px;inset-inline-end:-40px}\n.c-act{--c:var(--coral);--c-ink:#C23B3B;--c-pale:#FDECEC}\n.c-story{--c:var(--purple);--c-ink:var(--purple);--c-pale:#ECEAF7}\n.c-toy{--c:#6DAE45;--c-ink:#3F7A1E;--c-pale:#EDF6E5}\n.c-card{--c:#E8B800;--c-ink:#7A5D00;--c-pale:#FFF5CC}\n.c-assess{--c:var(--teal);--c-ink:var(--teal-ink);--c-pale:var(--teal-pale)}\n.c-exp{--c:var(--purple);--c-ink:var(--purple);--c-pale:#fff}\n.ex{font-size:12px;color:var(--muted);text-align:center;margin-top:10px!important}\n.plan{position:relative;background:#fff;border-radius:24px;padding:20px;width:min(100%,320px);box-shadow:0 16px 40px rgba(14,47,55,.12);display:grid;gap:10px}\n.plan-h{display:flex;justify-content:space-between;align-items:center;font-family:var(--display);color:var(--ink);font-size:18px;margin-bottom:4px}\n.timer{background:var(--ink);color:#fff;border-radius:999px;padding:2px 12px;font-family:var(--display);font-weight:800;direction:ltr}\nhtml[dir=\"rtl\"] .timer{direction:rtl}\n.timer small{font-size:12px;font-weight:600}\n.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--ground);font-weight:700;color:var(--ink)}\n.row .dot{width:14px;height:14px;border-radius:50%}\n.row .ck{margin-inline-start:auto;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;color:transparent;font-size:14px;transition:background .3s,border-color .3s,color .3s,transform .3s}\n.row.done .ck{background:#4E8F2A;border-color:#4E8F2A;color:#fff;transform:scale(1.1)}\n.shelf{position:relative;display:grid;gap:22px;justify-items:center}\n.books{display:flex;gap:14px;align-items:end}\n.book{width:112px;height:156px;border-radius:6px 14px 14px 6px;padding:14px 12px 14px 18px;background:var(--bk);color:#fff;font-family:\"Baloo Bhaijaan 2\",sans-serif;font-weight:700;font-size:14px;line-height:1.25;display:flex;align-items:flex-end;direction:ltr;text-align:left;position:relative;transform:rotate(var(--rot));box-shadow:0 10px 22px rgba(14,47,55,.18);transition:transform .3s}\n.book::before{content:\"\";position:absolute;inset:0 auto 0 0;width:8px;background:rgba(0,0,0,.18);border-radius:6px 0 0 6px}\n.book:hover{transform:rotate(0) translateY(-10px)}\n.values,.tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}\n.values span,.tags span{background:#fff;color:var(--c-ink);font-weight:700;font-size:14px;padding:5px 14px;border-radius:999px;border:1.5px solid var(--c)}\n.toy{position:relative;background:#fff;border-radius:24px;padding:24px;width:min(100%,290px);box-shadow:0 16px 40px rgba(14,47,55,.12);display:grid;gap:12px;justify-items:center;text-align:center}\n.toy b{font-family:var(--display);color:var(--ink);font-size:20px}\n.stack{display:flex;flex-direction:column;align-items:center;gap:4px;width:150px;padding-top:30px;position:relative}\n.stack::before{content:\"\";position:absolute;top:0;width:10px;height:120px;background:#C9A26B;border-radius:6px;z-index:0}\n.stack i{display:block;width:var(--w);height:24px;border-radius:12px;background:var(--c);position:relative;z-index:1;animation:bob 3s ease-in-out infinite}\n.stack i:nth-child(2){animation-delay:.15s}.stack i:nth-child(3){animation-delay:.3s}.stack i:nth-child(4){animation-delay:.45s}\n.stack .base{width:100%;height:12px;border-radius:6px;background:#C9A26B;position:relative;z-index:1}\n@keyframes bob{50%{transform:translateY(-4px)}}\n.flip.big{width:min(100%,300px);height:200px;margin:0}\n.flip.big .face-c .t{font-size:26px}\n.flip.big .face-c .t2{font-size:15px}\n.flip.big .face-c small{font-size:13px}\n.flip.big .face-c{border-radius:22px;box-shadow:0 16px 36px rgba(14,47,55,.18)}\n.hint{font-size:13.5px;color:var(--c-ink);font-weight:600;margin-top:16px;text-align:center;position:relative}\n.visual:has(.flip){align-content:center}\n.assess-card{position:relative;background:#fff;border-radius:24px;padding:24px;width:min(100%,320px);box-shadow:0 16px 40px rgba(14,47,55,.12)}\n.assess-card>b{display:block;font-family:var(--display);color:var(--ink);font-size:19px;margin-bottom:12px}\n.assess-card .bars{gap:12px;margin:0}\n.assess-card .bars div{font-size:14px}\n.assess-card .bars i{height:10px}\n.cloud{position:relative;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:340px}\n.cloud>span{background:var(--c);color:#fff;font-weight:700;font-size:16px;padding:10px 18px;border-radius:999px;animation:float 6s ease-in-out infinite}\n.cloud>span:nth-child(2){animation-delay:-1s}.cloud>span:nth-child(3){animation-delay:-2s}.cloud>span:nth-child(4){animation-delay:-3s}.cloud>span:nth-child(5){animation-delay:-4s}\n.c-exp .visual{border:2px solid var(--line)}\n.journal-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}\n.journal-head .sec-lead{margin-bottom:0}\n.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}\n.post{display:block;text-decoration:none;border-radius:24px;overflow:hidden;background:#fff;border:2px solid var(--line);transition:transform .25s,box-shadow .25s,border-color .25s;min-width:0}\n.post:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(14,47,55,.1);border-color:var(--teal)}\n.post .img{height:160px;background:radial-gradient(circle at 80% 20%,var(--b) 0 22%,transparent 23%),radial-gradient(circle at 15% 90%,var(--b) 0 18%,transparent 19%),var(--a);display:grid;place-items:center}\n.post .img span{font-family:var(--display);font-weight:800;font-size:46px;color:#fff;direction:ltr}\n.post .body{padding:20px 22px 24px}\n.post .tag{font-size:13px;font-weight:700;color:var(--teal-ink)}\n.post h3{font-size:21px;margin-top:4px}\n@media(max-width:860px){.feat-in{grid-template-columns:1fr;gap:32px}.feat-in.rev .visual{order:0}.posts{grid-template-columns:1fr}.visual{min-height:260px}}\n@media(max-width:420px){.book{width:92px;height:132px;font-size:12.5px}}\n\n\n.cta-band{background:var(--ink);padding-block:56px;position:relative;overflow:hidden}\n.cta-band::before,.cta-band::after{content:\"\";position:absolute;border-radius:50%}\n.cta-band::before{width:220px;height:220px;background:var(--teal);opacity:.25;top:-90px;inset-inline-start:-60px}\n.cta-band::after{width:120px;height:120px;background:var(--coral);opacity:.3;bottom:-50px;inset-inline-end:12%}\n.cta-band-in{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}\n.cta-band h2{color:#fff;font-size:clamp(26px,3.6vw,40px);font-weight:800;margin-bottom:6px}\n.cta-band p{color:#BFD8DC;font-size:17.5px}\n.btn-yellow{background:var(--yellow);color:var(--ink);box-shadow:0 6px 0 #B89400;font-size:18px}\n.btn-yellow:hover{transform:translateY(-2px);box-shadow:0 8px 0 #B89400}\n.sticky-cta{display:none}\n@media(max-width:700px){\n  .sticky-cta{display:block;position:fixed;z-index:55;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));text-align:center;background:var(--teal-ink);color:#fff;font-weight:700;text-decoration:none;padding:14px;border-radius:999px;box-shadow:0 10px 26px rgba(14,47,55,.3)}\n  footer .wrap{padding-bottom:96px}\n}\n\n\n/* discovery call */\n.btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}\n.btn-line:hover{border-color:var(--yellow);color:var(--yellow)}\n.call-sec{background:var(--ground)}\n.call-in{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}\n.call-copy{min-width:0;background:var(--teal-ink);color:#D7EFEF;border-radius:var(--r-lg);padding:36px 32px;position:relative;overflow:hidden}\n.call-copy .eyebrow{color:var(--yellow)}\n.call-copy .sec-h{color:#fff}\n.call-copy p{font-size:17px}\n.call-copy .next{font-size:15px;color:#BFE3E3;margin-top:8px}\n.ring{position:relative;width:96px;height:96px;margin:30px 0 18px;display:grid;place-items:center}\n.ring b{position:relative;z-index:1;width:64px;height:64px;border-radius:50%;background:var(--yellow);color:var(--ink);display:grid;place-items:center;font-size:30px;animation:wiggle 2.4s ease-in-out infinite}\n.ring span{position:absolute;inset:16px;border-radius:50%;border:3px solid var(--yellow);animation:pulse 2.4s ease-out infinite}\n.ring span+span{animation-delay:1.2s}\n@keyframes pulse{from{transform:scale(.8);opacity:.9}to{transform:scale(1.6);opacity:0}}\n@keyframes wiggle{0%,60%,100%{transform:rotate(0)}65%{transform:rotate(-14deg)}75%{transform:rotate(12deg)}85%{transform:rotate(-8deg)}}\n.call-form,.call-done{min-width:0;background:#fff;border-radius:var(--r-lg);padding:30px;display:grid;gap:18px;border:2px solid var(--line)}\n.call-done{place-items:center;text-align:center;padding-block:56px;grid-column:2}\n.call-done b{width:64px;height:64px;border-radius:50%;background:#4E8F2A;color:#fff;display:grid;place-items:center;font-size:30px}\n.call-done h3{font-size:26px}\n.f2{display:grid;grid-template-columns:1fr 1fr;gap:16px}\n.fld{display:grid;gap:6px;border:0;padding:0;margin:0;min-width:0}\n.lab{font-weight:700;font-size:15px;color:var(--ink);padding:0}\n.fld input,.fld select,.fld textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--ground);border:2px solid var(--line);border-radius:14px;padding:11px 14px;width:100%;min-width:0}\n.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--teal);background:#fff}\n.fld .bad{border-color:var(--coral)}\n.chips{display:flex;flex-wrap:wrap;gap:8px}\n.chips label{position:relative;cursor:pointer}\n.chips input{position:absolute;opacity:0;pointer-events:none}\n.chips label>span{display:inline-block;padding:7px 16px;border-radius:999px;border:2px solid var(--line);font-weight:700;font-size:14.5px;color:var(--ink);background:var(--ground);transition:background .2s,border-color .2s,color .2s}\n.chips input:checked+span{background:var(--teal-ink);border-color:var(--teal-ink);color:#fff}\n.chips input:focus-visible+span{outline:3px solid var(--purple);outline-offset:2px}\n.consent{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--body)}\n.consent input{width:20px;height:20px;margin-top:3px;accent-color:var(--teal-ink);flex:none}\n.call-form .btn{justify-self:start}\n.cf-status{font-size:14.5px;font-weight:600;color:#C23B3B;min-height:1em}\n.cf-status.info{color:var(--teal-ink)}\n.cf-status .mail{color:var(--ink)}\n@media(max-width:860px){.call-in{grid-template-columns:1fr}.call-done{grid-column:auto}.f2{grid-template-columns:1fr}.call-form .btn{justify-self:stretch;justify-content:center}}\n\n.feat .copy p.big-line{font-family:var(--display);font-weight:800;font-size:clamp(24px,3vw,32px);color:var(--teal-ink);margin:-4px 0 12px}\nfooter .wrap.disc-row{display:block;padding-block:26px 0;font-size:14px;color:#D6E6E8}\n.swyc-ph{display:inline-block;border:1.5px dashed rgba(255,255,255,.5);border-radius:8px;padding:6px 10px;font-size:11px;font-weight:700;margin-bottom:10px}\n.sci-sum{padding-block:64px;background:var(--ground)}\n.sci-sum-in{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}\n.sci-sum-in>div{max-width:62ch;min-width:0}\n.sci-sum p{font-size:17px}\n.story-grid{grid-template-columns:2fr 1fr}\n.story{margin:0;background:var(--purple);color:#fff;border-radius:var(--r-lg);padding:32px;display:grid;gap:16px;position:relative;overflow:hidden;min-width:0}\n.story::before{content:\"”\";position:absolute;font-family:Georgia,serif;font-size:220px;line-height:1;color:rgba(255,255,255,.12);top:-20px;inset-inline-end:20px}\n.story .tag{justify-self:start;font-size:12.5px;font-weight:700;background:var(--yellow);color:#4A3A00;padding:2px 12px;border-radius:999px}\n.story blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(19px,2.2vw,24px);line-height:1.5;position:relative}\n.story figcaption{font-size:14px;color:#D8D3F0}\n.slot.share{display:grid;gap:10px;align-content:center;border-style:solid}\n.slot.share h4{font-size:21px}\n.swyc-line{font-size:12.5px;color:#9FC0C5;margin-bottom:10px!important;text-align:left}\n.swyc-line .swyc-ph{margin:0 8px 0 0}\n@media(max-width:860px){.story-grid{grid-template-columns:1fr}}\n.slot.share .mail{color:var(--teal-ink)}\n.call-done[hidden]{display:none}\n\n/* in-place editing */\n.editing [data-k]{outline:1.5px dashed rgba(90,77,158,.6);outline-offset:3px;border-radius:4px;cursor:text}\n.editing [data-k]:hover{background:rgba(255,213,69,.18)}\n.editing [data-k]:focus{outline:2px solid var(--purple);background:rgba(255,213,69,.3)}\n.editing .rise.pre{transform:none}\n#d20-bar{position:fixed;z-index:80;inset-inline-start:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--ink);color:#fff;padding:8px;border-radius:24px;box-shadow:0 12px 30px rgba(14,47,55,.35);max-width:calc(100% - 32px);font-family:var(--text)}\n#d20-bar button{font:inherit;font-weight:700;font-size:14px;border:0;border-radius:999px;padding:9px 16px;cursor:pointer;color:var(--ink);background:var(--yellow)}\n#d20-bar button.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}\n#d20-bar button:disabled{opacity:.6;cursor:wait}\n#d20-bar .msg{font-size:13px;padding-inline:8px;line-height:1.4;max-width:42ch}\n@media(max-width:700px){#d20-bar{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}\n\n/* motion */\n@keyframes draw{from{stroke-dashoffset:var(--len)}}\n@keyframes popIn{from{transform:scale(.4);opacity:0}}\n@keyframes sweep{from{transform:scaleX(0)}}\n@keyframes float{50%{transform:translateY(-14px)}}\n.rise{transition:transform .8s cubic-bezier(.2,.8,.2,1)}\n.rise.pre{transform:translateY(36px) scale(.98)}\n@media(prefers-reduced-motion:reduce){\n  *,*::before,*::after{animation:none!important;transition:none!important}\n  .rise.pre{transform:none}\n}\n\u003c/style>\n\u003cheader>\n\u003cdiv class=\"wrap hd\">\n\u003ca class=\"logo\" href=\"#top\">Discover\u003cb>20\u003c/b>\u003c/a>\n\u003cnav>\n\u003ca href=\"#activities\">\u003cspan class=\"ar\" data-k=\"k1\">{{k1}}\u003c/span>\u003cspan class=\"en\" data-k=\"k2\">{{k2}}\u003c/span>\u003c/a>\n\u003ca href=\"#journal\">\u003cspan class=\"ar\" data-k=\"k3\">{{k3}}\u003c/span>\u003cspan class=\"en\" data-k=\"k4\">{{k4}}\u003c/span>\u003c/a>\n\u003ca href=\"assessments.html\">\u003cspan class=\"ar\" data-k=\"k5\">{{k5}}\u003c/span>\u003cspan class=\"en\" data-k=\"k6\">{{k6}}\u003c/span>\u003c/a>\n\u003ca href=\"#science\">\u003cspan class=\"ar\" data-k=\"k7\">{{k7}}\u003c/span>\u003cspan class=\"en\" data-k=\"k8\">{{k8}}\u003c/span>\u003c/a>\n\u003ca href=\"#call\">\u003cspan class=\"ar\" data-k=\"k9\">{{k9}}\u003c/span>\u003cspan class=\"en\" data-k=\"k10\">{{k10}}\u003c/span>\u003c/a>\n\u003c/nav>\n\u003cdiv class=\"hd-end\">\n\u003cbutton class=\"lang\" id=\"lang\" type=\"button\">\u003cspan class=\"ar\">English\u003c/span>\u003cspan class=\"en\">العربية\u003c/span>\u003c/button>\n\u003ca class=\"btn btn-main btn-sm\" href=\"#start\">\u003cspan class=\"ar\" data-k=\"k11\">{{k11}}\u003c/span>\u003cspan class=\"en\" data-k=\"k12\">{{k12}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003c/div>\n\u003c/header>\n\u003cmain id=\"top\">\n\u003c!-- HERO -->\n\u003cdiv class=\"hero\">\n\u003cspan class=\"blob b1\">\u003c/span>\u003cspan class=\"blob b2\">\u003c/span>\u003cspan class=\"blob b3\">\u003c/span>\n\u003cdiv class=\"wrap\">\n\u003cdiv class=\"hero-copy\">\n\u003cdiv class=\"asks ar\" data-k=\"k13\">{{k13}}\u003c/div>\n\u003cdiv class=\"asks en\" data-k=\"k14\">{{k14}}\u003c/div>\n\u003ch1 class=\"ar\" data-k=\"k15\">{{k15}}\u003c/h1>\n\u003ch1 class=\"en\" data-k=\"k16\">{{k16}}\u003c/h1>\n\u003cp class=\"lead ar\" data-k=\"k17\">{{k17}}\u003c/p>\n\u003cp class=\"lead en\" data-k=\"k18\">{{k18}}\u003c/p>\n\u003cdiv class=\"cta\">\n\u003ca class=\"btn btn-main\" href=\"assessments.html#development\">\u003cspan class=\"ar\" data-k=\"k19\">{{k19}}\u003c/span>\u003cspan class=\"en\" data-k=\"k20\">{{k20}}\u003c/span>\u003c/a>\n\u003ca class=\"btn btn-soft\" href=\"#activities\">\u003cspan class=\"ar\" data-k=\"k21\">{{k21}}\u003c/span>\u003cspan class=\"en\" data-k=\"k22\">{{k22}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003cp class=\"small-note\">\u003cspan class=\"ar\" data-k=\"k23\">{{k23}}\u003c/span>\u003cspan class=\"en\" data-k=\"k24\">{{k24}}\u003c/span>\u003c/p>\n\u003c/div>\n\u003cdiv aria-hidden=\"true\" class=\"dial-box\">\n\u003csvg class=\"dial\" viewbox=\"-160 -160 320 320\">\n\u003ccircle class=\"track\" r=\"120\">\u003c/circle>\n\u003cg transform=\"rotate(-90)\">\n\u003ccircle class=\"arc a1\" r=\"120\" stroke=\"#F05E5E\" stroke-dasharray=\"225 529\" stroke-dashoffset=\"0\" style=\"--len:754\">\u003c/circle>\n\u003ccircle class=\"arc a2\" r=\"120\" stroke=\"#5A4D9E\" stroke-dasharray=\"225 529\" stroke-dashoffset=\"-251\" style=\"--len:754\">\u003c/circle>\n\u003ccircle class=\"arc a3\" r=\"120\" stroke=\"#86C559\" stroke-dasharray=\"225 529\" stroke-dashoffset=\"-502\" style=\"--len:754\">\u003c/circle>\n\u003c/g>\n\u003ccircle class=\"face\" r=\"96\">\u003c/circle>\n\u003cg id=\"ticks\">\u003c/g>\n\u003ctext class=\"num\" text-anchor=\"middle\" y=\"28\">20\u003c/text>\n\u003ctext class=\"unit ar\" text-anchor=\"middle\" y=\"62\">دقيقة\u003c/text>\n\u003ctext class=\"unit en\" text-anchor=\"middle\" y=\"62\">minutes\u003c/text>\n\u003c/svg>\n\u003cspan class=\"chip c1\">\u003cspan class=\"ar\" data-k=\"k25\">{{k25}}\u003c/span>\u003cspan class=\"en\" data-k=\"k26\">{{k26}}\u003c/span>\u003c/span>\n\u003cspan class=\"chip c2\">\u003cspan class=\"ar\" data-k=\"k27\">{{k27}}\u003c/span>\u003cspan class=\"en\" data-k=\"k28\">{{k28}}\u003c/span>\u003c/span>\n\u003cspan class=\"chip c3\">\u003cspan class=\"ar\" data-k=\"k29\">{{k29}}\u003c/span>\u003cspan class=\"en\" data-k=\"k30\">{{k30}}\u003c/span>\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c!-- SECRETS NAV -->\n\u003cdiv class=\"strip\">\n\u003cdiv class=\"wrap\">\n\u003ca href=\"#activities\">\u003ci>١\u003c/i>\u003cspan class=\"ar\" data-k=\"k31\">{{k31}}\u003c/span>\u003cspan class=\"en\" data-k=\"k32\">{{k32}}\u003c/span>\u003c/a>\n\u003ca href=\"#stories\">\u003ci>٢\u003c/i>\u003cspan class=\"ar\" data-k=\"k33\">{{k33}}\u003c/span>\u003cspan class=\"en\" data-k=\"k34\">{{k34}}\u003c/span>\u003c/a>\n\u003ca href=\"#toys\">\u003ci>٣\u003c/i>\u003cspan class=\"ar\" data-k=\"k35\">{{k35}}\u003c/span>\u003cspan class=\"en\" data-k=\"k36\">{{k36}}\u003c/span>\u003c/a>\n\u003ca href=\"#cards\">\u003ci>٤\u003c/i>\u003cspan class=\"ar\" data-k=\"k37\">{{k37}}\u003c/span>\u003cspan class=\"en\" data-k=\"k38\">{{k38}}\u003c/span>\u003c/a>\n\u003ca href=\"#assessments\">\u003ci>٥\u003c/i>\u003cspan class=\"ar\" data-k=\"k39\">{{k39}}\u003c/span>\u003cspan class=\"en\" data-k=\"k40\">{{k40}}\u003c/span>\u003c/a>\n\u003ca href=\"#journal\">\u003ci>✎\u003c/i>\u003cspan class=\"ar\" data-k=\"k41\">{{k41}}\u003c/span>\u003cspan class=\"en\" data-k=\"k42\">{{k42}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003c/div>\n\u003cdiv class=\"secrets-head wrap rise\">\n\u003cspan class=\"eyebrow\">\u003cspan class=\"ar\" data-k=\"k43\">{{k43}}\u003c/span>\u003cspan class=\"en\" data-k=\"k44\">{{k44}}\u003c/span>\u003c/span>\n\u003ch2 class=\"sec-h ar\" data-k=\"k45\">{{k45}}\u003c/h2>\n\u003ch2 class=\"sec-h en\" data-k=\"k46\">{{k46}}\u003c/h2>\n\u003cp class=\"sec-lead ar\" data-k=\"k47\">{{k47}}\u003c/p>\n\u003cp class=\"sec-lead en\" data-k=\"k48\">{{k48}}\u003c/p>\n\u003col class=\"journey\">\u003cli>\u003cb>١\u003c/b>\u003cspan class=\"ar\" data-k=\"k49\">{{k49}}\u003c/span>\u003cspan class=\"en\" data-k=\"k50\">{{k50}}\u003c/span>\u003c/li>\u003cli>\u003cb>٢\u003c/b>\u003cspan class=\"ar\" data-k=\"k51\">{{k51}}\u003c/span>\u003cspan class=\"en\" data-k=\"k52\">{{k52}}\u003c/span>\u003c/li>\u003cli>\u003cb>٣\u003c/b>\u003cspan class=\"ar\" data-k=\"k53\">{{k53}}\u003c/span>\u003cspan class=\"en\" data-k=\"k54\">{{k54}}\u003c/span>\u003c/li>\u003cli>\u003cb>٤\u003c/b>\u003cspan class=\"ar\" data-k=\"k55\">{{k55}}\u003c/span>\u003cspan class=\"en\" data-k=\"k56\">{{k56}}\u003c/span>\u003c/li>\u003cli>\u003cb>٥\u003c/b>\u003cspan class=\"ar\" data-k=\"k57\">{{k57}}\u003c/span>\u003cspan class=\"en\" data-k=\"k58\">{{k58}}\u003c/span>\u003c/li>\u003c/ol>\n\u003c/div>\n\u003c!-- ACTIVITIES -->\n\u003csection class=\"feat c-act\" id=\"activities\">\n\u003cdiv class=\"wrap feat-in\">\n\u003cdiv class=\"copy rise\">\n\u003cspan class=\"lbl\">\u003cb>١\u003c/b>\u003cspan class=\"ar\" data-k=\"k59\">{{k59}}\u003c/span>\u003cspan class=\"en\" data-k=\"k60\">{{k60}}\u003c/span>\u003c/span>\n\u003ch2 class=\"ar\" data-k=\"k61\">{{k61}}\u003c/h2>\u003ch2 class=\"en\" data-k=\"k62\">{{k62}}\u003c/h2>\n\u003cp class=\"ar\" data-k=\"k63\">{{k63}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k64\">{{k64}}\u003c/p>\n\u003ca class=\"btn btn-main\" href=\"#start\">\u003cspan class=\"ar\" data-k=\"k65\">{{k65}}\u003c/span>\u003cspan class=\"en\" data-k=\"k66\">{{k66}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003cdiv aria-hidden=\"true\" class=\"visual rise\">\n\u003cdiv class=\"plan\" id=\"plan\">\n\u003cdiv class=\"plan-h\">\u003cb class=\"ar\" data-k=\"k67\">{{k67}}\u003c/b>\u003cb class=\"en\" data-k=\"k68\">{{k68}}\u003c/b>\u003cspan class=\"timer\">20\u003csmall class=\"ar\" data-k=\"k69\">{{k69}}\u003c/small>\u003csmall class=\"en\" data-k=\"k70\">{{k70}}\u003c/small>\u003c/span>\u003c/div>\n\u003cdiv class=\"row done\">\u003cspan class=\"dot\" style=\"background:var(--coral)\">\u003c/span>\u003cspan class=\"ar\" data-k=\"k71\">{{k71}}\u003c/span>\u003cspan class=\"en\" data-k=\"k72\">{{k72}}\u003c/span>\u003cspan class=\"ck\">✓\u003c/span>\u003c/div>\n\u003cdiv class=\"row done\">\u003cspan class=\"dot\" style=\"background:var(--purple)\">\u003c/span>\u003cspan class=\"ar\" data-k=\"k73\">{{k73}}\u003c/span>\u003cspan class=\"en\" data-k=\"k74\">{{k74}}\u003c/span>\u003cspan class=\"ck\">✓\u003c/span>\u003c/div>\n\u003cdiv class=\"row done\">\u003cspan class=\"dot\" style=\"background:var(--green)\">\u003c/span>\u003cspan class=\"ar\" data-k=\"k75\">{{k75}}\u003c/span>\u003cspan class=\"en\" data-k=\"k76\">{{k76}}\u003c/span>\u003cspan class=\"ck\">✓\u003c/span>\u003c/div>\n\u003cp class=\"ex\">\u003cspan class=\"ar\" data-k=\"k77\">{{k77}}\u003c/span>\u003cspan class=\"en\" data-k=\"k78\">{{k78}}\u003c/span>\u003c/p>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/section>\n\u003c!-- STORIES -->\n\u003csection class=\"feat c-story alt\" id=\"stories\">\n\u003cdiv class=\"wrap feat-in rev\">\n\u003cdiv class=\"copy rise\">\n\u003cspan class=\"lbl\">\u003cb>٢\u003c/b>\u003cspan class=\"ar\" data-k=\"k79\">{{k79}}\u003c/span>\u003cspan class=\"en\" data-k=\"k80\">{{k80}}\u003c/span>\u003c/span>\n\u003ch2 class=\"ar\" data-k=\"k81\">{{k81}}\u003c/h2>\u003ch2 class=\"en\" data-k=\"k82\">{{k82}}\u003c/h2>\n\u003cp class=\"ar\" data-k=\"k83\">{{k83}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k84\">{{k84}}\u003c/p>\n\u003ca class=\"btn btn-main\" href=\"#start\">\u003cspan class=\"ar\" data-k=\"k85\">{{k85}}\u003c/span>\u003cspan class=\"en\" data-k=\"k86\">{{k86}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003cdiv aria-hidden=\"true\" class=\"visual rise\">\n\u003cdiv class=\"shelf\">\n\u003cdiv class=\"books\">\n\u003cdiv class=\"book\" data-k=\"k87\" style=\"--bk:#5A4D9E;--rot:-5deg\">{{k87}}\u003c/div>\n\u003cdiv class=\"book\" data-k=\"k88\" style=\"--bk:#F05E5E;--rot:2deg\">{{k88}}\u003c/div>\n\u003cdiv class=\"book\" data-k=\"k89\" style=\"--bk:#0A6A6C;--rot:6deg\">{{k89}}\u003c/div>\n\u003c/div>\n\u003cdiv class=\"values\">\u003cspan class=\"ar\" data-k=\"k90\">{{k90}}\u003c/span>\u003cspan class=\"ar\" data-k=\"k91\">{{k91}}\u003c/span>\u003cspan class=\"en\" data-k=\"k92\">{{k92}}\u003c/span>\u003cspan class=\"en\" data-k=\"k93\">{{k93}}\u003c/span>\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/section>\n\u003c!-- TOYS -->\n\u003csection class=\"feat c-toy\" id=\"toys\">\n\u003cdiv class=\"wrap feat-in\">\n\u003cdiv class=\"copy rise\">\n\u003cspan class=\"lbl\">\u003cb>٣\u003c/b>\u003cspan class=\"ar\" data-k=\"k94\">{{k94}}\u003c/span>\u003cspan class=\"en\" data-k=\"k95\">{{k95}}\u003c/span>\u003c/span>\n\u003ch2 class=\"ar\" data-k=\"k96\">{{k96}}\u003c/h2>\u003ch2 class=\"en\" data-k=\"k97\">{{k97}}\u003c/h2>\n\u003cp class=\"ar\" data-k=\"k98\">{{k98}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k99\">{{k99}}\u003c/p>\n\u003ca class=\"btn btn-main\" href=\"#start\">\u003cspan class=\"ar\" data-k=\"k100\">{{k100}}\u003c/span>\u003cspan class=\"en\" data-k=\"k101\">{{k101}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003cdiv aria-hidden=\"true\" class=\"visual rise\">\n\u003cdiv class=\"toy\">\n\u003cdiv class=\"stack\">\u003ci style=\"--w:44%;--c:#86C559\">\u003c/i>\u003ci style=\"--w:58%;--c:#FFD545\">\u003c/i>\u003ci style=\"--w:72%;--c:#F05E5E\">\u003c/i>\u003ci style=\"--w:86%;--c:#5A4D9E\">\u003c/i>\u003cspan class=\"base\">\u003c/span>\u003c/div>\n\u003cb class=\"ar\" data-k=\"k102\">{{k102}}\u003c/b>\u003cb class=\"en\" data-k=\"k103\">{{k103}}\u003c/b>\n\u003cdiv class=\"tags\">\u003cspan class=\"ar\" data-k=\"k104\">{{k104}}\u003c/span>\u003cspan class=\"ar\" data-k=\"k105\">{{k105}}\u003c/span>\u003cspan class=\"en\" data-k=\"k106\">{{k106}}\u003c/span>\u003cspan class=\"en\" data-k=\"k107\">{{k107}}\u003c/span>\u003c/div>\n\u003cp class=\"ex\">\u003cspan class=\"ar\" data-k=\"k108\">{{k108}}\u003c/span>\u003cspan class=\"en\" data-k=\"k109\">{{k109}}\u003c/span>\u003c/p>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/section>\n\u003c!-- CARDS -->\n\u003csection class=\"feat c-card alt\" id=\"cards\">\n\u003cdiv class=\"wrap feat-in rev\">\n\u003cdiv class=\"copy rise\">\n\u003cspan class=\"lbl\">\u003cb>٤\u003c/b>\u003cspan class=\"ar\" data-k=\"k110\">{{k110}}\u003c/span>\u003cspan class=\"en\" data-k=\"k111\">{{k111}}\u003c/span>\u003c/span>\n\u003ch2 class=\"ar\" data-k=\"k112\">{{k112}}\u003c/h2>\u003ch2 class=\"en\" data-k=\"k113\">{{k113}}\u003c/h2>\n\u003cp class=\"ar\" data-k=\"k114\">{{k114}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k115\">{{k115}}\u003c/p>\n\u003ca class=\"btn btn-main\" href=\"#start\">\u003cspan class=\"ar\" data-k=\"k116\">{{k116}}\u003c/span>\u003cspan class=\"en\" data-k=\"k117\">{{k117}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003cdiv class=\"visual rise\">\n\u003cdiv aria-label=\"Flip card\" class=\"flip big\" id=\"flip\" role=\"button\" tabindex=\"0\">\n\u003cdiv class=\"flip-in\">\n\u003cdiv class=\"face-c front\">\u003csmall>\u003cspan class=\"ar\" data-k=\"k118\">{{k118}}\u003c/span>\u003cspan class=\"en\" data-k=\"k119\">{{k119}}\u003c/span>\u003c/small>\u003cspan class=\"t\" data-k=\"k120\">{{k120}}\u003c/span>\u003cspan class=\"t2\" data-k=\"k121\">{{k121}}\u003c/span>\u003c/div>\n\u003cdiv class=\"face-c back\">\u003csmall>\u003cspan class=\"ar\" data-k=\"k122\">{{k122}}\u003c/span>\u003cspan class=\"en\" data-k=\"k123\">{{k123}}\u003c/span>\u003c/small>\u003cspan class=\"t\" data-k=\"k124\">{{k124}}\u003c/span>\u003cspan class=\"t2\" data-k=\"k125\">{{k125}}\u003c/span>\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003cp class=\"hint\">\u003cspan class=\"ar\" data-k=\"k126\">{{k126}}\u003c/span>\u003cspan class=\"en\" data-k=\"k127\">{{k127}}\u003c/span>\u003c/p>\n\u003c/div>\n\u003c/div>\n\u003c/section>\n\u003c!-- ASSESSMENTS -->\n\u003csection class=\"feat c-assess\" id=\"assessments\">\n\u003cdiv class=\"wrap feat-in\">\n\u003cdiv class=\"copy rise\">\n\u003cspan class=\"lbl\">\u003cb>٥\u003c/b>\u003cspan class=\"ar\" data-k=\"k128\">{{k128}}\u003c/span>\u003cspan class=\"en\" data-k=\"k129\">{{k129}}\u003c/span>\u003c/span>\n\u003ch2 class=\"ar\" data-k=\"k130\">{{k130}}\u003c/h2>\u003ch2 class=\"en\" data-k=\"k131\">{{k131}}\u003c/h2>\n\u003cp class=\"big-line ar\" data-k=\"k132\">{{k132}}\u003c/p>\n\u003cp class=\"big-line en\" data-k=\"k133\">{{k133}}\u003c/p>\n\u003cp class=\"ar\" data-k=\"k134\">{{k134}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k135\">{{k135}}\u003c/p>\n\u003cdiv class=\"cta\">\n\u003ca class=\"btn btn-main\" href=\"assessments.html#development\">\u003cspan class=\"ar\" data-k=\"k136\">{{k136}}\u003c/span>\u003cspan class=\"en\" data-k=\"k137\">{{k137}}\u003c/span>\u003c/a>\n\u003ca class=\"btn btn-soft\" href=\"assessments.html#assessments\">\u003cspan class=\"ar\" data-k=\"k138\">{{k138}}\u003c/span>\u003cspan class=\"en\" data-k=\"k139\">{{k139}}\u003c/span>\u003c/a>\n\u003ca class=\"btn btn-soft\" href=\"https://discover20.com/about\">\u003cspan class=\"ar\" data-k=\"k140\">{{k140}}\u003c/span>\u003cspan class=\"en\" data-k=\"k141\">{{k141}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003c/div>\n\u003cdiv aria-hidden=\"true\" class=\"visual rise\">\n\u003cdiv class=\"assess-card\">\n\u003cb class=\"ar\" data-k=\"k142\">{{k142}}\u003c/b>\u003cb class=\"en\" data-k=\"k143\">{{k143}}\u003c/b>\n\u003cdiv class=\"bars\" id=\"bars\">\n\u003cdiv>\u003cspan class=\"ar\" data-k=\"k144\">{{k144}}\u003c/span>\u003cspan class=\"en\" data-k=\"k145\">{{k145}}\u003c/span>\u003ci style=\"--w:0\">\u003c/i>\u003c/div>\n\u003cdiv>\u003cspan class=\"ar\" data-k=\"k146\">{{k146}}\u003c/span>\u003cspan class=\"en\" data-k=\"k147\">{{k147}}\u003c/span>\u003ci style=\"--w:0\">\u003c/i>\u003c/div>\n\u003cdiv>\u003cspan class=\"ar\" data-k=\"k148\">{{k148}}\u003c/span>\u003cspan class=\"en\" data-k=\"k149\">{{k149}}\u003c/span>\u003ci style=\"--w:0\">\u003c/i>\u003c/div>\n\u003cdiv>\u003cspan class=\"ar\" data-k=\"k150\">{{k150}}\u003c/span>\u003cspan class=\"en\" data-k=\"k151\">{{k151}}\u003c/span>\u003ci style=\"--w:0\">\u003c/i>\u003c/div>\n\u003csmall>\u003cspan class=\"ar\" data-k=\"k152\">{{k152}}\u003c/span>\u003cspan class=\"en\" data-k=\"k153\">{{k153}}\u003c/span>\u003c/small>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/section>\n\u003c!-- FINAL -->\n\u003csection class=\"final\" id=\"start\">\n\u003cdiv class=\"wrap\">\n\u003cdiv class=\"rise\">\n\u003cspan class=\"eyebrow\">\u003cspan class=\"ar\" data-k=\"k154\">{{k154}}\u003c/span>\u003cspan class=\"en\" data-k=\"k155\">{{k155}}\u003c/span>\u003c/span>\n\u003ch2 class=\"sec-h ar\" data-k=\"k156\">{{k156}}\u003c/h2>\n\u003ch2 class=\"sec-h en\" data-k=\"k157\">{{k157}}\u003c/h2>\n\u003cp class=\"sec-lead ar\" data-k=\"k158\">{{k158}}\u003c/p>\n\u003cp class=\"sec-lead en\" data-k=\"k159\">{{k159}}\u003c/p>\n\u003c/div>\n\u003cdiv class=\"start rise\">\n\u003cdiv>\u003cb>١\u003c/b>\u003ch4 class=\"ar\" data-k=\"k160\">{{k160}}\u003c/h4>\u003ch4 class=\"en\" data-k=\"k161\">{{k161}}\u003c/h4>\u003cp class=\"ar\" data-k=\"k162\">{{k162}}\u003c/p>\u003cp class=\"en\" data-k=\"k163\">{{k163}}\u003c/p>\u003c/div>\n\u003cdiv>\u003cb>٢\u003c/b>\u003ch4 class=\"ar\" data-k=\"k164\">{{k164}}\u003c/h4>\u003ch4 class=\"en\" data-k=\"k165\">{{k165}}\u003c/h4>\u003cp class=\"ar\" data-k=\"k166\">{{k166}}\u003c/p>\u003cp class=\"en\" data-k=\"k167\">{{k167}}\u003c/p>\u003c/div>\n\u003cdiv>\u003cb>٣\u003c/b>\u003ch4 class=\"ar\" data-k=\"k168\">{{k168}}\u003c/h4>\u003ch4 class=\"en\" data-k=\"k169\">{{k169}}\u003c/h4>\u003cp class=\"ar\" data-k=\"k170\">{{k170}}\u003c/p>\u003cp class=\"en\" data-k=\"k171\">{{k171}}\u003c/p>\u003c/div>\n\u003c/div>\n\u003cdiv class=\"cta\" style=\"justify-content:center\">\u003ca class=\"btn btn-main\" href=\"assessments.html#development\">\u003cspan class=\"ar\" data-k=\"k172\">{{k172}}\u003c/span>\u003cspan class=\"en\" data-k=\"k173\">{{k173}}\u003c/span>\u003c/a>\u003ca class=\"btn btn-soft\" href=\"#call\">\u003cspan class=\"ar\" data-k=\"k174\">{{k174}}\u003c/span>\u003cspan class=\"en\" data-k=\"k175\">{{k175}}\u003c/span>\u003c/a>\u003c/div>\n\u003cp class=\"small-note\">\u003cspan class=\"ar\" data-k=\"k176\">{{k176}}\u003c/span>\u003cspan class=\"en\" data-k=\"k177\">{{k177}}\u003c/span>\u003c/p>\n\u003c/div>\n\u003c/section>\n\u003c!-- EXPERTS -->\n\u003csection class=\"feat c-exp alt\" id=\"experts\">\n\u003cdiv class=\"wrap feat-in rev\">\n\u003cdiv class=\"copy rise\">\n\u003cspan class=\"lbl\">\u003cb>+\u003c/b>\u003cspan class=\"ar\" data-k=\"k178\">{{k178}}\u003c/span>\u003cspan class=\"en\" data-k=\"k179\">{{k179}}\u003c/span>\u003c/span>\n\u003ch2 class=\"ar\" data-k=\"k180\">{{k180}}\u003c/h2>\u003ch2 class=\"en\" data-k=\"k181\">{{k181}}\u003c/h2>\n\u003cp class=\"ar\" data-k=\"k182\">{{k182}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k183\">{{k183}}\u003c/p>\n\u003ca class=\"btn btn-main\" href=\"#start\">\u003cspan class=\"ar\" data-k=\"k184\">{{k184}}\u003c/span>\u003cspan class=\"en\" data-k=\"k185\">{{k185}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003cdiv class=\"visual rise\">\n\u003cdiv class=\"cloud\">\n\u003cspan style=\"--c:var(--coral)\">\u003cspan class=\"ar\" data-k=\"k186\">{{k186}}\u003c/span>\u003cspan class=\"en\" data-k=\"k187\">{{k187}}\u003c/span>\u003c/span>\n\u003cspan style=\"--c:var(--purple)\">\u003cspan class=\"ar\" data-k=\"k188\">{{k188}}\u003c/span>\u003cspan class=\"en\" data-k=\"k189\">{{k189}}\u003c/span>\u003c/span>\n\u003cspan style=\"--c:var(--teal-ink)\">\u003cspan class=\"ar\" data-k=\"k190\">{{k190}}\u003c/span>\u003cspan class=\"en\" data-k=\"k191\">{{k191}}\u003c/span>\u003c/span>\n\u003cspan style=\"--c:#4E8F2A\">\u003cspan class=\"ar\" data-k=\"k192\">{{k192}}\u003c/span>\u003cspan class=\"en\" data-k=\"k193\">{{k193}}\u003c/span>\u003c/span>\n\u003cspan style=\"--c:#8A6A00\">\u003cspan class=\"ar\" data-k=\"k194\">{{k194}}\u003c/span>\u003cspan class=\"en\" data-k=\"k195\">{{k195}}\u003c/span>\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/section>\n\u003c!-- CTA BAND -->\n\u003cdiv class=\"cta-band\">\n\u003cdiv class=\"wrap\">\n\u003cdiv class=\"cta-band-in rise\">\n\u003cdiv>\n\u003ch2 class=\"ar\" data-k=\"k196\">{{k196}}\u003c/h2>\n\u003ch2 class=\"en\" data-k=\"k197\">{{k197}}\u003c/h2>\n\u003cp class=\"ar\" data-k=\"k198\">{{k198}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k199\">{{k199}}\u003c/p>\n\u003c/div>\n\u003cdiv class=\"cta\">\u003ca class=\"btn btn-yellow\" href=\"assessments.html#development\">\u003cspan class=\"ar\" data-k=\"k200\">{{k200}}\u003c/span>\u003cspan class=\"en\" data-k=\"k201\">{{k201}}\u003c/span>\u003c/a>\u003ca class=\"btn btn-line\" href=\"#call\">\u003cspan class=\"ar\" data-k=\"k202\">{{k202}}\u003c/span>\u003cspan class=\"en\" data-k=\"k203\">{{k203}}\u003c/span>\u003c/a>\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c!-- JOURNAL -->\n\u003csection id=\"journal\">\n\u003cdiv class=\"wrap\">\n\u003cdiv class=\"journal-head rise\">\n\u003cdiv>\n\u003cspan class=\"eyebrow\">\u003cspan class=\"ar\" data-k=\"k204\">{{k204}}\u003c/span>\u003cspan class=\"en\" data-k=\"k205\">{{k205}}\u003c/span>\u003c/span>\n\u003ch2 class=\"sec-h ar\" data-k=\"k206\">{{k206}}\u003c/h2>\n\u003ch2 class=\"sec-h en\" data-k=\"k207\">{{k207}}\u003c/h2>\n\u003cp class=\"sec-lead ar\" data-k=\"k208\">{{k208}}\u003c/p>\n\u003cp class=\"sec-lead en\" data-k=\"k209\">{{k209}}\u003c/p>\n\u003c/div>\n\u003ca class=\"btn btn-soft\" href=\"#journal\">\u003cspan class=\"ar\" data-k=\"k210\">{{k210}}\u003c/span>\u003cspan class=\"en\" data-k=\"k211\">{{k211}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003cdiv class=\"posts\">\n\u003ca class=\"post rise\" href=\"#journal\">\u003cdiv class=\"img\" style=\"--a:#F05E5E;--b:#FFD545\">\u003cspan>20\u003c/span>\u003c/div>\u003cdiv class=\"body\">\u003cspan class=\"tag ar\" data-k=\"k212\">{{k212}}\u003c/span>\u003cspan class=\"tag en\" data-k=\"k213\">{{k213}}\u003c/span>\u003ch3 class=\"ar\" data-k=\"k214\">{{k214}}\u003c/h3>\u003ch3 class=\"en\" data-k=\"k215\">{{k215}}\u003c/h3>\u003c/div>\u003c/a>\n\u003ca class=\"post rise\" href=\"#journal\">\u003cdiv class=\"img\" style=\"--a:#1ABBBC;--b:#86C559\">\u003cspan>↗\u003c/span>\u003c/div>\u003cdiv class=\"body\">\u003cspan class=\"tag ar\" data-k=\"k216\">{{k216}}\u003c/span>\u003cspan class=\"tag en\" data-k=\"k217\">{{k217}}\u003c/span>\u003ch3 class=\"ar\" data-k=\"k218\">{{k218}}\u003c/h3>\u003ch3 class=\"en\" data-k=\"k219\">{{k219}}\u003c/h3>\u003c/div>\u003c/a>\n\u003ca class=\"post rise\" href=\"#journal\">\u003cdiv class=\"img\" style=\"--a:#5A4D9E;--b:#F05E5E\">\u003cspan>D20\u003c/span>\u003c/div>\u003cdiv class=\"body\">\u003cspan class=\"tag ar\" data-k=\"k220\">{{k220}}\u003c/span>\u003cspan class=\"tag en\" data-k=\"k221\">{{k221}}\u003c/span>\u003ch3 class=\"ar\" data-k=\"k222\">{{k222}}\u003c/h3>\u003ch3 class=\"en\" data-k=\"k223\">{{k223}}\u003c/h3>\u003c/div>\u003c/a>\n\u003c/div>\n\u003c/div>\n\u003c/section>\n\u003c!-- SCIENCE -->\n\u003csection class=\"sci-sum\" id=\"science\">\n\u003cdiv class=\"wrap sci-sum-in rise\">\n\u003cdiv>\n\u003cspan class=\"eyebrow\">\u003cspan class=\"ar\" data-k=\"k224\">{{k224}}\u003c/span>\u003cspan class=\"en\" data-k=\"k225\">{{k225}}\u003c/span>\u003c/span>\n\u003ch2 class=\"sec-h ar\" data-k=\"k226\">{{k226}}\u003c/h2>\n\u003ch2 class=\"sec-h en\" data-k=\"k227\">{{k227}}\u003c/h2>\n\u003cp class=\"ar\" data-k=\"k228\">{{k228}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k229\">{{k229}}\u003c/p>\n\u003c/div>\n\u003ca class=\"btn btn-soft\" href=\"https://discover20.com/about\">\u003cspan class=\"ar\" data-k=\"k230\">{{k230}}\u003c/span>\u003cspan class=\"en\" data-k=\"k231\">{{k231}}\u003c/span>\u003c/a>\n\u003c/div>\n\u003c/section>\n\u003c!-- TESTIMONIALS + PARTNERS -->\n\u003csection id=\"voices\">\n\u003cdiv class=\"wrap\">\n\u003cdiv class=\"rise\">\n\u003cspan class=\"eyebrow\">\u003cspan class=\"ar\" data-k=\"k232\">{{k232}}\u003c/span>\u003cspan class=\"en\" data-k=\"k233\">{{k233}}\u003c/span>\u003c/span>\n\u003ch2 class=\"sec-h ar\" data-k=\"k234\">{{k234}}\u003c/h2>\n\u003ch2 class=\"sec-h en\" data-k=\"k235\">{{k235}}\u003c/h2>\n\u003c/div>\n\u003cdiv class=\"proof-grid story-grid\">\n\u003cfigure class=\"story rise\">\n\u003cspan class=\"tag\">\u003cspan class=\"ar\" data-k=\"k236\">{{k236}}\u003c/span>\u003cspan class=\"en\" data-k=\"k237\">{{k237}}\u003c/span>\u003c/span>\n\u003cblockquote class=\"ar\" data-k=\"k238\">{{k238}}\u003c/blockquote>\n\u003cblockquote class=\"en\" data-k=\"k239\">{{k239}}\u003c/blockquote>\n\u003cfigcaption>\u003cspan class=\"ar\" data-k=\"k240\">{{k240}}\u003c/span>\u003cspan class=\"en\" data-k=\"k241\">{{k241}}\u003c/span>\u003c/figcaption>\n\u003c/figure>\n\u003cdiv class=\"slot share rise\">\n\u003ch4 class=\"ar\" data-k=\"k242\">{{k242}}\u003c/h4>\u003ch4 class=\"en\" data-k=\"k243\">{{k243}}\u003c/h4>\n\u003cp class=\"ar\" data-k=\"k244\">{{k244}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k245\">{{k245}}\u003c/p>\n\u003cspan class=\"mail\" data-k=\"k246\">{{k246}}\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003ch3 class=\"sub-h rise\">\u003cspan class=\"ar\" data-k=\"k247\">{{k247}}\u003c/span>\u003cspan class=\"en\" data-k=\"k248\">{{k248}}\u003c/span>\u003c/h3>\n\u003cdiv class=\"logos rise\">\n\u003cdiv class=\"logo-slot\">\u003cspan class=\"ar\" data-k=\"k249\">{{k249}}\u003c/span>\u003cspan class=\"en\" data-k=\"k250\">{{k250}}\u003c/span>\u003c/div>\n\u003cdiv class=\"logo-slot\">\u003cspan class=\"ar\" data-k=\"k251\">{{k251}}\u003c/span>\u003cspan class=\"en\" data-k=\"k252\">{{k252}}\u003c/span>\u003c/div>\n\u003cdiv class=\"logo-slot\">\u003cspan class=\"ar\" data-k=\"k253\">{{k253}}\u003c/span>\u003cspan class=\"en\" data-k=\"k254\">{{k254}}\u003c/span>\u003c/div>\n\u003cdiv class=\"logo-slot\">\u003cspan class=\"ar\" data-k=\"k255\">{{k255}}\u003c/span>\u003cspan class=\"en\" data-k=\"k256\">{{k256}}\u003c/span>\u003c/div>\n\u003cdiv class=\"logo-slot\">\u003cspan class=\"ar\" data-k=\"k257\">{{k257}}\u003c/span>\u003cspan class=\"en\" data-k=\"k258\">{{k258}}\u003c/span>\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/section>\n\u003c!-- DISCOVERY CALL -->\n\u003csection class=\"call-sec\" id=\"call\">\n\u003cdiv class=\"wrap call-in\">\n\u003cdiv class=\"call-copy rise\">\n\u003cspan class=\"eyebrow\">\u003cspan class=\"ar\" data-k=\"k259\">{{k259}}\u003c/span>\u003cspan class=\"en\" data-k=\"k260\">{{k260}}\u003c/span>\u003c/span>\n\u003ch2 class=\"sec-h ar\" data-k=\"k261\">{{k261}}\u003c/h2>\n\u003ch2 class=\"sec-h en\" data-k=\"k262\">{{k262}}\u003c/h2>\n\u003cp class=\"ar\" data-k=\"k263\">{{k263}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k264\">{{k264}}\u003c/p>\n\u003cdiv aria-hidden=\"true\" class=\"ring\">\u003cspan>\u003c/span>\u003cspan>\u003c/span>\u003cb>☎\u003c/b>\u003c/div>\n\u003cp class=\"next ar\" data-k=\"k265\">{{k265}}\u003c/p>\n\u003cp class=\"next en\" data-k=\"k266\">{{k266}}\u003c/p>\n\u003c/div>\n\u003cform class=\"call-form rise\" id=\"call-form\" novalidate=\"\">\n\u003cdiv class=\"f2\">\n\u003clabel class=\"fld\">\u003cspan class=\"lab\">\u003cspan class=\"ar\" data-k=\"k267\">{{k267}}\u003c/span>\u003cspan class=\"en\" data-k=\"k268\">{{k268}}\u003c/span>\u003c/span>\u003cinput autocomplete=\"name\" id=\"cf-name\" name=\"name\" required=\"\" type=\"text\"/>\u003c/label>\n\u003clabel class=\"fld\">\u003cspan class=\"lab\">\u003cspan class=\"ar\" data-k=\"k269\">{{k269}}\u003c/span>\u003cspan class=\"en\" data-k=\"k270\">{{k270}}\u003c/span>\u003c/span>\u003cinput autocomplete=\"tel\" dir=\"ltr\" id=\"cf-phone\" name=\"phone\" required=\"\" type=\"tel\"/>\u003c/label>\n\u003c/div>\n\u003clabel class=\"fld\">\u003cspan class=\"lab\">\u003cspan class=\"ar\" data-k=\"k271\">{{k271}}\u003c/span>\u003cspan class=\"en\" data-k=\"k272\">{{k272}}\u003c/span>\u003c/span>\n\u003cselect id=\"cf-age\" name=\"age\" required=\"\">\n\u003coption value=\"\">— · —\u003c/option>\n\u003coption value=\"0-1\">أقل من سنة · Under 1\u003c/option>\n\u003coption value=\"1-3\">١–٣ سنوات · 1–3 years\u003c/option>\n\u003coption value=\"3-6\">٣–٦ سنوات · 3–6 years\u003c/option>\n\u003coption value=\"6-10\">٦–١٠ سنوات · 6–10 years\u003c/option>\n\u003c/select>\n\u003c/label>\n\u003cfieldset class=\"fld\">\u003clegend class=\"lab\">\u003cspan class=\"ar\" data-k=\"k273\">{{k273}}\u003c/span>\u003cspan class=\"en\" data-k=\"k274\">{{k274}}\u003c/span>\u003c/legend>\n\u003cdiv class=\"chips\">\n\u003clabel>\u003cinput id=\"cf-t1\" name=\"topic\" type=\"checkbox\" value=\"behaviour\"/>\u003cspan>\u003cspan class=\"ar\" data-k=\"k275\">{{k275}}\u003c/span>\u003cspan class=\"en\" data-k=\"k276\">{{k276}}\u003c/span>\u003c/span>\u003c/label>\n\u003clabel>\u003cinput id=\"cf-t2\" name=\"topic\" type=\"checkbox\" value=\"development\"/>\u003cspan>\u003cspan class=\"ar\" data-k=\"k277\">{{k277}}\u003c/span>\u003cspan class=\"en\" data-k=\"k278\">{{k278}}\u003c/span>\u003c/span>\u003c/label>\n\u003clabel>\u003cinput id=\"cf-t3\" name=\"topic\" type=\"checkbox\" value=\"speech\"/>\u003cspan>\u003cspan class=\"ar\" data-k=\"k279\">{{k279}}\u003c/span>\u003cspan class=\"en\" data-k=\"k280\">{{k280}}\u003c/span>\u003c/span>\u003c/label>\n\u003clabel>\u003cinput id=\"cf-t4\" name=\"topic\" type=\"checkbox\" value=\"nutrition\"/>\u003cspan>\u003cspan class=\"ar\" data-k=\"k281\">{{k281}}\u003c/span>\u003cspan class=\"en\" data-k=\"k282\">{{k282}}\u003c/span>\u003c/span>\u003c/label>\n\u003clabel>\u003cinput id=\"cf-t5\" name=\"topic\" type=\"checkbox\" value=\"sleep\"/>\u003cspan>\u003cspan class=\"ar\" data-k=\"k283\">{{k283}}\u003c/span>\u003cspan class=\"en\" data-k=\"k284\">{{k284}}\u003c/span>\u003c/span>\u003c/label>\n\u003clabel>\u003cinput id=\"cf-t6\" name=\"topic\" type=\"checkbox\" value=\"other\"/>\u003cspan>\u003cspan class=\"ar\" data-k=\"k285\">{{k285}}\u003c/span>\u003cspan class=\"en\" data-k=\"k286\">{{k286}}\u003c/span>\u003c/span>\u003c/label>\n\u003c/div>\n\u003c/fieldset>\n\u003cfieldset class=\"fld\">\u003clegend class=\"lab\">\u003cspan class=\"ar\" data-k=\"k287\">{{k287}}\u003c/span>\u003cspan class=\"en\" data-k=\"k288\">{{k288}}\u003c/span>\u003c/legend>\n\u003cdiv class=\"chips\">\n\u003clabel>\u003cinput id=\"cf-m\" name=\"time\" type=\"radio\" value=\"morning\"/>\u003cspan>\u003cspan class=\"ar\" data-k=\"k289\">{{k289}}\u003c/span>\u003cspan class=\"en\" data-k=\"k290\">{{k290}}\u003c/span>\u003c/span>\u003c/label>\n\u003clabel>\u003cinput id=\"cf-e\" name=\"time\" type=\"radio\" value=\"evening\"/>\u003cspan>\u003cspan class=\"ar\" data-k=\"k291\">{{k291}}\u003c/span>\u003cspan class=\"en\" data-k=\"k292\">{{k292}}\u003c/span>\u003c/span>\u003c/label>\n\u003c/div>\n\u003c/fieldset>\n\u003clabel class=\"fld\">\u003cspan class=\"lab\">\u003cspan class=\"ar\" data-k=\"k293\">{{k293}}\u003c/span>\u003cspan class=\"en\" data-k=\"k294\">{{k294}}\u003c/span>\u003c/span>\u003ctextarea id=\"cf-note\" name=\"note\" rows=\"3\">\u003c/textarea>\u003c/label>\n\u003clabel class=\"consent\">\u003cinput id=\"cf-ok\" required=\"\" type=\"checkbox\"/>\u003cspan>\u003cspan class=\"ar\" data-k=\"k295\">{{k295}}\u003c/span>\u003cspan class=\"en\" data-k=\"k296\">{{k296}}\u003c/span>\u003c/span>\u003c/label>\n\u003cbutton class=\"btn btn-main\" id=\"cf-send\" type=\"submit\">\u003cspan class=\"ar\" data-k=\"k297\">{{k297}}\u003c/span>\u003cspan class=\"en\" data-k=\"k298\">{{k298}}\u003c/span>\u003c/button>\n\u003cp aria-live=\"polite\" class=\"cf-status\" id=\"cf-status\" role=\"status\">\u003c/p>\n\u003c/form>\n\u003cdiv class=\"call-done\" hidden=\"\" id=\"call-done\">\n\u003cb>✓\u003c/b>\n\u003ch3 class=\"ar\" data-k=\"k299\">{{k299}}\u003c/h3>\u003ch3 class=\"en\" data-k=\"k300\">{{k300}}\u003c/h3>\n\u003cp class=\"ar\" data-k=\"k301\">{{k301}}\u003c/p>\n\u003cp class=\"en\" data-k=\"k302\">{{k302}}\u003c/p>\n\u003c/div>\n\u003c/div>\n\u003c/section>\n\u003c/main>\n\u003cfooter id=\"contact\">\n\u003cdiv class=\"wrap disc-row\">\u003cp class=\"swyc-line\" dir=\"ltr\">\u003cspan class=\"swyc-ph\">SWYC logo\u003c/span> Discover20 is licensed to use the SWYC, owned by Boston Medical Center.\u003c/p>\u003cp class=\"ar\" data-k=\"k303\">{{k303}}\u003c/p>\u003cp class=\"en\" data-k=\"k304\">{{k304}}\u003c/p>\u003c/div>\n\u003cdiv class=\"wrap\">\n\u003cdiv>\u003cspan class=\"logo\">Discover\u003cb>20\u003c/b>\u003c/span>\u003cdiv>\u003cspan class=\"ar\" data-k=\"k305\">{{k305}}\u003c/span>\u003cspan class=\"en\" data-k=\"k306\">{{k306}}\u003c/span>\u003c/div>\u003c/div>\n\u003cdiv>\u003cspan class=\"ar\" data-k=\"k307\">{{k307}}\u003c/span>\u003cspan class=\"en\" data-k=\"k308\">{{k308}}\u003c/span>\u003cspan class=\"mail\" data-k=\"k309\">{{k309}}\u003c/span>\u003c/div>\n\u003cdiv>© 2026 Discover20\u003c/div>\n\u003c/div>\n\u003c/footer>\n\u003ca class=\"sticky-cta\" href=\"assessments.html#development\">\u003cspan class=\"ar\" data-k=\"k310\">{{k310}}\u003c/span>\u003cspan class=\"en\" data-k=\"k311\">{{k311}}\u003c/span>\u003c/a>\n", "text": {"k1": "أسرار الصغار", "k2": "Young Secrets", "k3": "المجلة", "k4": "Journal", "k5": "التقييمات", "k6": "Assessments", "k7": "العلم وراءنا", "k8": "The science", "k9": "احجزوا مكالمة", "k10": "Book a call", "k11": "ابدأوا مجانًا", "k12": "Start free", "k13": "\u003cspan>يبكي؟\u003c/span>\u003cspan>يعاند؟\u003c/span>\u003cspan>لا يحكي؟\u003c/span>", "k14": "\u003cspan>Crying?\u003c/span>\u003cspan>Stubborn?\u003c/span>\u003cspan>Won't talk?\u003c/span>", "k15": "اكتشفوا أسرار طفلكم الصغيرة… \u003cspan class=\"hl\">كل يوم\u003c/span>", "k16": "Discover your child's young secrets… \u003cspan class=\"hl\">every day\u003c/span>", "k17": "وراء كل سلوك رسالة. في 20 دقيقة يوميًا تصلكم خطة قصيرة تناسب عمر طفلكم (نشاط، وقصة، ولعبة) تساعدكم على فهمه والاقتراب منه. من الولادة حتى ١٠ سنوات.", "k18": "Every behaviour carries a message. In 20 minutes a day, you get a short plan for your child's age (an activity, a story, a toy) to help you understand them and grow closer. Birth to 10 years.", "k19": "ابدأوا التقييم المجاني — ٤ دقائق", "k20": "Start the free assessment — 4 minutes", "k21": "اكتشفوا الأسرار", "k22": "Explore the secrets", "k23": "مجاني · دون بطاقة · دون موعد", "k24": "Free · no card · no appointment", "k25": "نشاط", "k26": "Activity", "k27": "قصة", "k28": "Story", "k29": "لعبة", "k30": "Toy", "k31": "أنشطة للعب", "k32": "Activities", "k33": "قصص للقيم", "k34": "Stories", "k35": "ألعاب للذكاء", "k36": "Toys", "k37": "بطاقات للحديث", "k38": "Cards", "k39": "تقييمات للنموّ", "k40": "Assessments", "k41": "المجلة", "k42": "Journal", "k43": "رحلة الاكتشاف", "k44": "The discovery journey", "k45": "نساعدكم على اكتشاف طفلكم… اكتشافًا بعد اكتشاف", "k46": "We help you discover your child, one discovery at a time", "k47": "أنشطة للعب معًا، وقصص تعلّم القيم، وألعاب تنمّي ذكاءه، وبطاقات تسمعون بها ما يفكّر فيه، وتقييمات تطمئنكم على نموّه. كلها مختارة حسب عمر طفلكم.", "k48": "Activities to play together, stories that teach values, toys that build intelligence, cards to hear what they think, and checks that reassure you about their growth. All chosen for your child's age.", "k49": "العبوا", "k50": "Play", "k51": "علّموا القيم", "k52": "Teach values", "k53": "نمّوا ذكاءه", "k54": "Build intelligence", "k55": "استمعوا إليه", "k56": "Listen", "k57": "اطمئنوا على نموّه", "k58": "Check growth", "k59": "اكتشفوا أنشطة للعب معًا", "k60": "Discover activities to play", "k61": "أكثر من مجرد لعب", "k62": "More than just play", "k63": "أنشطة بسيطة ومركّزة لعشرين دقيقة من اللعب الحقيقي معًا، تدعم سلوك طفلكم ومهاراته، مختارة حسب عمره والمهارات التي تحتاج إلى دعم.", "k64": "Simple, focused activities for 20 minutes of real play together. They support your child's behaviour and skills, chosen for their age and the skills that need support.", "k65": "شاهدوا خطة اليوم", "k66": "See today's plan", "k67": "خطة اليوم", "k68": "Today's plan", "k69": " دقيقة", "k70": " min", "k71": "نشاط", "k72": "Activity", "k73": "قصة", "k74": "Story", "k75": "لعبة", "k76": "Toy", "k77": "مثال توضيحي", "k78": "Illustration", "k79": "اكتشفوا قصصًا تعلّم القيم", "k80": "Discover stories that teach values", "k81": "قصة تُكتب حول القيمة التي تريدون تعليمها", "k82": "A story written around the value you want to teach", "k83": "اختاروا القيمة، مثل المشاركة أو الصبر، فتصلكم قصة مصمّمة لطفلكم بالعربية والإنجليزية، تقرؤونها معه قبل النوم أو في أي وقت.", "k84": "Choose a value, like sharing or patience, and get a story made for your child in Arabic and English, to read together at bedtime or any time.", "k85": "اقرؤوا قصة اليوم", "k86": "Read today's story", "k87": "Grandpa Ali's Happy Farm", "k88": "Zannah the Busy Bee", "k89": "The Little Red Tomato's Song", "k90": "المشاركة", "k91": "الصبر", "k92": "Sharing", "k93": "Patience", "k94": "اكتشفوا ألعابًا تنمّي ذكاءه", "k95": "Discover toys that build intelligence", "k96": "اعرفوا ماذا تنمّي كل لعبة قبل أن تشتروها", "k97": "Know what each toy builds before you buy it", "k98": "لكل لعبة نُبيّن المهارة التي تدعمها، والعمر الذي يناسبها، فتختارون ما يفيد طفلكم فعلًا، لا ما هو أغلى.", "k99": "For every toy we show the skill it supports and the age it suits, so you choose what really helps your child, not what costs more.", "k100": "تصفّحوا حسب العمر", "k101": "Browse by age", "k102": "مكعبات التكديس", "k103": "Stacking toy", "k104": "حركة دقيقة", "k105": "تفكير", "k106": "Fine motor", "k107": "Thinking", "k108": "مثال توضيحي", "k109": "Illustration", "k110": "اكتشفوا ما يفكّر فيه", "k111": "Discover what they think", "k112": "بطاقات تفتح باب الحديث", "k113": "Cards that open up conversation", "k114": "مجموعتان بالعربية والإنجليزية: «اسألني» بـ٢٠ سؤالًا تجعل طفلكم يتكلّم، و«كلمات حلوة» بـ٢٠ عبارة تبني ثقته بنفسه. صغيرة بما يكفي لطاولة الطعام، أو السيارة، أو قبل النوم.", "k115": "Two bilingual sets: Ask Me, 20 questions that get your child talking, and Sweet Words, 20 affirmations that build confidence. Small enough for the dinner table, the car or bedtime.", "k116": "تعرّفوا على البطاقات", "k117": "Meet the cards", "k118": "اسألني", "k119": "Ask Me", "k120": "ما الذي أضحكك اليوم؟", "k121": "What made you laugh today?", "k122": "كلمات حلوة", "k123": "Sweet Words", "k124": "أنا قوي", "k125": "I am strong", "k126": "اضغطوا على البطاقة لقلبها", "k127": "Tap the card to flip it", "k128": "اكتشفوا مبكرًا كيف ينمو", "k129": "Discover early how they grow", "k130": "اعرفوا مهارات طفلكم الآن", "k131": "Discover your child's skills now", "k132": "٤ دقائق، ومجانًا.", "k133": "4 minutes. And free.", "k134": "في الحركة، والتفكير، والمشاعر، واللغة، بأدوات فحص عالمية مرخّصة لنا رسميًا. فحصٌ مبكر، وليس تشخيصًا.", "k135": "Movement, thinking, feelings and language, using international screening tools formally licensed to us. Early screening, not a diagnosis.", "k136": "ابدأوا التقييم المجاني", "k137": "Start the free assessment", "k138": "كل التقييمات", "k139": "All assessments", "k140": "شاهدوا التراخيص", "k141": "See the licences", "k142": "متابعة النموّ", "k143": "Growth check", "k144": "الحركة", "k145": "Movement", "k146": "التفكير", "k147": "Thinking", "k148": "المشاعر", "k149": "Feelings", "k150": "اللغة", "k151": "Language", "k152": "مثال توضيحي", "k153": "Illustration only", "k154": "البداية", "k155": "Getting started", "k156": "لا تحتاجون إلى مشكلة حتى تبدأوا", "k157": "You don't need a problem to start", "k158": "ثلاث خطوات، وأربع دقائق. ابدأوا بطفلكم.", "k159": "Three steps, four minutes. Start with your child.", "k160": "أضيفوا طفلكم", "k161": "Add your child", "k162": "الاسم وتاريخ الميلاد فقط.", "k163": "Just a name and date of birth.", "k164": "أجيبوا عن بعض الأسئلة", "k165": "Answer a few questions", "k166": "عمّا يفعله في يومه، لا اختبار للطفل.", "k167": "About their day. No test for the child.", "k168": "خطتكم جاهزة", "k169": "Your plan is ready", "k170": "عشرون دقيقة يوميًا مصمَّمة له.", "k171": "20 minutes a day, made for them.", "k172": "ابدأوا التقييم المجاني", "k173": "Start the free assessment", "k174": "احجزوا مكالمة الاكتشاف", "k175": "Book a discovery call", "k176": "مجاني · ٤ دقائق · دون أي بيانات دفع", "k177": "Free · 4 minutes · no payment details", "k178": "وحين تحتاجون… اكتشفوا الإجابة", "k179": "And when you need it, discover answers", "k180": "متخصص حين تحتاجون", "k181": "A specialist when you need one", "k182": "استشارة من بيتكم، دون غرفة انتظار، مع متخصصين في:", "k183": "A consultation from home, no waiting room, with specialists in:", "k184": "احجزوا جلسة", "k185": "Book a session", "k186": "طب الأطفال", "k187": "Paediatrics", "k188": "السلوك", "k189": "Behaviour", "k190": "النطق", "k191": "Speech", "k192": "التغذية", "k193": "Nutrition", "k194": "نفسية الطفل", "k195": "Child psychology", "k196": "جاهزون لاكتشاف طفلكم؟", "k197": "Ready to discover your child?", "k198": "ابدأوا بتقييم مجاني في ٤ دقائق، وتصلكم أول خطة 20 دقيقة اليوم.", "k199": "Start with a free 4-minute assessment and get your first 20-minute plan today.", "k200": "ابدأوا رحلة الاكتشاف", "k201": "Start the discovery journey", "k202": "أو احجزوا مكالمة الاكتشاف", "k203": "Or book a discovery call", "k204": "مجلة أسرار الصغار", "k205": "Young Secrets Journal", "k206": "اقرؤوا، وافهموا أكثر", "k207": "Read, and understand more", "k208": "مقالات قصيرة تحوّل أبحاث نموّ الطفل إلى نصائح تستطيعون تطبيقها اليوم.", "k209": "Short articles that turn child-development research into tips you can use today.", "k210": "كل المقالات", "k211": "All articles", "k212": "الفكرة", "k213": "The idea", "k214": "لماذا عشرون دقيقة؟", "k215": "Why 20 minutes?", "k216": "النموّ", "k217": "Growth", "k218": "لماذا تهمّ متابعة النموّ؟", "k219": "Why tracking matters", "k220": "من Discover20", "k221": "From Discover20", "k222": "مرحبًا بكم في Discover20", "k223": "Welcome to Discover20", "k224": "العلم وراءنا", "k225": "The science behind it", "k226": "مبني على الإرشادات التي يعتمدها أطباء الأطفال", "k227": "Built on the guidelines paediatricians use", "k228": "مراحل النموّ والأسئلة مأخوذة من إرشادات CDC والأكاديمية الأمريكية لطب الأطفال، ونستخدم أدوات فحص عالمية مرخّصة لنا رسميًا. فحصٌ مبكر، وليس تشخيصًا.", "k229": "Milestones and questions come from CDC and American Academy of Pediatrics guidelines, and we use international screening tools formally licensed to us. Early screening, not a diagnosis.", "k230": "اعرفوا المزيد في «من نحن»", "k231": "Read more in About us", "k232": "قصص حقيقية", "k233": "Real stories", "k234": "ماذا يحدث في عشرين دقيقة؟", "k235": "What happens in 20 minutes?", "k236": "من جلساتنا", "k237": "From our sessions", "k238": "جرّبنا بطاقات «اسألني» و«كلمات حلوة» مع طفلة عمرها ٤ سنوات. تفاعلت مع كل سؤال بحماس، وكرّرت بصوت عالٍ عبارات مثل «أنتِ لطيفة» و«أنتِ تقدرين» وهي تبتسم بفخر. وفي اليوم التالي، طلبت بنفسها أن تلعب اللعبة نفسها مرة أخرى.", "k239": "We tried the Ask Me and Sweet Words cards with a 4-year-old girl. She answered every question with excitement and repeated affirmations like \"You are kind\" and \"You can do it\" out loud, smiling proudly. The next day, she asked on her own to play the same game again.", "k240": "جلسة تجريبية، أكتوبر ٢٠٢٥ · أدارتها د. ولاء نصر", "k241": "Pilot session, October 2025 · led by Dr Walaa Nasr", "k242": "جرّبتم Discover20؟", "k243": "Tried Discover20?", "k244": "شاركونا ما اكتشفتموه مع طفلكم، وقد ننشر قصتكم هنا بإذنكم.", "k245": "Tell us what you discovered with your child, and with your permission we may share your story here.", "k246": "support@discover20.com", "k247": "شركاؤنا", "k248": "Our partners", "k249": "شعار شريك مؤكَّد", "k250": "Confirmed partner logo", "k251": "شعار شريك مؤكَّد", "k252": "Confirmed partner logo", "k253": "شعار شريك مؤكَّد", "k254": "Confirmed partner logo", "k255": "شعار شريك مؤكَّد", "k256": "Confirmed partner logo", "k257": "شعار شريك مؤكَّد", "k258": "Confirmed partner logo", "k259": "مكالمة الاكتشاف", "k260": "Discovery call", "k261": "لستم متأكدين من أين تبدأون؟", "k262": "Not sure where to start?", "k263": "احجزوا مكالمة مع فريق Discover20. نسمع منكم عن طفلكم، ونقترح عليكم نقطة البداية المناسبة له.", "k264": "Book a call with the Discover20 team. We'll hear about your child and suggest the right place to start.", "k265": "بعد إرسال الطلب، يتواصل معكم فريقنا لتحديد موعد المكالمة.", "k266": "After you send the request, our team will contact you to set a time.", "k267": "الاسم", "k268": "Your name", "k269": "رقم الهاتف أو واتساب", "k270": "Phone or WhatsApp", "k271": "عمر الطفل", "k272": "Child's age", "k273": "ما الذي تريدون الحديث عنه؟", "k274": "What would you like to talk about?", "k275": "السلوك", "k276": "Behaviour", "k277": "النموّ", "k278": "Development", "k279": "الكلام", "k280": "Speech", "k281": "التغذية", "k282": "Nutrition", "k283": "النوم", "k284": "Sleep", "k285": "أخرى", "k286": "Other", "k287": "أفضل وقت للتواصل", "k288": "Best time to call", "k289": "صباحًا", "k290": "Morning", "k291": "مساءً", "k292": "Evening", "k293": "هل تريدون إضافة شيء؟ (اختياري)", "k294": "Anything else? (optional)", "k295": "أوافق على أن يتواصل معي فريق Discover20 بخصوص هذا الطلب.", "k296": "I agree that the Discover20 team may contact me about this request.", "k297": "احجزوا مكالمة الاكتشاف", "k298": "Book the discovery call", "k299": "وصلنا طلبكم", "k300": "We got your request", "k301": "سيتواصل معكم فريق Discover20 لتحديد موعد المكالمة.", "k302": "The Discover20 team will contact you to set a time for the call.", "k303": "هذه المواد للمعلومات فقط، ولا تُغني عن الاستشارة الطبية المتخصصة، ولا تُعدّ علاجًا أو تشخيصًا.", "k304": "These materials are for informational purposes only: they are NOT a substitute for professional medical advice and do not constitute therapy, or diagnosis.", "k305": "أسرار الصغار", "k306": "Young Secrets", "k307": "تواصلوا معنا: ", "k308": "Contact: ", "k309": "support@discover20.com", "k310": "ابدأوا التقييم المجاني", "k311": "Start the free assessment"}}</script>
+<script>var D20_SRC=document.currentScript&&document.currentScript.textContent;
+
+(function(){
+  var root=document.documentElement;
+  function setLang(l){root.lang=l;root.dir=l==="ar"?"rtl":"ltr";try{localStorage.setItem("d20lang",l)}catch(e){}}
+  var saved=null;try{saved=localStorage.getItem("d20lang")}catch(e){}
+  setLang(saved==="en"?"en":"ar");
+  document.getElementById("lang").addEventListener("click",function(){setLang(root.lang==="ar"?"en":"ar")});
+
+
+  // discovery call form: saves to this page's data when the viewer can write it
+  var form=document.getElementById("call-form"),st=document.getElementById("cf-status");
+  function L(a,e){return root.lang==="en"?e:a}
+  function fail(t,info){st.className="cf-status"+(info?" info":"");st.textContent=t}
+  function noSend(){st.className="cf-status info";st.innerHTML=L("لا تستقبل هذه النسخة من الصفحة الطلبات بعد. راسلونا على ","This copy of the page can't receive requests yet. Email us at ")+'<span class="mail">support@discover20.com</span>'}
+  form.addEventListener("submit",async function(e){
+    e.preventDefault(); if(window.D20_EDITING)return;
+    var need=[["cf-name"],["cf-phone"],["cf-age"]],bad=false;
+    need.forEach(function(n){var el=document.getElementById(n[0]);var ok=el.value.trim()!=="";el.classList.toggle("bad",!ok);if(!ok)bad=true});
+    if(bad){fail(L("اكتبوا الاسم ورقم الهاتف واختاروا عمر الطفل.","Add your name and phone, and choose your child's age."));return}
+    if(!document.getElementById("cf-ok").checked){fail(L("ضعوا علامة على الموافقة حتى نتمكن من التواصل معكم.","Tick the consent box so we can contact you."));return}
+    var btn=document.getElementById("cf-send");btn.disabled=true;fail(L("جارٍ الإرسال…","Sending…"),true);
+    try{
+      var db=null,id=null;
+      if(!db||!id){btn.disabled=false;noSend();return}
+      var topics=[].slice.call(form.querySelectorAll('input[name="topic"]:checked')).map(function(x){return x.value});
+      var t=form.querySelector('input[name="time"]:checked');
+      await db.collection("calls").doc(id).set({name:document.getElementById("cf-name").value.trim().slice(0,120),phone:document.getElementById("cf-phone").value.trim().slice(0,40),age:document.getElementById("cf-age").value,topics:topics,time:t?t.value:"",note:document.getElementById("cf-note").value.trim().slice(0,1000),lang:root.lang,createdAt:Date.now()});
+      form.hidden=true;document.getElementById("call-done").hidden=false;
+    }catch(err){btn.disabled=false;noSend()}
+  });
+  // dial ticks
+  var g=document.getElementById("ticks"),ns="http://www.w3.org/2000/svg";
+  for(var i=0;i<20;i++){var a=i/20*Math.PI*2,l=document.createElementNS(ns,"line");
+    l.setAttribute("class","tick");l.setAttribute("x1",Math.sin(a)*84);l.setAttribute("y1",-Math.cos(a)*84);
+    l.setAttribute("x2",Math.sin(a)*(i%5?78:72));l.setAttribute("y2",-Math.cos(a)*(i%5?78:72));g.appendChild(l)}
+
+  // card flip: tap, keyboard, and a gentle auto-flip
+  var flip=document.getElementById("flip");
+  function toggle(){flip.classList.toggle("on")}
+  flip.addEventListener("click",toggle);
+  flip.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle()}});
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduce)setInterval(function(){if(!window.D20_EDITING)toggle()},3800);
+
+  // plan checklist ticks one by one (ends checked)
+  function tick(){var rows=document.querySelectorAll("#plan .row");rows.forEach(function(r){r.classList.remove("done")});rows.forEach(function(r,i){setTimeout(function(){r.classList.add("done")},400+i*550)})}
+  // growth bars fill (illustration)
+  var widths=[.82,.7,.76,.64];
+  function fillBars(){document.querySelectorAll("#bars i").forEach(function(b,i){b.style.setProperty("--w",widths[i])})}
+
+  // scroll rise: content is always visible; only items below the fold start slightly lowered
+  if(!reduce&&"IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove("pre");if(e.target.querySelector&&e.target.querySelector("#bars"))fillBars();if(e.target.querySelector&&e.target.querySelector("#plan"))tick();io.unobserve(e.target)}})},{threshold:.15});
+    document.querySelectorAll(".rise").forEach(function(el){
+      if(el.getBoundingClientRect().top>innerHeight){el.classList.add("pre");io.observe(el)}
+      else{if(el.querySelector("#bars"))fillBars();}
+    });
+  } else fillBars();
+})();
+
+/* ---- in-place editing (artifact capability) ---- */
+(function(){
+  var SKEL='<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>';
+  var dataEl=document.getElementById('d20-data'); if(!dataEl||!D20_SRC) return;
+  var DATA; try{DATA=JSON.parse(dataEl.textContent)}catch(e){return}
+  var root=document.documentElement, editing=false, art=null, busy=false;
+  var L=function(ar,en){return root.lang==='en'?en:ar};
+  var bar=document.createElement('div'); bar.id='d20-bar'; bar.hidden=true; document.body.appendChild(bar);
+  function els(){return document.querySelectorAll('[data-k]')}
+  function draw(){
+    if(!editing){bar.innerHTML='<button type="button" id="d20-edit">✎ '+L('تعديل الصفحة','Edit page')+'</button>';bar.querySelector('#d20-edit').onclick=start;return}
+    bar.innerHTML='<button type="button" id="d20-save">'+L('حفظ ونشر','Save & publish')+'</button><button type="button" class="ghost" id="d20-cancel">'+L('إلغاء','Cancel')+'</button><button type="button" class="ghost" id="d20-flip">↻ '+L('اقلبوا البطاقة','Flip card')+'</button><span class="msg" id="d20-msg">'+L('اضغطوا على أي نص لتعديله. لتعديل النسخة الإنجليزية، اضغطوا English في الأعلى.','Click any text to edit it. To edit the Arabic version, switch to العربية at the top.')+'</span>';
+    bar.querySelector('#d20-save').onclick=save; bar.querySelector('#d20-cancel').onclick=cancel;
+    bar.querySelector('#d20-flip').onclick=function(){var f=document.getElementById('flip');if(f)f.classList.toggle('on')};
+  }
+  function msg(t){var m=document.getElementById('d20-msg');if(m)m.textContent=t}
+  function start(){editing=true;root.classList.add('editing');window.D20_EDITING=true;
+    document.querySelectorAll('.rise.pre').forEach(function(e){e.classList.remove('pre')});
+    els().forEach(function(e){e.contentEditable='true';e.spellcheck=false});draw()}
+  function stop(){editing=false;root.classList.remove('editing');window.D20_EDITING=false;els().forEach(function(e){e.removeAttribute('contenteditable')});draw()}
+  function cancel(){els().forEach(function(e){e.innerHTML=DATA.text[e.getAttribute('data-k')]});stop()}
+  var OK={B:1,I:1,SMALL:1,BR:1,SPAN:1};
+  function clean(html){
+    var t=document.createElement('template');t.innerHTML=html;
+    (function walk(n){Array.prototype.slice.call(n.childNodes).forEach(function(c){
+      if(c.nodeType===3)return;
+      if(c.nodeType!==1){c.remove();return}
+      walk(c);
+      if(!OK[c.tagName]){while(c.firstChild)c.parentNode.insertBefore(c.firstChild,c);c.remove();return}
+      var keep=c.tagName==='SPAN'&&c.classList.contains('hl');
+      Array.prototype.slice.call(c.attributes).forEach(function(a){c.removeAttribute(a.name)});
+      if(keep)c.className='hl';
+    })})(t.content);
+    return t.innerHTML.replace(/\{\{/g,'{ {').trim();
+  }
+  function build(text){
+    var page=DATA.tpl.replace(/\{\{(k\d+)\}\}/g,function(m,k){return text[k]});
+    var json=JSON.stringify({tpl:DATA.tpl,text:text}).replace(/</g,'\\u003c');
+    return SKEL+'\n'+page+'\n<script type="application/json" id="d20-data">'+json+'<\/script>\n<script>'+D20_SRC+'<\/script>\n</body></html>';
+  }
+  async function save(){
+    if(busy)return; var text={},changed=false;
+    for(var k in DATA.text)text[k]=DATA.text[k];
+    els().forEach(function(e){var k=e.getAttribute('data-k'),v=clean(e.innerHTML);if(v!==DATA.text[k]){text[k]=v;changed=true}});
+    if(!changed){msg(L('لا توجد تغييرات للحفظ.','No changes to save.'));return}
+    busy=true;bar.querySelectorAll('button').forEach(function(b){b.disabled=true});msg(L('جارٍ الحفظ…','Saving…'));
+    try{await art.publish(build(text));msg(L('تم الحفظ. يتم تحميل النسخة الجديدة…','Saved. Loading the new version…'))}
+    catch(err){
+      var c=err&&err.code;busy=false;bar.querySelectorAll('button').forEach(function(b){b.disabled=false});
+      if(c==='conflict')msg(L('حفظ شخص آخر نسخة أحدث، وسيتم تحميلها الآن.','Someone saved a newer version; it is loading now.'));
+      else if(c==='not_writer'||c==='not_granted'){cancel();bar.hidden=true}
+      else if(c==='rate_limited')msg(L('انتظروا قليلًا ثم احفظوا مرة أخرى.','Wait a moment, then save again.'));
+      else msg(L('لم يتم الحفظ. حاولوا مرة أخرى.','Not saved. Please try again.'));
+    }
+  }
+  document.addEventListener('click',function(e){
+    if(!editing||e.target.closest('#d20-bar')||e.target.closest('#lang'))return;
+    if(e.target.closest('a,button,.flip')){e.preventDefault();e.stopPropagation()}
+  },true);
+  document.addEventListener('keydown',function(e){if(editing&&e.key==='Enter'&&e.target.closest&&e.target.closest('[data-k]'))e.preventDefault()},true);
+  document.addEventListener('paste',function(e){if(!editing||!e.target.closest||!e.target.closest('[data-k]'))return;e.preventDefault();var t=(e.clipboardData||window.clipboardData).getData('text/plain').replace(/\s*\n\s*/g,' ');document.execCommand('insertText',false,t)},true);
+  document.getElementById('lang').addEventListener('click',function(){setTimeout(draw,0)});
+})();
+</script>
+
+</body></html>
