@@ -115,7 +115,7 @@ const D20Footer = () => (
         </p>
         <div style={{marginTop:14,fontSize:13,color:'var(--d20-grey-70)'}}>
           <div><b style={{color:'var(--d20-teal-dark)'}}>discover20.com</b></div>
-          <div>info@Discover20.com</div>
+          <div>Walaa.nasr@discover20.com</div>
         </div>
       </div>
       {[

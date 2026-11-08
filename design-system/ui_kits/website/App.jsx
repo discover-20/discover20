@@ -238,7 +238,7 @@ function App() {
           </D20Section>
           <D20Section>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:14}}>
-              {[{i:'discover20.com',l:'Website',c:'teal'},{i:'info@Discover20.com',l:'Email',c:'coral'},{i:'+20 111 111 1111',l:'Phone',c:'purple'},{i:'Mon–Fri 9–6',l:'Hours',c:'green'}].map(card=>(
+              {[{i:'discover20.com',l:'Website',c:'teal'},{i:'Walaa.nasr@discover20.com',l:'Email',c:'coral'},{i:'+20 111 111 1111',l:'Phone',c:'purple'},{i:'Mon–Fri 9–6',l:'Hours',c:'green'}].map(card=>(
                 <div key={card.l} style={{background:'#fff',border:'1px solid var(--d20-grey-15)',borderInlineStart:`5px solid var(--d20-${card.c})`,borderRadius:18,padding:20}}>
                   <div style={{fontSize:11,letterSpacing:'.12em',textTransform:'uppercase',fontWeight:800,color:'var(--d20-grey-70)'}}>{card.l}</div>
                   <div style={{fontSize:18,fontWeight:900,marginTop:6,color:'var(--d20-grey-90)'}}>{card.i}</div>
