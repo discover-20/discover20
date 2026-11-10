@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discover20 Personalised Plan</title>
+<meta name="description" content="Concept demo of the Discover20 engine: a short development check becomes a personalised 20-minute daily plan for parent and child.">
+<link rel="icon" href="../../design-system/assets/favicon.ico">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--d20-bg-canvas); color: var(--d20-fg-body); font-family: var(--d20-font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  html[lang="ar"] body { font-family: var(--d20-font-arabic); font-size: 17px; }
+  h1, h2, h3, h4 { margin: 0; line-height: 1.25; text-wrap: balance; }
+  p { margin: 0; }
+  button, input, select { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--d20-purple); outline-offset: 2px; border-radius: 8px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* header */
+  header.top { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--d20-border); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 10px; padding-bottom: 10px; }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .brand img { height: 32px; display: block; }
+  .brand span { font-size: 13px; font-weight: 700; color: var(--d20-grey-70); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lang-btn { border: 2px solid var(--d20-teal); background: #fff; color: var(--d20-teal-dark); font-weight: 800; border-radius: 999px; padding: 6px 16px; cursor: pointer; flex: none; }
+  .lang-btn:hover { background: var(--d20-teal-light); }
+
+  /* hero */
+  .hero { background: var(--d20-teal); color: #fff; border-end-start-radius: var(--d20-r-hero); border-end-end-radius: var(--d20-r-hero); position: relative; overflow: hidden; }
+  .hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; opacity: .14; background: #fff; }
+  .hero::before { width: 340px; height: 340px; inset-inline-end: -90px; top: -120px; }
+  .hero::after { width: 180px; height: 180px; inset-inline-start: -60px; bottom: -80px; background: var(--d20-yellow); opacity: .35; }
+  .hero .wrap { position: relative; z-index: 1; padding-top: 48px; padding-bottom: 56px; }
+  .hero .badge { display: inline-block; background: rgba(255,255,255,.2); border-radius: 999px; padding: 5px 14px; font-size: 13px; font-weight: 800; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(30px, 5vw, 48px); font-weight: 900; color: #fff; max-width: 18ch; }
+  .hero p.lead { margin-top: 14px; font-size: 18px; max-width: 60ch; color: rgba(255,255,255,.92); }
+  .pipeline { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; counter-reset: step; }
+  .pipeline li { counter-increment: step; display: flex; align-items: center; gap: 8px; background: #fff; color: var(--d20-grey-90); font-weight: 800; font-size: 14px; border-radius: 14px; padding: 8px 14px 8px 8px; }
+  html[dir="rtl"] .pipeline li { padding: 8px 8px 8px 14px; }
+  .pipeline li::before { content: counter(step); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--d20-yellow); color: var(--d20-grey-90); font-size: 13px; }
+  .samples { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .samples .lbl { font-weight: 700; font-size: 14px; margin-inline-end: 4px; }
+  .sample-btn { background: #fff; color: var(--d20-teal-dark); border: none; border-radius: 14px; padding: 10px 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,.12); text-align: start; }
+  .sample-btn small { display: block; font-weight: 600; color: var(--d20-grey-70); font-size: 12px; }
+  .sample-btn:hover { transform: translateY(-1px); }
+
+  /* sections */
+  main { padding: 36px 0 64px; }
+  .card { background: #fff; border: 1px solid var(--d20-border); border-radius: var(--d20-r-xl); box-shadow: var(--d20-shadow-md); padding: 24px; }
+  .card + .card { margin-top: 20px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--d20-grey-70); margin-bottom: 8px; }
+  html[lang="ar"] .eyebrow { letter-spacing: 0; font-size: 14px; }
+  .eyebrow::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--dot, var(--d20-teal)); }
+  h2.sec { font-size: clamp(22px, 3vw, 28px); font-weight: 900; color: var(--d20-coral); }
+  .sub { margin-top: 6px; color: var(--d20-grey-70); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* inputs */
+  .field { display: grid; gap: 6px; }
+  .field label { font-weight: 800; color: var(--d20-grey-90); font-size: 14px; }
+  .field input[type="text"], .field input[type="number"], .field select, .search { border: 2px solid var(--d20-grey-15); border-radius: 12px; padding: 10px 12px; background: #fff; width: 100%; }
+  .field input:focus, .search:focus, .field select:focus { border-color: var(--d20-teal); outline: none; }
+  .row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 18px; }
+  .row .field { flex: 1 1 200px; }
+  .band-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .pill { border: none; border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: 13px; cursor: pointer; background: var(--d20-teal-light); color: var(--d20-teal-dark); }
+  .pill[aria-pressed="true"] { background: var(--d20-teal); color: #fff; }
+
+  /* questions */
+  .q-list { margin-top: 16px; display: grid; gap: 10px; }
+  .q { display: grid; grid-template-columns: 1fr auto; gap: 10px 16px; align-items: center; padding: 12px 14px; border-radius: 16px; background: var(--d20-grey-04); border-inline-start: 5px solid var(--qc, var(--d20-teal)); }
+  .q .txt { font-weight: 700; color: var(--d20-grey-90); }
+  .q .dom { display: block; font-size: 12px; font-weight: 800; color: var(--d20-grey-70); margin-bottom: 2px; }
+  .q .key { font-size: 11px; font-weight: 800; color: var(--d20-coral-dark); background: var(--d20-coral-light); border-radius: 6px; padding: 1px 6px; margin-inline-start: 6px; vertical-align: 1px; }
+  @media (max-width: 640px) { .q { grid-template-columns: 1fr; } }
+  .seg { display: inline-flex; background: #fff; border: 2px solid var(--d20-grey-15); border-radius: 12px; padding: 3px; gap: 3px; }
+  .seg button { border: none; background: transparent; border-radius: 9px; padding: 7px 12px; font-weight: 700; font-size: 14px; cursor: pointer; color: var(--d20-grey-70); white-space: nowrap; }
+  .seg button:hover { background: var(--d20-grey-08); }
+  .seg button[aria-pressed="true"] { background: var(--d20-teal); color: #fff; }
+  .seg button[aria-pressed="true"][data-v="0"] { background: var(--d20-coral); }
+  .seg button[aria-pressed="true"][data-v="1"] { background: var(--d20-yellow); color: var(--d20-grey-90); }
+  .progress { margin-top: 12px; font-size: 14px; font-weight: 700; color: var(--d20-grey-70); }
+  .cta-row { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn { border: none; border-radius: 14px; padding: 14px 26px; font-weight: 800; font-size: 16px; cursor: pointer; background: var(--d20-teal); color: #fff; box-shadow: var(--d20-shadow-brand); }
+  .btn:hover { background: var(--d20-teal-dark); }
+  .btn:disabled { background: var(--d20-grey-30); box-shadow: none; cursor: not-allowed; }
+  .btn.ghost { background: transparent; color: var(--d20-teal-dark); box-shadow: inset 0 0 0 2px var(--d20-teal); }
+  .note { font-size: 13px; color: var(--d20-grey-70); }
+
+  /* results */
+  #results[hidden] { display: none; }
+  .res-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; margin: 40px 0 16px; }
+  .res-head h2 { font-size: clamp(24px, 3.5vw, 34px); font-weight: 900; color: var(--d20-coral); }
+  .live { font-size: 13px; font-weight: 800; color: var(--d20-teal-dark); background: var(--d20-teal-light); border-radius: 999px; padding: 4px 12px; }
+  .domains { display: grid; gap: 14px; margin-top: 14px; }
+  .dom-row { display: grid; grid-template-columns: minmax(130px, 200px) 1fr auto; align-items: center; gap: 12px; }
+  @media (max-width: 560px) { .dom-row { grid-template-columns: 1fr auto; } .dom-row .bar { grid-column: 1 / -1; order: 3; } }
+  .dom-row .name { font-weight: 800; color: var(--d20-grey-90); }
+  .dom-row .status { display: block; font-size: 12px; font-weight: 700; }
+  .bar { height: 14px; background: var(--d20-grey-08); border-radius: 999px; overflow: hidden; position: relative; }
+  .bar i { display: block; height: 100%; border-radius: 999px; transition: width .5s var(--d20-ease); }
+  .bar b { position: absolute; top: -3px; bottom: -3px; width: 3px; background: var(--d20-grey-50); border-radius: 2px; }
+  .pct { font-weight: 900; color: var(--d20-black); font-variant-numeric: tabular-nums; min-width: 4.5ch; text-align: end; }
+  .trend { font-size: 12px; font-weight: 800; margin-inline-start: 6px; }
+  .trend.up { color: var(--d20-green-dark); } .trend.down { color: var(--d20-coral-dark); } .trend.steady { color: var(--d20-grey-50); }
+  .st-onTrack { color: var(--d20-green-dark); } .st-emerging { color: var(--d20-yellow-dark); } .st-support { color: var(--d20-coral-dark); }
+  .focus-box { margin-top: 18px; background: var(--d20-yellow-light); border-radius: 16px; padding: 14px 16px; font-weight: 700; color: var(--d20-grey-90); }
+
+  .plan-meter { margin-top: 14px; display: flex; height: 18px; border-radius: 999px; overflow: hidden; background: var(--d20-grey-08); }
+  .plan-meter span { display: block; height: 100%; }
+  .plan-meter-lbl { margin-top: 6px; font-size: 14px; font-weight: 700; color: var(--d20-grey-70); }
+  .plan { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 860px) { .plan { grid-template-columns: 1fr; } }
+  .item { background: #fff; border: 1px solid var(--d20-border); border-inline-start: 6px solid var(--ic); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .item .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 8px; background: var(--tb); color: var(--tf); }
+  html[lang="ar"] .tag { letter-spacing: 0; font-size: 12px; }
+  .mins { font-size: 13px; font-weight: 800; color: var(--d20-grey-70); white-space: nowrap; }
+  .item h4 { font-size: 17px; font-weight: 900; color: var(--d20-grey-90); }
+  .item .how { font-size: 14px; color: var(--d20-grey-70); }
+  .item .val { font-size: 13px; font-weight: 700; color: var(--d20-purple-dark); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px; }
+  .chip { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 10px; background: var(--d20-grey-08); color: var(--d20-grey-90); }
+  .chip.focus { background: var(--d20-coral-light); color: var(--d20-coral-dark); }
+  .chip.practice { background: var(--d20-yellow-light); color: var(--d20-yellow-dark); }
+  .chip.strength { background: var(--d20-green-light); color: var(--d20-green-dark); }
+  .chip.calm, .chip.connection { background: var(--d20-purple-light); color: var(--d20-purple-dark); }
+  .match { font-size: 12px; font-weight: 900; color: var(--d20-teal-dark); }
+  .prod { font-size: 11px; font-weight: 800; color: var(--d20-teal-dark); }
+
+  .support-list { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .support-list li { background: var(--d20-coral-light); border-radius: 14px; padding: 12px 14px; color: var(--d20-grey-90); }
+  .support-list li.ok { background: var(--d20-green-light); }
+  .support-list li.parent { background: var(--d20-purple-light); }
+  .support-list strong { display: block; }
+  .next { margin-top: 14px; font-weight: 800; color: var(--d20-teal-dark); }
+
+  /* library */
+  .filters { display: grid; gap: 12px; margin-top: 14px; }
+  .filter-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .filter-line .lbl { font-size: 13px; font-weight: 800; color: var(--d20-grey-70); min-width: 72px; }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .toggle input { width: 18px; height: 18px; accent-color: var(--d20-teal); }
+  .lib-count { margin-top: 14px; font-size: 14px; font-weight: 700; color: var(--d20-grey-70); }
+  .lib { margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .empty { padding: 24px; text-align: center; color: var(--d20-grey-70); background: var(--d20-grey-04); border-radius: 16px; }
+
+  details.hood { margin-top: 20px; }
+  details.hood summary { cursor: pointer; font-weight: 800; color: var(--d20-teal-dark); }
+  details.hood pre { margin-top: 12px; background: var(--d20-black); color: #E1F8F8; padding: 16px; border-radius: 14px; overflow: auto; font-size: 12px; line-height: 1.5; max-height: 420px; direction: ltr; text-align: left; }
+
+  footer.foot { border-top: 1px solid var(--d20-border); padding: 24px 0 40px; font-size: 13px; color: var(--d20-grey-70); }
+  footer.foot p + p { margin-top: 8px; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <img src="../../design-system/assets/logo-teal.svg" alt="Discover20" onerror="this.src='../../design-system/assets/logo-teal.png'">
+      <span data-i18n="tag"></span>
+    </div>
+    <button class="lang-btn" id="langBtn" type="button">عربي</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="badge" data-i18n="badge"></span>
+    <h1 data-i18n="h1"></h1>
+    <p class="lead" data-i18n="lead"></p>
+    <ol class="pipeline" id="pipeline"></ol>
+    <div class="samples" id="samples"></div>
+  </div>
+</section>
+
+<main>
+  <div class="wrap">
+    <section class="card" style="--dot: var(--d20-teal)" aria-labelledby="s1h">
+      <div class="eyebrow" data-i18n="step1e"></div>
+      <h2 class="sec" id="s1h" data-i18n="step1"></h2>
+      <div class="row">
+        <div class="field">
+          <label for="childName" data-i18n="nameL"></label>
+          <input type="text" id="childName" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="childAge" data-i18n="ageL"></label>
+          <input type="number" id="childAge" min="0" max="131" inputmode="numeric">
+        </div>
+      </div>
+      <div class="band-pills" id="bandPills" role="group"></div>
+    </section>
+
+    <section class="card" style="--dot: var(--d20-coral)" aria-labelledby="s2h">
+      <div class="eyebrow" data-i18n="step2e"></div>
+      <h2 class="sec" id="s2h" data-i18n="step2"></h2>
+      <p class="sub" data-i18n="step2s"></p>
+      <div class="q-list" id="questions"></div>
+      <p class="progress" id="qProgress"></p>
+    </section>
+
+    <section class="card" style="--dot: var(--d20-purple)" aria-labelledby="s3h">
+      <div class="eyebrow" data-i18n="step3e"></div>
+      <h2 class="sec" id="s3h" data-i18n="step3"></h2>
+      <p class="sub" data-i18n="step3s"></p>
+      <div class="q-list" id="caregiver"></div>
+      <div class="cta-row">
+        <button class="btn" id="goBtn" type="button" data-i18n="go"></button>
+        <span class="note" id="goNote"></span>
+      </div>
+    </section>
+
+    <div id="results" hidden>
+      <div class="res-head">
+        <h2 id="resTitle"></h2>
+        <span class="live" data-i18n="live"></span>
+      </div>
+
+      <div class="grid-2">
+        <section class="card" style="--dot: var(--d20-teal)" aria-labelledby="profH">
+          <div class="eyebrow" data-i18n="profE"></div>
+          <h3 class="sec" id="profH" data-i18n="profH" style="font-size:22px;font-weight:900;color:var(--d20-coral)"></h3>
+          <div class="domains" id="domains"></div>
+          <div class="focus-box" id="focusBox"></div>
+        </section>
+        <section class="card" style="--dot: var(--d20-coral)" aria-labelledby="supH">
+          <div class="eyebrow" data-i18n="supE"></div>
+          <h3 id="supH" data-i18n="supH" style="font-size:22px;font-weight:900;color:var(--d20-coral)"></h3>
+          <ul class="support-list" id="support"></ul>
+          <p class="next" id="nextCheck"></p>
+        </section>
+      </div>
+
+      <section class="card" style="--dot: var(--d20-yellow); margin-top:20px" aria-labelledby="planH">
+        <div class="eyebrow" data-i18n="planE"></div>
+        <h3 id="planH" style="font-size:24px;font-weight:900;color:var(--d20-coral)"></h3>
+        <div class="plan-meter" id="planMeter" aria-hidden="true"></div>
+        <p class="plan-meter-lbl" id="planMeterLbl"></p>
+        <div class="plan" id="plan"></div>
+      </section>
+
+      <section class="card" style="--dot: var(--d20-green)" aria-labelledby="libH">
+        <div class="eyebrow" data-i18n="libE"></div>
+        <h3 id="libH" data-i18n="libH" style="font-size:24px;font-weight:900;color:var(--d20-coral)"></h3>
+        <p class="sub" data-i18n="libS"></p>
+        <div class="filters">
+          <div class="filter-line" id="fType"><span class="lbl" data-i18n="fType"></span></div>
+          <div class="filter-line" id="fDomain"><span class="lbl" data-i18n="fDomain"></span></div>
+          <div class="filter-line">
+            <span class="lbl" data-i18n="fTime"></span>
+            <select id="fMinutes" class="search" style="width:auto"></select>
+            <label class="toggle"><input type="checkbox" id="fNoBuy"><span data-i18n="fNoBuy"></span></label>
+            <label class="toggle"><input type="checkbox" id="fCalm"><span data-i18n="fCalm"></span></label>
+          </div>
+          <div class="filter-line">
+            <label class="sr-only" for="fQuery" data-i18n="fSearch"></label>
+            <input type="search" id="fQuery" class="search" style="max-width:360px">
+          </div>
+        </div>
+        <p class="lib-count" id="libCount"></p>
+        <div class="lib" id="lib"></div>
+
+        <details class="hood">
+          <summary data-i18n="hood"></summary>
+          <pre id="hoodPre"></pre>
+        </details>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p data-i18n="disc1"></p>
+    <p data-i18n="disc2"></p>
+  </div>
+</footer>
+
+<script src="../engine/domains.js"></script>
+<script src="../engine/instruments/discover20-milestones.js"></script>
+<script src="../engine/scoring.js"></script>
+<script src="../engine/library.js"></script>
+<script src="../engine/recommend.js"></script>
+<script>
+(function () {
+  'use strict';
+  const D20 = window.D20;
+  const t = D20.t;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  /* ---------------- UI strings ---------------- */
+  const UI = {
+    tag: { en: 'Personalised plan engine · concept demo', ar: 'محرّك الخطة الشخصية · نموذج تجريبي' },
+    badge: { en: 'How Discover20 personalises every day', ar: 'كيف يجعل Discover20 كل يوم مناسبًا لطفلكم' },
+    h1: { en: 'From a 2-minute check to today\'s 20 minutes', ar: 'من فحص في دقيقتين إلى 20 دقيقة اليوم' },
+    lead: {
+      en: 'Parents answer a short milestone check. The engine scores four areas of development, filters 440+ activities, stories and toys to what fits this child, this age and this parent today, and builds a 20-minute plan with reasons for every choice.',
+      ar: 'يجيب الأهل عن فحص قصير لمراحل النمو. يقيّم المحرّك أربعة مجالات، ثم يختار من بين أكثر من 440 نشاطًا وقصة ولعبة ما يناسب هذا الطفل وعمره وأهله اليوم، ويبني خطة من 20 دقيقة مع سبب واضح لكل اختيار.',
+    },
+    pipeline: {
+      en: ['Check milestones', 'Score 4 areas', 'Filter by age & time', 'Rank by need', 'Plan 20 minutes', 'Re-check in 3 months'],
+      ar: ['فحص مراحل النمو', 'تقييم 4 مجالات', 'تصفية حسب العمر والوقت', 'ترتيب حسب الاحتياج', 'خطة 20 دقيقة', 'إعادة الفحص بعد 3 أشهر'],
+    },
+    samplesL: { en: 'Try a sample family:', ar: 'جرّبوا عائلة نموذجية:' },
+    step1e: { en: 'Step 1', ar: 'الخطوة 1' },
+    step1: { en: 'About your child', ar: 'عن طفلكم' },
+    nameL: { en: "Child's first name", ar: 'اسم الطفل' },
+    ageL: { en: 'Age in months', ar: 'العمر بالشهور' },
+    step2e: { en: 'Step 2', ar: 'الخطوة 2' },
+    step2: { en: 'Quick milestone check', ar: 'فحص سريع لمراحل النمو' },
+    step2s: { en: 'Eight questions for this age, two for each area. Answer for what your child usually does.', ar: 'ثمانية أسئلة لهذا العمر، سؤالان لكل مجال. أجيبوا حسب ما يفعله طفلكم عادة.' },
+    keyTag: { en: 'key', ar: 'أساسي' },
+    progress: { en: '{a} of {n} answered', ar: 'تمت الإجابة عن {a} من {n}' },
+    step3e: { en: 'Step 3', ar: 'الخطوة 3' },
+    step3: { en: 'A moment for you', ar: 'لحظة لكم أنتم' },
+    step3s: { en: 'Your time and energy shape the plan as much as your child\'s results do.', ar: 'وقتكم وطاقتكم يشكّلان الخطة بقدر نتائج طفلكم.' },
+    go: { en: 'Build my child\'s plan', ar: 'ابنوا خطة طفلي' },
+    goMissing: { en: 'Answer all {n} questions to see the plan.', ar: 'أجيبوا عن الأسئلة الـ{n} لتظهر الخطة.' },
+    resTitle: { en: '{name}\'s plan for today', ar: 'خطة {name} لليوم' },
+    resTitleAnon: { en: 'Your child\'s plan for today', ar: 'خطة طفلكم لليوم' },
+    live: { en: 'Updates live as you change answers', ar: 'تتحدث فورًا عند تغيير الإجابات' },
+    profE: { en: 'Development profile', ar: 'ملف النمو' },
+    profH: { en: 'Four areas of development', ar: 'أربعة مجالات للنمو' },
+    vsLast: { en: 'vs last check', ar: 'مقارنة بالفحص السابق' },
+    flagNote: { en: 'key milestone not yet', ar: 'مرحلة أساسية لم تتحقق بعد' },
+    focus: { en: 'Today\'s focus: {d}. About half of today\'s plan builds this area.', ar: 'تركيز اليوم: {d}. نحو نصف خطة اليوم يقوّي هذا المجال.' },
+    focusAll: { en: 'Everything looks on track. Today\'s plan keeps all four areas growing, with a little extra for {d}.', ar: 'كل شيء على المسار. خطة اليوم تحافظ على نمو المجالات الأربعة، مع اهتمام إضافي بـ{d}.' },
+    supE: { en: 'Support', ar: 'الدعم' },
+    supH: { en: 'When to talk to a specialist', ar: 'متى تتحدثون مع مختص' },
+    refKey: { en: 'A key milestone in {d} is marked "not yet". A short check with a specialist can reassure you or catch it early.', ar: 'مرحلة أساسية في {d} لم تتحقق بعد. جلسة قصيرة مع مختص تطمئنكم أو تكتشف الأمر مبكرًا.' },
+    refLow: { en: '{d} scored lower than expected for this age. The plan gives it extra time, and a specialist can guide you.', ar: '{d} أقل من المتوقع لهذا العمر. الخطة تمنحه وقتًا إضافيًا، ويمكن لمختص أن يرشدكم.' },
+    refParent: { en: 'You said you often felt overwhelmed this week. That is common and you are not alone. A session with a parenting coach is for you, not your child. Today\'s plan is lighter and easier.', ar: 'ذكرتم أنكم شعرتم بالضغط كثيرًا هذا الأسبوع. هذا شائع ولستم وحدكم. جلسة مع مدرّب تربية هي لكم أنتم وليست لطفلكم. وخطة اليوم أخف وأسهل.' },
+    book: { en: 'Book: {s}', ar: 'احجزوا: {s}' },
+    noRef: { en: 'No specialist needed right now. Keep enjoying your daily 20 minutes.', ar: 'لا حاجة لمختص الآن. استمتعوا بالعشرين دقيقة اليومية.' },
+    next: { en: 'Next check: {date}', ar: 'الفحص القادم: {date}' },
+    planE: { en: 'Today', ar: 'اليوم' },
+    planH: { en: 'Your {m} minutes together', ar: 'دقائقكم الـ{m} معًا' },
+    planLbl: { en: '{u} of {m} minutes planned · covers {d}', ar: '{u} من {m} دقيقة · يغطي {d}' },
+    min: { en: '{m} min', ar: '{m} دقيقة' },
+    value: { en: 'Value: {v}', ar: 'القيمة: {v}' },
+    product: { en: 'Discover20 product', ar: 'من منتجات Discover20' },
+    match: { en: '{p}% match', ar: 'تطابق {p}%' },
+    libE: { en: 'Library', ar: 'المكتبة' },
+    libH: { en: 'Explore everything that fits', ar: 'استكشفوا كل ما يناسب' },
+    libS: { en: 'Only items right for this age are shown, ranked for this child. Add filters to narrow down.', ar: 'تظهر فقط العناصر المناسبة لهذا العمر، مرتبة حسب احتياج طفلكم. أضيفوا فلاتر لتضييق الاختيار.' },
+    fType: { en: 'Type', ar: 'النوع' },
+    fDomain: { en: 'Area', ar: 'المجال' },
+    fTime: { en: 'Time', ar: 'الوقت' },
+    anyTime: { en: 'Any length', ar: 'أي مدة' },
+    upTo: { en: 'Up to {m} min', ar: 'حتى {m} دقيقة' },
+    fNoBuy: { en: 'Nothing to buy', ar: 'لا يحتاج شراء' },
+    fCalm: { en: 'Calm only', ar: 'هادئ فقط' },
+    fSearch: { en: 'Search the library', ar: 'ابحثوا في المكتبة' },
+    searchPh: { en: 'Search: e.g. sharing, ball, story…', ar: 'ابحثوا: مثلًا مشاركة، كرة، قصة…' },
+    libCount: { en: '{n} of {a} age-appropriate items', ar: '{n} من {a} عنصرًا مناسبًا للعمر' },
+    libEmpty: { en: 'Nothing matches these filters. Try removing one.', ar: 'لا شيء يطابق هذه الفلاتر. جرّبوا إزالة أحدها.' },
+    hood: { en: 'Under the hood: the profile and plan as data', ar: 'خلف الكواليس: الملف والخطة كبيانات' },
+    disc1: {
+      en: 'Concept demo. The questions here are original illustrative items, not a validated screening tool, and results are not a diagnosis. The live platform uses licensed, validated instruments (SWYC, PSC-17), which are kept out of this public repository.',
+      ar: 'نموذج تجريبي. الأسئلة هنا أمثلة أصلية للتوضيح وليست أداة فحص معتمدة، والنتائج ليست تشخيصًا. تستخدم المنصة الفعلية أدوات معتمدة ومرخّصة (SWYC وPSC-17) ولا توجد في هذا المستودع العام.',
+    },
+    disc2: { en: 'Privacy: everything runs in your browser. No child data is sent or stored. © Discover20.', ar: 'الخصوصية: كل شيء يعمل داخل المتصفح. لا تُرسل أي بيانات عن الطفل ولا تُحفظ. © Discover20.' },
+  };
+  const S = (k, vars) => {
+    let s = t(UI[k], state.lang);
+    if (vars) Object.keys(vars).forEach((v) => { s = s.split('{' + v + '}').join(vars[v]); });
+    return s;
+  };
+
+  /* ---------------- sample families ---------------- */
+  const inst = D20.instruments[D20.DEFAULT_INSTRUMENT];
+  // Build answers for an age: default "yes", with overrides per domain [key item, other item].
+  function answersFor(age, overrides) {
+    const a = {};
+    inst.itemsFor(age).forEach((it) => {
+      const o = overrides[it.domain];
+      a[it.id] = o ? (it.key ? o[0] : o[1]) : 2;
+    });
+    return a;
+  }
+  const SAMPLES = [
+    {
+      id: 'yusuf', name: { en: 'Yusuf', ar: 'يوسف' }, age: 20,
+      desc: { en: '20 months · few words yet · tired parent', ar: '20 شهرًا · كلمات قليلة · أهل متعبون' },
+      answers: () => answersFor(20, { language: [0, 1], cognitive: [2, 1] }),
+      caregiver: { minutes: 20, energy: 'low', overwhelmed: 'sometimes' },
+      previous: () => D20.scoreAssessment({ ageMonths: 17, date: daysAgo(90), answers: answersFor(17, { language: [0, 0], cognitive: [1, 1] }) }),
+    },
+    {
+      id: 'malak', name: { en: 'Malak', ar: 'ملك' }, age: 50,
+      desc: { en: '4 years · big feelings · stressful week', ar: '4 سنوات · مشاعر قوية · أسبوع مرهق' },
+      answers: () => answersFor(50, { socialEmotional: [0, 1], physical: [2, 1] }),
+      caregiver: { minutes: 20, energy: 'ok', overwhelmed: 'often' },
+      previous: null,
+    },
+    {
+      id: 'adam', name: { en: 'Adam', ar: 'آدم' }, age: 8,
+      desc: { en: '8 months · on track · 10 busy minutes', ar: '8 أشهر · على المسار · 10 دقائق فقط' },
+      answers: () => answersFor(8, {}),
+      caregiver: { minutes: 10, energy: 'high', overwhelmed: 'rarely' },
+      previous: null,
+    },
+  ];
+  function daysAgo(n) { const d = new Date(); d.setDate(d.getDate() - n); return d; }
+
+  /* ---------------- state ---------------- */
+  const state = {
+    lang: 'en',
+    name: '',
+    age: 20,
+    answers: {},
+    caregiver: D20.normaliseCaregiver({}),
+    previous: null,
+    started: false,
+    filters: { types: [], domains: [], maxMinutes: 0, noPurchase: false, calm: false, query: '' },
+  };
+
+  /* ---------------- render: static text ---------------- */
+  function renderStatic() {
+    const html = document.documentElement;
+    html.lang = state.lang;
+    html.dir = state.lang === 'ar' ? 'rtl' : 'ltr';
+    $('langBtn').textContent = state.lang === 'ar' ? 'English' : 'عربي';
+    document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = S(el.dataset.i18n); });
+    $('pipeline').innerHTML = t(UI.pipeline, state.lang).map((s) => `<li>${esc(s)}</li>`).join('');
+    $('samples').innerHTML = `<span class="lbl">${esc(S('samplesL'))}</span>` + SAMPLES.map((s) =>
+      `<button class="sample-btn" type="button" data-sample="${s.id}">${esc(t(s.name, state.lang))}<small>${esc(t(s.desc, state.lang))}</small></button>`).join('');
+    $('fQuery').placeholder = S('searchPh');
+    $('childName').value = state.name;
+    $('childAge').value = state.age;
+  }
+
+  function renderBands() {
+    const band = D20.bandForAge(state.age);
+    $('bandPills').innerHTML = D20.AGE_BANDS.map((b) =>
+      `<button class="pill" type="button" data-band="${b.id}" aria-pressed="${b.id === band.id}">${esc(t(b.label, state.lang))}</button>`).join('');
+  }
+
+  function seg(name, options, current) {
+    return `<div class="seg" role="group">` + options.map((o) =>
+      `<button type="button" data-q="${esc(name)}" data-v="${esc(o.value)}" aria-pressed="${String(o.value) === String(current)}">${esc(t(o.label, state.lang))}</button>`).join('') + `</div>`;
+  }
+
+  function renderQuestions() {
+    const items = inst.itemsFor(state.age);
+    $('questions').innerHTML = items.map((it) => {
+      const d = D20.domainById(it.domain);
+      return `<div class="q" style="--qc: var(--d20-${d.color})">
+        <div><span class="dom">${esc(t(d.label, state.lang))}</span><span class="txt">${esc(t(it.text, state.lang))}</span>${it.key ? `<span class="key">${esc(S('keyTag'))}</span>` : ''}</div>
+        ${seg(it.id, inst.answers, state.answers[it.id])}
+      </div>`;
+    }).join('');
+    const answered = items.filter((it) => state.answers[it.id] !== undefined).length;
+    $('qProgress').textContent = S('progress', { a: answered, n: items.length });
+    const done = answered === items.length;
+    $('goBtn').disabled = !done;
+    $('goNote').textContent = done ? '' : S('goMissing', { n: items.length });
+  }
+
+  function renderCaregiver() {
+    $('caregiver').innerHTML = D20.CAREGIVER_QUESTIONS.map((q) =>
+      `<div class="q" style="--qc: var(--d20-purple)"><div><span class="txt">${esc(t(q.text, state.lang))}</span></div>${seg('cg:' + q.id, q.options, state.caregiver[q.id])}</div>`).join('');
+  }
+
+  /* ---------------- results ---------------- */
+  let profile = null;
+
+  function compute() {
+    profile = D20.scoreAssessment({ ageMonths: state.age, answers: state.answers, caregiver: state.caregiver });
+  }
+
+  function itemCard(r, showMatch) {
+    const it = r.item;
+    const type = D20.TYPES.find((x) => x.id === it.type);
+    const chips = r.reasons.slice(0, 4).map((x) => `<span class="chip ${x.kind}">${esc(D20.reasonText(x, state.lang))}</span>`).join('');
+    return `<article class="item" style="--ic: var(--d20-${type.color}); --tb: var(--d20-${type.color}-light); --tf: var(--d20-${type.color}-dark)">
+      <div class="top"><span class="tag">${esc(t(type.label, state.lang))}</span>
+        <span class="mins">${showMatch ? `<span class="match">${esc(S('match', { p: r.match }))}</span> · ` : ''}${esc(S('min', { m: it.minutes }))}</span></div>
+      <h4>${esc(t(it.title, state.lang))}</h4>
+      ${it.product ? `<span class="prod">★ ${esc(S('product'))}</span>` : ''}
+      <p class="how">${esc(t(it.how, state.lang))}</p>
+      ${it.value ? `<p class="val">${esc(S('value', { v: t(it.value, state.lang) }))}</p>` : ''}
+      <div class="chips">${chips}</div>
+    </article>`;
+  }
+
+  function renderResults() {
+    if (!state.started) return;
+    const items = inst.itemsFor(state.age);
+    if (items.some((it) => state.answers[it.id] === undefined)) { $('results').hidden = true; return; }
+    compute();
+    $('results').hidden = false;
+    const L = state.lang;
+    $('resTitle').textContent = state.name ? S('resTitle', { name: state.name }) : S('resTitleAnon');
+
+    // Profile
+    const cmp = state.previous ? D20.compareAssessments(state.previous, profile) : null;
+    $('domains').innerHTML = D20.DOMAINS.map((d) => {
+      const dom = profile.domains[d.id];
+      const c = cmp && cmp[d.id];
+      const prevMark = c && c.from != null ? `<b style="inset-inline-start:${c.from}%" title="${esc(S('vsLast'))}"></b>` : '';
+      const trend = c && c.delta != null
+        ? `<span class="trend ${c.trend}">${c.delta > 0 ? '▲ +' : c.delta < 0 ? '▼ ' : '● '}${c.delta} ${esc(S('vsLast'))}</span>` : '';
+      return `<div class="dom-row">
+        <div><span class="name">${esc(t(d.label, L))}</span>
+          <span class="status st-${dom.status}">${esc(t(D20.STATUS[dom.status], L))}${dom.flags.length ? ' · ' + esc(S('flagNote')) : ''}</span></div>
+        <div class="bar" role="img" aria-label="${dom.pct}%"><i style="width:${Math.max(3, dom.pct)}%;background:var(--d20-${d.color})"></i>${prevMark}</div>
+        <div class="pct">${dom.pct}%${trend ? '<br>' + trend : ''}</div>
+      </div>`;
+    }).join('');
+    const top = profile.focus[0];
+    const topLabel = t(D20.domainById(top).label, L);
+    const allOk = D20.DOMAINS.every((d) => profile.domains[d.id].status === 'onTrack');
+    $('focusBox').textContent = allOk ? S('focusAll', { d: topLabel }) : S('focus', { d: topLabel });
+
+    // Support
+    const refs = profile.referrals;
+    $('support').innerHTML = refs.length ? refs.map((r) => {
+      if (r.domain === 'caregiver') return `<li class="parent"><strong>${esc(S('book', { s: t(r.specialist, L) }))}</strong>${esc(S('refParent'))}</li>`;
+      const dl = t(D20.domainById(r.domain).label, L);
+      return `<li><strong>${esc(S('book', { s: t(r.specialist, L) }))}</strong>${esc(S(r.reason === 'keyMilestone' ? 'refKey' : 'refLow', { d: dl }))}</li>`;
+    }).join('') : `<li class="ok">${esc(S('noRef'))}</li>`;
+    const nd = new Date(profile.nextAssessmentDate);
+    $('nextCheck').textContent = S('next', { date: nd.toLocaleDateString(L === 'ar' ? 'ar-EG-u-nu-latn' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) });
+
+    // Plan
+    const plan = D20.buildDailyPlan(profile, { date: new Date() });
+    $('planH').textContent = S('planH', { m: plan.budget });
+    $('planMeter').innerHTML = plan.parts.map((p) => {
+      const c = D20.TYPES.find((x) => x.id === p.item.type).color;
+      return `<span style="width:${(p.item.minutes / plan.budget) * 100}%;background:var(--d20-${c})"></span>`;
+    }).join('');
+    const covered = (plan.covered.length ? plan.covered : plan.focus).map((d) => t(D20.domainById(d).short, L)).join(L === 'ar' ? ' و' : ' + ');
+    $('planMeterLbl').textContent = S('planLbl', { u: plan.totalMinutes, m: plan.budget, d: covered });
+    $('plan').innerHTML = plan.parts.map((p) => itemCard(p, false)).join('');
+
+    renderLibrary();
+
+    $('hoodPre').textContent = JSON.stringify({
+      profile: {
+        ageMonths: profile.ageMonths, band: profile.band, instrument: profile.instrumentId,
+        domains: Object.fromEntries(Object.entries(profile.domains).map(([k, v]) => [k, { pct: v.pct, status: v.status, need: +v.need.toFixed(2), keyFlags: v.flags.length }])),
+        focusOrder: profile.focus, caregiver: profile.caregiver,
+        referrals: profile.referrals.map((r) => ({ domain: r.domain, reason: r.reason })),
+        nextAssessmentDate: profile.nextAssessmentDate.slice(0, 10),
+      },
+      todaysPlan: plan.parts.map((p) => ({ id: p.item.id, type: p.item.type, minutes: p.item.minutes, score: +p.score.toFixed(3), reasons: p.reasons.map((r) => r.kind + (r.domain ? ':' + r.domain : '')) })),
+      planMinutes: plan.totalMinutes + '/' + plan.budget,
+    }, null, 2);
+  }
+
+  /* ---------------- library ---------------- */
+  function renderFilters() {
+    const f = state.filters;
+    const L = state.lang;
+    const keepLbl = (id) => `<span class="lbl">${esc(S(id))}</span>`;
+    $('fType').innerHTML = keepLbl('fType') + D20.TYPES.map((x) =>
+      `<button class="pill" type="button" data-ftype="${x.id}" aria-pressed="${f.types.includes(x.id)}">${esc(t(x.label, L))}</button>`).join('');
+    $('fDomain').innerHTML = keepLbl('fDomain') + D20.DOMAINS.map((d) =>
+      `<button class="pill" type="button" data-fdom="${d.id}" aria-pressed="${f.domains.includes(d.id)}">${esc(t(d.short, L))}</button>`).join('');
+    $('fMinutes').innerHTML = [0, 5, 10, 15, 20].map((m) =>
+      `<option value="${m}" ${f.maxMinutes === m ? 'selected' : ''}>${esc(m ? S('upTo', { m }) : S('anyTime'))}</option>`).join('');
+    $('fNoBuy').checked = f.noPurchase;
+    $('fCalm').checked = f.calm;
+  }
+
+  function renderLibrary() {
+    if (!profile) return;
+    const f = state.filters;
+    const ranked = D20.rankLibrary(profile, {
+      types: f.types, domains: f.domains, maxMinutes: f.maxMinutes || undefined,
+      noPurchase: f.noPurchase, energy: f.calm ? 'calm' : undefined, query: f.query,
+    }, { date: new Date() });
+    const all = D20.filterLibrary(D20.LIBRARY, { ageMonths: profile.ageMonths }).length;
+    $('libCount').textContent = S('libCount', { n: ranked.length, a: all });
+    $('lib').innerHTML = ranked.length ? ranked.map((r) => itemCard(r, true)).join('') : `<div class="empty">${esc(S('libEmpty'))}</div>`;
+  }
+
+  /* ---------------- events ---------------- */
+  function renderAll() {
+    renderStatic(); renderBands(); renderQuestions(); renderCaregiver(); renderFilters(); renderResults();
+  }
+
+  $('langBtn').addEventListener('click', () => {
+    state.lang = state.lang === 'en' ? 'ar' : 'en';
+    renderAll();
+  });
+
+  $('childName').addEventListener('input', (e) => {
+    state.name = e.target.value.trim();
+    if (state.started) $('resTitle').textContent = state.name ? S('resTitle', { name: state.name }) : S('resTitleAnon');
+  });
+  $('childAge').addEventListener('input', (e) => {
+    const v = parseInt(e.target.value, 10);
+    if (isNaN(v)) return;
+    const oldBand = D20.bandForAge(state.age).id;
+    state.age = Math.max(0, Math.min(131, v));
+    if (D20.bandForAge(state.age).id !== oldBand) state.previous = null;
+    renderBands(); renderQuestions(); renderResults();
+  });
+
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    if (b.dataset.sample) return loadSample(b.dataset.sample);
+    if (b.dataset.band) {
+      const band = D20.AGE_BANDS.find((x) => x.id === b.dataset.band);
+      state.age = Math.round((band.min + Math.min(band.max, band.min + 11)) / 2);
+      state.previous = null;
+      $('childAge').value = state.age;
+      renderBands(); renderQuestions(); renderResults();
+      return;
+    }
+    if (b.dataset.q) {
+      const q = b.dataset.q;
+      if (q.startsWith('cg:')) {
+        const id = q.slice(3);
+        const opt = D20.CAREGIVER_QUESTIONS.find((x) => x.id === id).options.find((o) => String(o.value) === b.dataset.v);
+        state.caregiver[id] = opt.value;
+        renderCaregiver();
+      } else {
+        state.answers[q] = Number(b.dataset.v);
+        renderQuestions();
+      }
+      renderResults();
+      return;
+    }
+    if (b.dataset.ftype) { toggle(state.filters.types, b.dataset.ftype); renderFilters(); renderLibrary(); return; }
+    if (b.dataset.fdom) { toggle(state.filters.domains, b.dataset.fdom); renderFilters(); renderLibrary(); return; }
+  });
+  function toggle(arr, v) { const i = arr.indexOf(v); if (i >= 0) arr.splice(i, 1); else arr.push(v); }
+
+  $('fMinutes').addEventListener('change', (e) => { state.filters.maxMinutes = Number(e.target.value); renderLibrary(); });
+  $('fNoBuy').addEventListener('change', (e) => { state.filters.noPurchase = e.target.checked; renderLibrary(); });
+  $('fCalm').addEventListener('change', (e) => { state.filters.calm = e.target.checked; renderLibrary(); });
+  $('fQuery').addEventListener('input', (e) => { state.filters.query = e.target.value; renderLibrary(); });
+
+  $('goBtn').addEventListener('click', () => {
+    state.started = true;
+    renderResults();
+    $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  function loadSample(id) {
+    const s = SAMPLES.find((x) => x.id === id);
+    state.name = t(s.name, state.lang);
+    state.age = s.age;
+    state.answers = s.answers();
+    state.caregiver = Object.assign({}, s.caregiver);
+    state.previous = s.previous ? s.previous() : null;
+    state.started = true;
+    state.filters = { types: [], domains: [], maxMinutes: 0, noPurchase: false, calm: false, query: '' };
+    $('fQuery').value = '';
+    renderAll();
+    $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
