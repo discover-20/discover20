@@ -10,11 +10,13 @@ Website: [discover20.com](https://discover20.com)
 |---|---|
 | [`design-system`](design-system) | The Discover20 design system: brand colours and typography (`colors_and_type.css`, `tokens.json`), logos and illustrations, component previews, and a website UI kit (React/JSX) |
 | [`website`](website) | Public website pages: home, an earlier homepage, assessments, and "The 20-Month Window" article |
+| [`personalization`](personalization) | The personalization engine: a development check across four domains becomes a filtered, ranked library and a personalised 20-minute daily plan. Includes an interactive bilingual demo and tests |
 
 ## Viewing the files
 
 - Pages in `website/` are standalone HTML: open them directly in a browser.
 - To see the design system applied, open `design-system/ui_kits/website/index.html`.
+- To see how assessment results personalise each child's day, open `personalization/demo/index.html`.
 
 ## Brand at a glance
 
