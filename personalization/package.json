@@ -1,0 +1,13 @@
+{
+  "name": "@discover20/personalization",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Discover20 personalization engine: development check → four-domain profile → filtered, ranked library → personalised 20-minute daily plan.",
+  "main": "engine/index.js",
+  "scripts": {
+    "test": "node --test tests/engine.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
